@@ -68,6 +68,18 @@
         <servlet-name>editMe</servlet-name>
         <servlet-class>servlet.editMe</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>calendar</servlet-name>
+        <servlet-class>servlet.showCalendar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>calDec</servlet-name>
+        <servlet-class>servlet.calDec</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>calAcc</servlet-name>
+        <servlet-class>servlet.calAcc</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
@@ -131,6 +143,18 @@
     <servlet-mapping>
         <servlet-name>editMe</servlet-name>
         <url-pattern>/editMe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>calDec</servlet-name>
+        <url-pattern>/calDec</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>calAcc</servlet-name>
+        <url-pattern>/calAcc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>calendar</servlet-name>
+        <url-pattern>/calendar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

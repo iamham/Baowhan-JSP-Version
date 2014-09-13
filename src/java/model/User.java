@@ -469,6 +469,29 @@ public class User {
         }
         return eAG;
     }
+    public static String getUserName(int userID){
+        Connection con = ConnectionAgent.getConnection();
+        String name = null;
+        try {
+            String sql = "select firstname,lastname from User where userid= ?";
+            PreparedStatement ps;
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, userID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                name = rs.getString(1)+" "+rs.getString(2);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return name;
+    }
     public static User getUserRecord(String ur) {
         Connection con = ConnectionAgent.getConnection();
         String sql = "select userid,username,firstname,lastname,profilePIC,telephone from User where userid= ?";
