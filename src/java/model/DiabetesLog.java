@@ -281,7 +281,7 @@ public class DiabetesLog {
             ps = con.prepareStatement(sql);
             ps.setInt(1, userID);
             ps.setDouble(2, value);
-            ps.setString(3, note);
+            ps.setString(3, utility.toUTF8(note));
             ps.setTimestamp(4,  srecordTime);
             ps.setTimestamp(5,  stimestamp);
             ps.executeUpdate();
@@ -307,7 +307,7 @@ public class DiabetesLog {
             PreparedStatement ps ;
             ps = con.prepareStatement(sql);
             ps.setDouble(1, value);
-            ps.setString(2, note);
+            ps.setString(2, utility.toUTF8(note));
             ps.setTimestamp(3,  srecordTime);
             ps.setTimestamp(4,  stimestamp);
             ps.setInt(5, ID);

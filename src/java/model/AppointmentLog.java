@@ -105,10 +105,10 @@ public class AppointmentLog {
     public void setDetail(String detail) {
         this.detail = detail;
     }
-    public static boolean addRecord(int patientID,int doctorID,Date date,Date logtime,String detail,int origin,int type){
+    public static boolean addRecord(int patientID,int doctorID,Date date,Date logtime,String detail,int origin,int type,int status){
         Connection con = ConnectionAgent.getConnection();
         boolean success = false;
-        String sqlCmd = "INSERT INTO AppointmentLog(patientID,doctorID,checktime,logtime,detail,originID,type) VALUES (?,?,?,?,?,?)";
+        String sqlCmd = "INSERT INTO AppointmentLog(patientID,doctorID,checktime,logtime,detail,originID,type,status) VALUES (?,?,?,?,?,?,?,?)";
         try {
             java.sql.Timestamp ctime = new java.sql.Timestamp(date.getTime());
             java.sql.Timestamp ltime = new java.sql.Timestamp(logtime.getTime());
@@ -117,9 +117,11 @@ public class AppointmentLog {
             pstm.setInt(2, doctorID);
             pstm.setTimestamp(3, ctime);
             pstm.setTimestamp(4, ltime);
-            pstm.setString(5, detail);
+            pstm.setString(5, utility.toUTF8(detail));
+            System.out.println("3"+detail);
             pstm.setInt(6, origin);
             pstm.setInt(7, type);
+            pstm.setInt(8, status);
             pstm.executeUpdate();
             success=true;
         } catch (SQLException ex) {

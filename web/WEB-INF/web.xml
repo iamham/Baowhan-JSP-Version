@@ -80,6 +80,18 @@
         <servlet-name>calAcc</servlet-name>
         <servlet-class>servlet.calAcc</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addCal</servlet-name>
+        <servlet-class>servlet.addCal</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addMsg</servlet-name>
+        <servlet-class>servlet.addMsg</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>tools</servlet-name>
+        <servlet-class>servlet.tools</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
@@ -155,6 +167,18 @@
     <servlet-mapping>
         <servlet-name>calendar</servlet-name>
         <url-pattern>/calendar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addCal</servlet-name>
+        <url-pattern>/addCal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addMsg</servlet-name>
+        <url-pattern>/addMsg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>tools</servlet-name>
+        <url-pattern>/tools</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

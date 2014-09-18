@@ -379,7 +379,7 @@ public class User {
     
     public static User getUser(String user) {
         Connection con = ConnectionAgent.getConnection();
-        String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province,zipcode,userID,hospitalID from User where username= ?";
+        String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province,zipcode,userID,hospitalID,relatedUserID from User where username= ?";
         PreparedStatement ps;
         User u = null;
         try {
@@ -388,7 +388,6 @@ public class User {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 u = new User();
-                u.setUserID(rs.getInt(11));
                 u.setUsername(rs.getString(1));
                 u.setPassword(rs.getString(2));
                 u.setEmail(rs.getString(3));
@@ -399,7 +398,9 @@ public class User {
                 u.setAddress(rs.getString(8));
                 u.setProvince(rs.getString(9));
                 u.setZipcode(rs.getString(10));
-                u.setHospitalID(rs.getInt(11));
+                u.setUserID(rs.getInt(11));
+                u.setHospitalID(rs.getInt(12));
+                u.setRelatedUserID(rs.getInt(13));
             }
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);

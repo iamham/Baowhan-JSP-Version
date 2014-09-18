@@ -8,8 +8,11 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.AppointmentLog;
 import model.User;
+import model.utility;
 
 /**
  *
  * @author sarunpeetasai
  */
-public class showCalendar extends HttpServlet {
+public class addCal extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,42 +40,30 @@ public class showCalendar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        SimpleDateFormat sf = new SimpleDateFormat("yyyy, M, d");
         HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("user");
-        List<AppointmentLog> req = AppointmentLog.getRequest(u.getUserID());
-        request.setAttribute("doctor", User.getUserName(u.getRelatedUserID()));
-        System.out.println(u.getRelatedUserID());
-        System.out.println(User.getUserName(u.getRelatedUserID()));
-        if(!req.isEmpty()){
-            String sreq="";
-            for(int i=0;i<req.size();i++){
-                sreq = sreq.concat("<div class=\"alert alert-info alert-dismissable animation-slideRight\">\n" +
-"<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><p>คุณมีคำขอนัดใหม่</p><p><strong>วันที่ "+req.get(i).getChecktime().toString()+" พบกับคุณหมอ "+User.getUserName(req.get(i).getDoctorId())+"<br />รายละเอียด "+req.get(i).getDetail()+"<a href=\"calAcc?id="+req.get(i).getLogId()+"\"><br /><button class=\"btn btn-sm btn-effect-ripple btn-success\">เพิ่ม</button></a><a href=\"calDec?id="+req.get(i).getLogId()+"\"> <button class=\"btn btn-sm btn-effect-ripple btn-danger\">ลบ</button></a></div>");
-            }
-        request.setAttribute("req", sreq);
+        String typ = request.getParameter("type");
+        String dat = request.getParameter("date");
+        String time = request.getParameter("time");
+        String note = request.getParameter("note");
+        System.out.println("1"+note);
+        note = utility.toUTF8(note);
+        System.out.println("2"+note);
+        Date ndate = new Date();
+        String irdate = dat.concat(" "+time);
+        Date rdate=null;
+        try {
+            rdate = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(irdate);
+        } catch (ParseException ex) {
+            Logger.getLogger(addCal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        List<AppointmentLog> all = AppointmentLog.getCalendar(u.getUserID());
-        if(!all.isEmpty()){
-            String json = "[ ";
-        int siz = all.size();
-        for(int i=0;i<all.size();i++){
-            json = json.concat("{ title: \'"+all.get(i).getDetail()+"\', start: new Date("+sf.format(all.get(i).getChecktime())+") } ");
-            if(i!=(siz-1)){
-                json = json.concat(" , ");
-            }
+        if(typ.equals("1")){
+            int docID = u.getRelatedUserID();
+            AppointmentLog.addRecord(u.getUserID(), docID, rdate, ndate, note, u.getUserID(), 1,1);
+        }if(typ.equals("2")){
+            AppointmentLog.addRecord(u.getUserID(), 0, rdate, ndate, note, u.getUserID(), 2,2);
         }
-        json = json.concat(" ] ");
-        request.setAttribute("cal", json);
-        }
-        getServletContext().getRequestDispatcher("/calendar.jsp").forward(request, response);
-        /*[
-                    {
-                        title: 'Cinema',
-                        start: new Date(4, 8, 2014),
-                        allDay: true,
-                        color: '#de815c'
-                    },*/
+        getServletContext().getRequestDispatcher("/calendar").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

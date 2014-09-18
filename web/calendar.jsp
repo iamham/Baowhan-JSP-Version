@@ -126,7 +126,7 @@
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="#"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    <a href="dashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
                                 </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
@@ -242,18 +242,20 @@
 
                     <!-- Page content -->
                     <div id="page-content">
-<!-- Calendar Header -->
-                    ${req}
+                        <!-- Calendar Header -->
+                        ${req}
                         <!-- FullCalendar Block -->
-                        <a href="#addDoctor" class="btn btn-effect-ripple btn-primary" data-toggle="modal">เพิ่มการนัดหมาย</a>
-                        <a href="#addSelf" class="btn btn-effect-ripple btn-primary" data-toggle="modal">เพิ่มปฏิทินส่วนตัว</a>
-                        <br />
+                         <div class="form-group">
+                        <a href="#addDoctor" class="btn btn-effect-ripple btn-info" data-toggle="modal">เพิ่มการนัดหมาย</a>
+                        <a href="#addSelf" class="btn btn-effect-ripple btn-info" data-toggle="modal">เพิ่มปฏิทินส่วนตัว</a>
+                         </div>
                         <div class="block full">
+                             
                             <div class="row">
-                               
+                                
 
-                                    <!-- FullCalendar (initialized in js/pages/compCalendar.js), for more info and examples you can check out http://arshaw.com/fullcalendar/ -->
-                                    <div id="calendar"></div>
+                                <!-- FullCalendar (initialized in js/pages/compCalendar.js), for more info and examples you can check out http://arshaw.com/fullcalendar/ -->
+                                <div id="calendar"></div>
                             </div>
                         </div>
                         <!-- END FullCalendar Block -->
@@ -267,95 +269,96 @@
         </div>
         <!-- END Page Wrapper -->
         <div id="addDoctor" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog ">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h3 class="modal-title"><strong>เพิ่มการนัดหมายกับแพทย์</strong></h3>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="addme" method="post"  class="form-horizontal form-bordered" >
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="to">นัดหมาย</label>
-                                            <div class="col-md-6">
-                                                <input type="text" id="to" name="to" class="form-control" value="${doctor}" disabled required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                        <label class="col-md-3 control-label" for="date">วันที่นัดหมาย</label>
-                                        <div class="col-md-5">
-                                            <input type="text" id="date" name="date" class="form-control input-datepicker" data-date-format="dd/mm/yy" placeholder="วว/ดด/ปป" required>
-                                        </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="time">เวลาที่นัดหมาย</label>
-                                            <div class="col-md-5">
-                                                <div class="input-group bootstrap-timepicker">
-                                                    <input type="text" id="time" name="time" class="form-control input-timepicker24" required>
-                                                    <span class="input-group-btn">
-                                                        <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary"><i class="fa fa-clock-o" ></i></a>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h3 class="modal-title"><strong>เพิ่มการนัดหมายกับแพทย์</strong></h3>
+                    </div>
+                    <div class="modal-body">
+                        <form action="addCal" method="post"  class="form-horizontal form-bordered" >
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="to">นัดหมาย</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="type" name="type" value="1" hidden>
+                                    <input type="text" id="to" name="to" class="form-control" value="${doctor}" disabled required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="date">วันที่นัดหมาย</label>
+                                <div class="col-md-5">
+                                    <input type="text" id="date" name="date" class="form-control input-datepicker" data-date-format="dd/mm/yy" placeholder="วว/ดด/ปป" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="time">เวลาที่นัดหมาย</label>
+                                <div class="col-md-5">
+                                    <div class="input-group bootstrap-timepicker">
+                                        <input type="text" id="time" name="time" class="form-control input-timepicker24" required>
+                                        <span class="input-group-btn">
+                                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary"><i class="fa fa-clock-o" ></i></a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
 
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="note">บันทึกเพิ่มเติม</label>
-                                            <div class="col-md-9">
-                                                <textarea id="note" name="note" rows="7" class="form-control" placeholder="บันทึกเพิ่มเติม.."></textarea>
-                                            </div>
-                                        </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-effect-ripple btn-primary">บันทึก</button>
-                                                <button type="reset" class="btn btn-effect-ripple btn-danger">ล้างข้อมูล</button>
-                                                  </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="note">บันทึกเพิ่มเติม</label>
+                                <div class="col-md-9">
+                                    <textarea id="note" name="note" rows="7" class="form-control" placeholder="บันทึกเพิ่มเติม.."></textarea>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-effect-ripple btn-primary">บันทึก</button>
+                        <button type="reset" class="btn btn-effect-ripple btn-danger">ล้างข้อมูล</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="addSelf" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h3 class="modal-title"><strong>เพิ่มปฏิทินส่วนตัว</strong></h3>
-                                                </div>
-                                                <div class="modal-body">
-                                                  <form action="addme" method="post"  class="form-horizontal form-bordered" >
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="note">หัวข้อ</label>
-                                            <div class="col-md-9">
-                                                <input type="text" id="title" name="title" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                        <label class="col-md-3 control-label" for="date">วันที่</label>
-                                        <div class="col-md-5">
-                                            <input type="text" id="date" name="date" class="form-control input-datepicker" data-date-format="dd/mm/yy" placeholder="วว/ดด/ปป" required>
-                                        </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="time">เวลา</label>
-                                            <div class="col-md-5">
-                                                <div class="input-group bootstrap-timepicker">
-                                                    <input type="text" id="time" name="time" class="form-control input-timepicker24" required>
-                                                    <span class="input-group-btn">
-                                                        <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary"><i class="fa fa-clock-o" ></i></a>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-effect-ripple btn-primary">บันทึก</button>
-                                                <button type="reset" class="btn btn-effect-ripple btn-danger">ล้างข้อมูล</button>
-                                                  </form>
-                                                </div>
-                                            </div>
-                                        </div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h3 class="modal-title"><strong>เพิ่มปฏิทินส่วนตัว</strong></h3>
+                    </div>
+                    <div class="modal-body">
+                        <form action="addCal" method="post"  class="form-horizontal form-bordered" >
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="note">หัวข้อ</label>
+                                <div class="col-md-9">
+                                    <input type="text" id="type" name="type" value="2" hidden>
+                                    <input type="text" id="note" name="note" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="date">วันที่</label>
+                                <div class="col-md-5">
+                                    <input type="text" id="date" name="date" class="form-control input-datepicker" data-date-format="dd/mm/yy" placeholder="วว/ดด/ปป" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="time">เวลา</label>
+                                <div class="col-md-5">
+                                    <div class="input-group bootstrap-timepicker">
+                                        <input type="text" id="time" name="time" class="form-control input-timepicker24" required>
+                                        <span class="input-group-btn">
+                                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary"><i class="fa fa-clock-o" ></i></a>
+                                        </span>
                                     </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-effect-ripple btn-primary">บันทึก</button>
+                        <button type="reset" class="btn btn-effect-ripple btn-danger">ล้างข้อมูล</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
@@ -367,74 +370,78 @@
 
         <!-- Load and execute javascript code used only in this page -->
         <script>
-var CompCalendar = function() {
-    var calendarEvents  = $('.calendar-events');
+            var CompCalendar = function() {
+                var calendarEvents = $('.calendar-events');
 
-    /* Function for initializing drag and drop event functionality */
-    var initEvents = function() {
-        calendarEvents.find('li').each(function() {
-            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-            var eventObject = { title: $.trim($(this).text()), color: $(this).css('background-color') };
+                /* Function for initializing drag and drop event functionality */
+                var initEvents = function() {
+                    calendarEvents.find('li').each(function() {
+                        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                        var eventObject = {title: $.trim($(this).text()), color: $(this).css('background-color')};
 
-            // store the Event Object in the DOM element so we can get to it later
-            $(this).data('eventObject', eventObject);
+                        // store the Event Object in the DOM element so we can get to it later
+                        $(this).data('eventObject', eventObject);
 
-            // make the event draggable using jQuery UI
-            $(this).draggable({ zIndex: 999, revert: true, revertDuration: 0 });
-        });
-    };
+                        // make the event draggable using jQuery UI
+                        $(this).draggable({zIndex: 999, revert: true, revertDuration: 0});
+                    });
+                };
 
-    return {
-        init: function() {
-            /* Initialize drag and drop event functionality */
-            initEvents();
+                return {
+                    init: function() {
+                        /* Initialize drag and drop event functionality */
+                        initEvents();
 
-            /* Add new event in the events list */
-            var eventInput      = $('#add-event');
-            var eventInputVal   = '';
+                        /* Add new event in the events list */
+                        var eventInput = $('#add-event');
+                        var eventInputVal = '';
 
-            // When the add button is clicked
-            $('#add-event-btn').on('click', function(){
-                // Get input value
-                eventInputVal = eventInput.prop('value');
+                        // When the add button is clicked
+                        $('#add-event-btn').on('click', function() {
+                            // Get input value
+                            eventInputVal = eventInput.prop('value');
 
-                // Check if the user entered something
-                if ( eventInputVal ) {
-                    // Add it to the events list
-                    calendarEvents.prepend('<li class="animation-fadeInQuick2Inv"><i class="fa fa-calendar"></i> ' + $('<div />').text(eventInputVal).html() + '</li>');
+                            // Check if the user entered something
+                            if (eventInputVal) {
+                                // Add it to the events list
+                                calendarEvents.prepend('<li class="animation-fadeInQuick2Inv"><i class="fa fa-calendar"></i> ' + $('<div />').text(eventInputVal).html() + '</li>');
 
-                    // Clear input field
-                    eventInput.prop('value', '');
+                                // Clear input field
+                                eventInput.prop('value', '');
 
-                    // Init Events
-                    initEvents();
+                                // Init Events
+                                initEvents();
 
-                    // Focus the input at the end
-                    eventInput.focus();
-                }
+                                // Focus the input at the end
+                                eventInput.focus();
+                            }
 
-                // Don't let the form submit
-                return false;
-            });
+                            // Don't let the form submit
+                            return false;
+                        });
 
-            $('#calendar').fullCalendar({
-                header: {
-                    left: 'title',
-                    center: '',
-                    right: 'today month,agendaWeek,agendaDay prev,next'
-                },
-                firstDay: 1,
-                editable: false,
-                droppable: false,
-                events: ${cal}
-            });
-        }
-    };
-}();
-</script>
-<script>$(function(){ CompCalendar.init(); });</script>
-<script src="js/pages/uiTypography.js"></script>
-        <script>$(function(){ UiTypography.init(); });</script>
+                        $('#calendar').fullCalendar({
+                            header: {
+                                left: 'title',
+                                center: '',
+                                right: 'today month,agendaWeek,agendaDay prev,next'
+                            },
+                            firstDay: 1,
+                            editable: false,
+                            droppable: false,
+                            events: ${cal}
+                        });
+                    }
+                };
+            }();
+        </script>
+        <script>$(function() {
+                CompCalendar.init();
+            });</script>
+        <script src="js/pages/uiTypography.js"></script>
+        <script>$(function() {
+                UiTypography.init();
+            });</script>
 
     </body>
 </html>
