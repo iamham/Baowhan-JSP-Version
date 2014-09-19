@@ -247,7 +247,7 @@
                             <!-- Simple Stats Widgets -->
                             
                             <div class="col-sm-6 col-lg-3">
-                                <a href="calendar" class="widget">
+                                <a href="addRecord" class="widget">
                                     <div class="widget-content themed-background-danger text-light-op text-center">
                                                 <div class="widget-icon center-block push">
                                                     <i class="fa fa-plus"></i>

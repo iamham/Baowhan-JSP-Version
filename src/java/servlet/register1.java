@@ -8,18 +8,19 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.Hospital;
 import model.User;
 
 /**
  *
  * @author sarunpeetasai
  */
-public class tools extends HttpServlet {
+public class register1 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,12 +34,18 @@ public class tools extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession(false);
-        User u = (User) session.getAttribute("user");
-        
-        request.setAttribute("name", u.getFirstname()+" "+u.getLastname());
-        request.setAttribute("profilepic", u.getProfilePIC());
-        getServletContext().getRequestDispatcher("/tools.jsp").forward(request, response);
+        String hospital="",doctor="";
+        List<Hospital> hos = Hospital.showHospital();
+        List<User> doc = User.getDoctor();
+        for(int i=0;i<hos.size();i++){
+            hospital = hospital.concat("<option value=\""+hos.get(i).getId()+"\">โรงพยาบาล "+hos.get(i).getName()+"</option>");
+        }
+        for(int i=0;i<doc.size();i++){
+            doctor = doctor.concat("<option value=\""+doc.get(i).getUserID()+"\">"+doc.get(i).getFirstname()+" "+doc.get(i).getLastname()+"</option>");
+        }
+        request.setAttribute("doctor", doctor);
+        request.setAttribute("hospital", hospital);
+        getServletContext().getRequestDispatcher("/register1.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

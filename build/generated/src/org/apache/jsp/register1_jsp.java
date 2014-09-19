@@ -17,20 +17,10 @@ public final class register1_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   private static java.util.List<String> _jspx_dependants;
 
-  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
-
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
   public java.util.List<String> getDependants() {
     return _jspx_dependants;
-  }
-
-  public void _jspInit() {
-    _jspx_tagPool_c_if_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-  }
-
-  public void _jspDestroy() {
-    _jspx_tagPool_c_if_test.release();
   }
 
   public void _jspService(HttpServletRequest request, HttpServletResponse response)
@@ -111,77 +101,223 @@ public final class register1_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <!-- Modernizr (browser feature detection library) -->\r\n");
       out.write("        <script src=\"js/vendor/modernizr-2.8.3.js\"></script>\r\n");
       out.write("        <style type=\"text/css\">\r\n");
-      out.write("html { \r\n");
-      out.write("  background: url(img/pizza.jpg) no-repeat center center fixed; \r\n");
-      out.write("  -webkit-background-size: cover;\r\n");
-      out.write("  -moz-background-size: cover;\r\n");
-      out.write("  -o-background-size: cover;\r\n");
-      out.write("  background-size: cover;\r\n");
-      out.write("}\r\n");
+      out.write("            html { \r\n");
+      out.write("                background: url(img/pizza.jpg) no-repeat center center fixed; \r\n");
+      out.write("                -webkit-background-size: cover;\r\n");
+      out.write("                -moz-background-size: cover;\r\n");
+      out.write("                -o-background-size: cover;\r\n");
+      out.write("                background-size: cover;\r\n");
+      out.write("            }\r\n");
       out.write("        </style>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        <!-- Login Container -->\r\n");
       out.write("        <div id=\"login-container\">\r\n");
-      out.write("            <!-- Register Header -->\r\n");
-      out.write("            <h1 class=\"h2 text-light text-center push-top-bottom animation-slideDown\">\r\n");
-      out.write("                <i class=\"fa fa-plus\"></i> <strong>สร้างผู้ใช้</strong>\r\n");
-      out.write("            </h1>\r\n");
-      out.write("            <!-- END Register Header -->\r\n");
-      out.write("\r\n");
-      out.write("            <!-- Register Form -->\r\n");
+      out.write("            <!-- Progress Bars Wizard Title -->\r\n");
       out.write("            <div class=\"block animation-fadeInQuickInv\">\r\n");
-      out.write("                <!-- Register Title -->\r\n");
       out.write("                <div class=\"block-title\">\r\n");
-      out.write("                    <div class=\"block-options pull-right\">\r\n");
-      out.write("                        <a href=\"Login.jsp\" class=\"btn btn-effect-ripple btn-primary\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"Back to login\"><i class=\"fa fa-user\"></i></a>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <h2>Register</h2>\r\n");
-      out.write("                </div>\r\n");
-      out.write("                <!-- END Register Title -->\r\n");
       out.write("\r\n");
-      out.write("                <!-- Register Form -->\r\n");
-      out.write("                <form id=\"form-register\" action=\"Register\" method=\"post\" class=\"form-horizontal\">\r\n");
-      out.write("                    <div class=\"form-group\">\r\n");
-      out.write("                        <div class=\"col-xs-12\">          \r\n");
-      out.write("                            ");
-      if (_jspx_meth_c_if_0(_jspx_page_context))
-        return;
-      out.write(" \r\n");
-      out.write("                            <input type=\"text\" id=\"username\" name=\"username\" class=\"form-control\" placeholder=\"ชื่อผู้ใช้ (Username)\">\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
+      out.write("                    <h2>ลงทะเบียน</h2>\r\n");
+      out.write("                </div>\r\n");
+      out.write("                <!-- END Progress Bar Wizard Title -->\r\n");
+      out.write("\r\n");
+      out.write("                <!-- Progress Wizard Content -->\r\n");
+      out.write("                <form id=\"register\" action=\"register1\" method=\"post\" class=\"form-horizontal form-bordered\">\r\n");
       out.write("                    <div class=\"form-group\">\r\n");
       out.write("                        <div class=\"col-xs-12\">\r\n");
-      out.write("                            <input type=\"text\" id=\"email\" name=\"email\" class=\"form-control\" placeholder=\"อีเมล์ (Email)\">\r\n");
+      out.write("                            <div class=\"progress progress-mini remove-margin\">\r\n");
+      out.write("                                <div id=\"progress-bar-wizard\" class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 0\"></div>\r\n");
+      out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
-      out.write("                    <div class=\"form-group\">\r\n");
-      out.write("                        <div class=\"col-xs-12\">\r\n");
-      out.write("                            <input type=\"password\" id=\"pwd1\" name=\"pwd1\" class=\"form-control\" placeholder=\"รหัสผ่าน (Password)\">\r\n");
+      out.write("                    <!-- END Progress Bar -->\r\n");
+      out.write("\r\n");
+      out.write("                    <!-- First Step -->\r\n");
+      out.write("                    <div id=\"progress-first\" class=\"step\">\r\n");
+      out.write("                        <div class=\"form-group\">\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"username\">ชื่อผู้ใช้<br>Username</label>\r\n");
+      out.write("                            <div class=\"col-md-6\">\r\n");
+      out.write("                                <input type=\"text\" id=\"username\" name=\"username\" class=\"form-control\" placeholder=\"ชื่อผู้ใช้\" required>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"form-group\">\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"email\">อีเมล์<br>Email</label>\r\n");
+      out.write("                            <div class=\"col-md-6\">\r\n");
+      out.write("                                <input type=\"email\" id=\"email\" name=\"email\" class=\"form-control\" placeholder=\"อีเมล์\" required>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"form-group\">\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"pwd1\">รหัสผ่าน<br>Password</label>\r\n");
+      out.write("                            <div class=\"col-md-6\">\r\n");
+      out.write("                                <input type=\"password\" id=\"pwd1\" name=\"pwd1\" class=\"form-control\" placeholder=\"รหัสผ่าน\">\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"form-group\">\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"pwd2\">ระบุรหัสผ่านอีกครั้ง</label>\r\n");
+      out.write("                            <div class=\"col-md-6\">\r\n");
+      out.write("                                <input type=\"password\" id=\"pwd2\" name=\"pwd2\" class=\"form-control\" placeholder=\"ยืนยันรหัสผ่านอีกครั้ง\">\r\n");
+      out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
-      out.write("                    <div class=\"form-group\">\r\n");
-      out.write("                        <div class=\"col-xs-12\">\r\n");
-      out.write("                            <input type=\"password\" id=\"pwd2\" name=\"pwd2\" class=\"form-control\" placeholder=\"ยืนยันรหัสผ่าน (Verify Password)\">\r\n");
+      out.write("                    <!-- END First Step -->\r\n");
+      out.write("\r\n");
+      out.write("                    <!-- Second Step -->\r\n");
+      out.write("                    <div id=\"progress-second\" class=\"step\">\r\n");
+      out.write("                        <div class=\"form-group\">\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"firstname\">ชื่อ<br>Firstname</label>\r\n");
+      out.write("                            <div class=\"col-md-6\">\r\n");
+      out.write("                                <input type=\"text\" id=\"firstname\" name=\"firstname\" class=\"form-control\" placeholder=\"ชื่อ\" required>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"form-group\">\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"lastname\">นามสกุล<br>Lastname</label>\r\n");
+      out.write("                            <div class=\"col-md-6\">\r\n");
+      out.write("                                <input type=\"text\" id=\"lastname\" name=\"lastname\" class=\"form-control\" placeholder=\"นามสกุล\" required>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"form-group\">\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"telephone\">เบอร์โทรศัพท์<br>Telephone</label>\r\n");
+      out.write("                            <div class=\"col-md-6\">\r\n");
+      out.write("                                <input type=\"telephone\" id=\"telephone\" name=\"telephone\" class=\"form-control\" placeholder=\"เบอร์โทรศัพท์\" required>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                        <div class=\"form-group\">\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"province\">จังหวัด<br>Province</label>\r\n");
+      out.write("                            <div class=\"col-md-5\">\r\n");
+      out.write("                                <select id=\"province\" name=\"province\" class=\"select-chosen\" data-placeholder=\"จังหวัด\">\r\n");
+      out.write("\r\n");
+      out.write("                                    <option value=\"กรุงเทพมหานคร\">กรุงเทพมหานคร</option>\r\n");
+      out.write("                                    <option value=\"กระบี่\">กระบี่ </option>\r\n");
+      out.write("                                    <option value=\"กาญจนบุรี\">กาญจนบุรี </option>\r\n");
+      out.write("                                    <option value=\"กาฬสินธุ์\">กาฬสินธุ์ </option>\r\n");
+      out.write("                                    <option value=\"กำแพงเพชร\">กำแพงเพชร </option>\r\n");
+      out.write("                                    <option value=\"ขอนแก่น\">ขอนแก่น</option>\r\n");
+      out.write("                                    <option value=\"จันทบุรี\">จันทบุรี</option>\r\n");
+      out.write("                                    <option value=\"ฉะเชิงเทรา\">ฉะเชิงเทรา </option>\r\n");
+      out.write("                                    <option value=\"ชัยนาท\">ชัยนาท </option>\r\n");
+      out.write("                                    <option value=\"ชัยภูมิ\">ชัยภูมิ </option>\r\n");
+      out.write("                                    <option value=\"ชุมพร\">ชุมพร </option>\r\n");
+      out.write("                                    <option value=\"ชลบุรี\">ชลบุรี </option>\r\n");
+      out.write("                                    <option value=\"เชียงใหม่\">เชียงใหม่ </option>\r\n");
+      out.write("                                    <option value=\"เชียงราย\">เชียงราย </option>\r\n");
+      out.write("                                    <option value=\"ตรัง\">ตรัง </option>\r\n");
+      out.write("                                    <option value=\"ตราด\">ตราด </option>\r\n");
+      out.write("                                    <option value=\"ตาก\">ตาก </option>\r\n");
+      out.write("                                    <option value=\"นครนายก\">นครนายก </option>\r\n");
+      out.write("                                    <option value=\"นครปฐม\">นครปฐม </option>\r\n");
+      out.write("                                    <option value=\"นครพนม\">นครพนม </option>\r\n");
+      out.write("                                    <option value=\"นครราชสีมา\">นครราชสีมา </option>\r\n");
+      out.write("                                    <option value=\"นครศรีธรรมราช\">นครศรีธรรมราช </option>\r\n");
+      out.write("                                    <option value=\"นครสวรรค์\">นครสวรรค์ </option>\r\n");
+      out.write("                                    <option value=\"นราธิวาส\">นราธิวาส </option>\r\n");
+      out.write("                                    <option value=\"น่าน\">น่าน </option>\r\n");
+      out.write("                                    <option value=\"นนทบุรี\">นนทบุรี </option>\r\n");
+      out.write("                                    <option value=\"บึงกาฬ\">บึงกาฬ</option>\r\n");
+      out.write("                                    <option value=\"บุรีรัมย์\">บุรีรัมย์</option>\r\n");
+      out.write("                                    <option value=\"ประจวบคีรีขันธ์\">ประจวบคีรีขันธ์ </option>\r\n");
+      out.write("                                    <option value=\"ปทุมธานี\">ปทุมธานี </option>\r\n");
+      out.write("                                    <option value=\"ปราจีนบุรี\">ปราจีนบุรี </option>\r\n");
+      out.write("                                    <option value=\"ปัตตานี\">ปัตตานี </option>\r\n");
+      out.write("                                    <option value=\"พะเยา\">พะเยา </option>\r\n");
+      out.write("                                    <option value=\"พระนครศรีอยุธยา\">พระนครศรีอยุธยา </option>\r\n");
+      out.write("                                    <option value=\"พังงา\">พังงา </option>\r\n");
+      out.write("                                    <option value=\"พิจิตร\">พิจิตร </option>\r\n");
+      out.write("                                    <option value=\"พิษณุโลก\">พิษณุโลก </option>\r\n");
+      out.write("                                    <option value=\"เพชรบุรี\">เพชรบุรี </option>\r\n");
+      out.write("                                    <option value=\"เพชรบูรณ์\">เพชรบูรณ์ </option>\r\n");
+      out.write("                                    <option value=\"แพร่\">แพร่ </option>\r\n");
+      out.write("                                    <option value=\"พัทลุง\">พัทลุง </option>\r\n");
+      out.write("                                    <option value=\"ภูเก็ต\">ภูเก็ต </option>\r\n");
+      out.write("                                    <option value=\"มหาสารคาม\">มหาสารคาม </option>\r\n");
+      out.write("                                    <option value=\"มุกดาหาร\">มุกดาหาร </option>\r\n");
+      out.write("                                    <option value=\"แม่ฮ่องสอน\">แม่ฮ่องสอน </option>\r\n");
+      out.write("                                    <option value=\"ยโสธร\">ยโสธร </option>\r\n");
+      out.write("                                    <option value=\"ยะลา\">ยะลา </option>\r\n");
+      out.write("                                    <option value=\"ร้อยเอ็ด\">ร้อยเอ็ด </option>\r\n");
+      out.write("                                    <option value=\"ระนอง\">ระนอง </option>\r\n");
+      out.write("                                    <option value=\"ระยอง\">ระยอง </option>\r\n");
+      out.write("                                    <option value=\"ราชบุรี\">ราชบุรี</option>\r\n");
+      out.write("                                    <option value=\"ลพบุรี\">ลพบุรี </option>\r\n");
+      out.write("                                    <option value=\"ลำปาง\">ลำปาง </option>\r\n");
+      out.write("                                    <option value=\"ลำพูน\">ลำพูน </option>\r\n");
+      out.write("                                    <option value=\"เลย\">เลย </option>\r\n");
+      out.write("                                    <option value=\"ศรีสะเกษ\">ศรีสะเกษ</option>\r\n");
+      out.write("                                    <option value=\"สกลนคร\">สกลนคร</option>\r\n");
+      out.write("                                    <option value=\"สงขลา\">สงขลา </option>\r\n");
+      out.write("                                    <option value=\"สมุทรสาคร\">สมุทรสาคร </option>\r\n");
+      out.write("                                    <option value=\"สมุทรปราการ\">สมุทรปราการ </option>\r\n");
+      out.write("                                    <option value=\"สมุทรสงคราม\">สมุทรสงคราม </option>\r\n");
+      out.write("                                    <option value=\"สระแก้ว\">สระแก้ว </option>\r\n");
+      out.write("                                    <option value=\"สระบุรี\">สระบุรี </option>\r\n");
+      out.write("                                    <option value=\"สิงห์บุรี\">สิงห์บุรี </option>\r\n");
+      out.write("                                    <option value=\"สุโขทัย\">สุโขทัย </option>\r\n");
+      out.write("                                    <option value=\"สุพรรณบุรี\">สุพรรณบุรี </option>\r\n");
+      out.write("                                    <option value=\"สุราษฎร์ธานี\">สุราษฎร์ธานี </option>\r\n");
+      out.write("                                    <option value=\"สุรินทร์\">สุรินทร์ </option>\r\n");
+      out.write("                                    <option value=\"สตูล\">สตูล </option>\r\n");
+      out.write("                                    <option value=\"หนองคาย\">หนองคาย </option>\r\n");
+      out.write("                                    <option value=\"หนองบัวลำภู\">หนองบัวลำภู </option>\r\n");
+      out.write("                                    <option value=\"อำนาจเจริญ\">อำนาจเจริญ </option>\r\n");
+      out.write("                                    <option value=\"อุดรธานี\">อุดรธานี </option>\r\n");
+      out.write("                                    <option value=\"อุตรดิตถ์\">อุตรดิตถ์ </option>\r\n");
+      out.write("                                    <option value=\"อุทัยธานี\">อุทัยธานี </option>\r\n");
+      out.write("                                    <option value=\"อุบลราชธานี\">อุบลราชธานี</option>\r\n");
+      out.write("                                    <option value=\"อ่างทอง\">อ่างทอง </option>\r\n");
+      out.write("                                    <option value=\"อื่นๆ\">อื่นๆ</option>\r\n");
+      out.write("                                </select>\r\n");
+      out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
+      out.write("                    <!-- END Second Step -->\r\n");
+      out.write("\r\n");
+      out.write("                    <!-- Third Step -->\r\n");
+      out.write("                    <div id=\"progress-third\" class=\"step\">\r\n");
+      out.write("                       \r\n");
+      out.write("                            <div class=\"form-group\">\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"province\">โรงพยาบาลปัจจุบัน</label>\r\n");
+      out.write("                            <div class=\"col-md-6\">\r\n");
+      out.write("                                <select id=\"hospital\" name=\"hospital\" class=\"select-chosen\" data-placeholder=\"โรงพยาบาล...\">\r\n");
+      out.write("                                    ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${hospital}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\r\n");
+      out.write("                                </select>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                       <div class=\"form-group\">\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"province\">แพทย์ที่รักษา</label>\r\n");
+      out.write("                            <div class=\"col-md-6\">\r\n");
+      out.write("                                <select id=\"hospital\" name=\"hospital\" class=\"select-chosen\" data-placeholder=\"แพทย์...\">\r\n");
+      out.write("                                    ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${doctor}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\r\n");
+      out.write("                                </select>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        <div class=\"form-group\">\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\"><a href=\"#modal-terms\" data-toggle=\"modal\">ข้อตกลง</a></label>\r\n");
+      out.write("                            <div class=\"col-md-8\">\r\n");
+      out.write("                                <label class=\"switch switch-primary\" for=\"example-progress-terms\">\r\n");
+      out.write("                                    <input type=\"checkbox\" id=\"example-progress-terms\" name=\"example-progress-terms\" value=\"1\">\r\n");
+      out.write("                                    <span data-toggle=\"tooltip\" title=\"I agree to the terms!\"></span>\r\n");
+      out.write("                                </label>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>\r\n");
+      out.write("                    </div>\r\n");
+      out.write("                    <!-- END Third Step -->\r\n");
+      out.write("\r\n");
+      out.write("                    <!-- Form Buttons -->\r\n");
       out.write("                    <div class=\"form-group form-actions\">\r\n");
-      out.write("                        <div class=\"col-xs-6\">\r\n");
-      out.write("                            <label class=\"csscheckbox csscheckbox-primary\" data-toggle=\"tooltip\" title=\"Agree to the terms\">\r\n");
-      out.write("                                <input type=\"checkbox\" id=\"register-terms\" name=\"register-terms\">\r\n");
-      out.write("                                <span></span>\r\n");
-      out.write("                            </label>\r\n");
-      out.write("                            <a href=\"#modal-terms\" data-toggle=\"modal\">ข้อตกลง</a>\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                        <div class=\"col-xs-6 text-right\">\r\n");
-      out.write("                            <button type=\"submit\" class=\"btn btn-effect-ripple btn-success\"><i class=\"fa fa-plus\"></i> สร้างผู้ใช้</button>\r\n");
+      out.write("                        <div class=\"col-md-8 col-md-offset-4\">\r\n");
+      out.write("                            <button type=\"reset\" class=\"btn btn-effect-ripple btn-danger\" id=\"back1\">กลับ</button>\r\n");
+      out.write("                            <button type=\"submit\" class=\"btn btn-effect-ripple btn-primary\" id=\"next2\">ต่อไป</button>\r\n");
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
+      out.write("                    <!-- END Form Buttons -->\r\n");
       out.write("                </form>\r\n");
-      out.write("                <!-- END Register Form -->\r\n");
+      out.write("                <!-- END Progress Bar Wizard Content -->\r\n");
       out.write("            </div>\r\n");
-      out.write("            <!-- END Register Block -->\r\n");
+      out.write("            <!-- END Progress Bar Wizard Block -->\r\n");
+      out.write("\r\n");
       out.write("        </div>\r\n");
       out.write("        <!-- END Login Container -->\r\n");
       out.write("\r\n");
@@ -223,7 +359,15 @@ public final class register1_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("        <!-- Load and execute javascript code used only in this page -->\r\n");
       out.write("        <script src=\"js/pages/readyRegister.js\"></script>\r\n");
-      out.write("        <script>$(function(){ ReadyRegister.init(); });</script>\r\n");
+      out.write("        <script>$(function() {\r\n");
+      out.write("                ReadyRegister.init();\r\n");
+      out.write("            });</script>\r\n");
+      out.write("        <!-- Load and execute javascript code used only in this page -->\r\n");
+      out.write("        <script src=\"js/pages/formsWizard.js\"></script>\r\n");
+      out.write("        <script>$(function() {\r\n");
+      out.write("                FormsWizard.init();\r\n");
+      out.write("            });</script>\r\n");
+      out.write("\r\n");
       out.write("    </body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {
@@ -237,37 +381,5 @@ public final class register1_jsp extends org.apache.jasper.runtime.HttpJspBase
     } finally {
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
-  }
-
-  private boolean _jspx_meth_c_if_0(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:if
-    org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
-    _jspx_th_c_if_0.setPageContext(_jspx_page_context);
-    _jspx_th_c_if_0.setParent(null);
-    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${msg != null}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
-    int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
-    if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-      do {
-        out.write("\r\n");
-        out.write("                                <div class=\"alert alert-danger alert-dismissable\">\r\n");
-        out.write("                                        <h5 style=\"text-align:center\">");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${msg}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("</h5>\r\n");
-        out.write("                                </div>\r\n");
-        out.write("                            ");
-        int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
-        if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-          break;
-      } while (true);
-    }
-    if (_jspx_th_c_if_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-      _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
-      return true;
-    }
-    _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_0);
-    return false;
   }
 }

@@ -36,6 +36,15 @@ public class Register extends HttpServlet {
             String username =request.getParameter("username");
             String pwd1 =request.getParameter("pwd1");
             String email =request.getParameter("email");
+            String firstname = request.getParameter("firstname");
+            String lastname = request.getParameter("lastname");
+            String telephone = request.getParameter("telephone");
+            String province = request.getParameter("province");
+            String doctor = request.getParameter("doctor");
+            String hospital = request.getParameter("hospital");
+            int idoctor = Integer.parseInt(doctor);
+            int ihospital = Integer.parseInt(hospital);
+            
             boolean success = false;
             //String profilePIC =request.getParameter("profilePIC");
             
@@ -44,7 +53,7 @@ public class Register extends HttpServlet {
             }else{
                 /*User u = new User(12,username ,pwd1 ,email ,firstname ,lastname ,profilePIC ,
                         telephone ,address ,province ,amphur ,zipcode);*/
-                if(User.pRegister(username,pwd1,email,1)){
+                if(User.pRegister(username,pwd1,email,firstname,lastname,telephone,province,idoctor,ihospital,1)){
                     request.setAttribute("msg","ลงทะเบียนสำเร็จ กรุณากรอกข้อมูลส่วนตัว");
                     success = true;
                 }else{
@@ -57,7 +66,7 @@ public class Register extends HttpServlet {
         User u = User.getUser(username);
         s.setAttribute("user", u);
         request.setAttribute("msg","ลงทะเบียนเรียบร้อย กรุณาทำการตั้งค่าการใช้งานครั้งแรก");
-        getServletContext().getRequestDispatcher("/setting").forward(request, response);
+        getServletContext().getRequestDispatcher("/dashboard").forward(request, response);
         }else{
         getServletContext().getRequestDispatcher("/register1.jsp").forward(request, response);
         }

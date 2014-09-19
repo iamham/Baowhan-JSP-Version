@@ -5,8 +5,8 @@
         <filter-class>filter.loginFirst</filter-class>
     </filter>
     <servlet>
-        <servlet-name>Register</servlet-name>
-        <servlet-class>servlet.Register</servlet-class>
+        <servlet-name>getNewsDB</servlet-name>
+        <servlet-class>servlet.getNewsDB</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Login</servlet-name>
@@ -92,10 +92,22 @@
         <servlet-name>tools</servlet-name>
         <servlet-class>servlet.tools</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
+        <servlet-name>news</servlet-name>
+        <servlet-class>servlet.news</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>register1</servlet-name>
+        <servlet-class>servlet.register1</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>Register</servlet-name>
-        <url-pattern>/Register</url-pattern>
-    </servlet-mapping>
+        <servlet-class>servlet.Register</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ranking</servlet-name>
+        <servlet-class>servlet.ranking</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -179,6 +191,26 @@
     <servlet-mapping>
         <servlet-name>tools</servlet-name>
         <url-pattern>/tools</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>news</servlet-name>
+        <url-pattern>/news</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getNewsDB</servlet-name>
+        <url-pattern>/getNewsDB</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>register1</servlet-name>
+        <url-pattern>/register1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ranking</servlet-name>
+        <url-pattern>/ranking</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -56,78 +56,219 @@
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
         <style type="text/css">
-html { 
-  background: url(img/pizza.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+            html { 
+                background: url(img/pizza.jpg) no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
         </style>
     </head>
     <body>
         <!-- Login Container -->
         <div id="login-container">
-            <!-- Register Header -->
-            <h1 class="h2 text-light text-center push-top-bottom animation-slideDown">
-                <i class="fa fa-plus"></i> <strong>สร้างผู้ใช้</strong>
-            </h1>
-            <!-- END Register Header -->
-
-            <!-- Register Form -->
+            <!-- Progress Bars Wizard Title -->
             <div class="block animation-fadeInQuickInv">
-                <!-- Register Title -->
                 <div class="block-title">
-                    <div class="block-options pull-right">
-                        <a href="Login.jsp" class="btn btn-effect-ripple btn-primary" data-toggle="tooltip" data-placement="left" title="Back to login"><i class="fa fa-user"></i></a>
-                    </div>
-                    <h2>Register</h2>
-                </div>
-                <!-- END Register Title -->
 
-                <!-- Register Form -->
-                <form id="form-register" action="Register" method="post" class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-xs-12">          
-                            <c:if test="${msg != null}" >
-                                <div class="alert alert-danger alert-dismissable">
-                                        <h5 style="text-align:center">${msg}</h5>
-                                </div>
-                            </c:if> 
-                            <input type="text" id="username" name="username" class="form-control" placeholder="ชื่อผู้ใช้ (Username)">
-                        </div>
-                    </div>
+                    <h2>ลงทะเบียน</h2>
+                </div>
+                <!-- END Progress Bar Wizard Title -->
+
+                <!-- Progress Wizard Content -->
+                <form id="progress-wizard" action="Register" method="post" class="form-horizontal form-bordered">
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input type="text" id="email" name="email" class="form-control" placeholder="อีเมล์ (Email)">
+                            <div class="progress progress-mini remove-margin">
+                                <div id="progress-bar-wizard" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <input type="password" id="pwd1" name="pwd1" class="form-control" placeholder="รหัสผ่าน (Password)">
+                    <!-- END Progress Bar -->
+
+                    <!-- First Step -->
+                    <div id="progress-first" class="step">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="username">ชื่อผู้ใช้<br>Username</label>
+                            <div class="col-md-6">
+                                <input type="text" id="username" name="username" class="form-control" placeholder="ชื่อผู้ใช้" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="email">อีเมล์<br>Email</label>
+                            <div class="col-md-6">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="อีเมล์" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="pwd1">รหัสผ่าน<br>Password</label>
+                            <div class="col-md-6">
+                                <input type="password" id="pwd1" name="pwd1" class="form-control" placeholder="รหัสผ่าน">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="pwd2">ระบุรหัสผ่านอีกครั้ง</label>
+                            <div class="col-md-6">
+                                <input type="password" id="pwd2" name="pwd2" class="form-control" placeholder="ยืนยันรหัสผ่านอีกครั้ง">
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <input type="password" id="pwd2" name="pwd2" class="form-control" placeholder="ยืนยันรหัสผ่าน (Verify Password)">
+                    <!-- END First Step -->
+
+                    <!-- Second Step -->
+                    <div id="progress-second" class="step">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="firstname">ชื่อ<br>Firstname</label>
+                            <div class="col-md-6">
+                                <input type="text" id="firstname" name="firstname" class="form-control" placeholder="ชื่อ" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="lastname">นามสกุล<br>Lastname</label>
+                            <div class="col-md-6">
+                                <input type="text" id="lastname" name="lastname" class="form-control" placeholder="นามสกุล" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="telephone">เบอร์โทรศัพท์<br>Telephone</label>
+                            <div class="col-md-6">
+                                <input type="telephone" id="telephone" name="telephone" class="form-control" placeholder="เบอร์โทรศัพท์" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="province">จังหวัด<br>Province</label>
+                            <div class="col-md-5">
+                                <select id="province" name="province" class="select-chosen" data-placeholder="จังหวัด">
+
+                                    <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                    <option value="กระบี่">กระบี่ </option>
+                                    <option value="กาญจนบุรี">กาญจนบุรี </option>
+                                    <option value="กาฬสินธุ์">กาฬสินธุ์ </option>
+                                    <option value="กำแพงเพชร">กำแพงเพชร </option>
+                                    <option value="ขอนแก่น">ขอนแก่น</option>
+                                    <option value="จันทบุรี">จันทบุรี</option>
+                                    <option value="ฉะเชิงเทรา">ฉะเชิงเทรา </option>
+                                    <option value="ชัยนาท">ชัยนาท </option>
+                                    <option value="ชัยภูมิ">ชัยภูมิ </option>
+                                    <option value="ชุมพร">ชุมพร </option>
+                                    <option value="ชลบุรี">ชลบุรี </option>
+                                    <option value="เชียงใหม่">เชียงใหม่ </option>
+                                    <option value="เชียงราย">เชียงราย </option>
+                                    <option value="ตรัง">ตรัง </option>
+                                    <option value="ตราด">ตราด </option>
+                                    <option value="ตาก">ตาก </option>
+                                    <option value="นครนายก">นครนายก </option>
+                                    <option value="นครปฐม">นครปฐม </option>
+                                    <option value="นครพนม">นครพนม </option>
+                                    <option value="นครราชสีมา">นครราชสีมา </option>
+                                    <option value="นครศรีธรรมราช">นครศรีธรรมราช </option>
+                                    <option value="นครสวรรค์">นครสวรรค์ </option>
+                                    <option value="นราธิวาส">นราธิวาส </option>
+                                    <option value="น่าน">น่าน </option>
+                                    <option value="นนทบุรี">นนทบุรี </option>
+                                    <option value="บึงกาฬ">บึงกาฬ</option>
+                                    <option value="บุรีรัมย์">บุรีรัมย์</option>
+                                    <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์ </option>
+                                    <option value="ปทุมธานี">ปทุมธานี </option>
+                                    <option value="ปราจีนบุรี">ปราจีนบุรี </option>
+                                    <option value="ปัตตานี">ปัตตานี </option>
+                                    <option value="พะเยา">พะเยา </option>
+                                    <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา </option>
+                                    <option value="พังงา">พังงา </option>
+                                    <option value="พิจิตร">พิจิตร </option>
+                                    <option value="พิษณุโลก">พิษณุโลก </option>
+                                    <option value="เพชรบุรี">เพชรบุรี </option>
+                                    <option value="เพชรบูรณ์">เพชรบูรณ์ </option>
+                                    <option value="แพร่">แพร่ </option>
+                                    <option value="พัทลุง">พัทลุง </option>
+                                    <option value="ภูเก็ต">ภูเก็ต </option>
+                                    <option value="มหาสารคาม">มหาสารคาม </option>
+                                    <option value="มุกดาหาร">มุกดาหาร </option>
+                                    <option value="แม่ฮ่องสอน">แม่ฮ่องสอน </option>
+                                    <option value="ยโสธร">ยโสธร </option>
+                                    <option value="ยะลา">ยะลา </option>
+                                    <option value="ร้อยเอ็ด">ร้อยเอ็ด </option>
+                                    <option value="ระนอง">ระนอง </option>
+                                    <option value="ระยอง">ระยอง </option>
+                                    <option value="ราชบุรี">ราชบุรี</option>
+                                    <option value="ลพบุรี">ลพบุรี </option>
+                                    <option value="ลำปาง">ลำปาง </option>
+                                    <option value="ลำพูน">ลำพูน </option>
+                                    <option value="เลย">เลย </option>
+                                    <option value="ศรีสะเกษ">ศรีสะเกษ</option>
+                                    <option value="สกลนคร">สกลนคร</option>
+                                    <option value="สงขลา">สงขลา </option>
+                                    <option value="สมุทรสาคร">สมุทรสาคร </option>
+                                    <option value="สมุทรปราการ">สมุทรปราการ </option>
+                                    <option value="สมุทรสงคราม">สมุทรสงคราม </option>
+                                    <option value="สระแก้ว">สระแก้ว </option>
+                                    <option value="สระบุรี">สระบุรี </option>
+                                    <option value="สิงห์บุรี">สิงห์บุรี </option>
+                                    <option value="สุโขทัย">สุโขทัย </option>
+                                    <option value="สุพรรณบุรี">สุพรรณบุรี </option>
+                                    <option value="สุราษฎร์ธานี">สุราษฎร์ธานี </option>
+                                    <option value="สุรินทร์">สุรินทร์ </option>
+                                    <option value="สตูล">สตูล </option>
+                                    <option value="หนองคาย">หนองคาย </option>
+                                    <option value="หนองบัวลำภู">หนองบัวลำภู </option>
+                                    <option value="อำนาจเจริญ">อำนาจเจริญ </option>
+                                    <option value="อุดรธานี">อุดรธานี </option>
+                                    <option value="อุตรดิตถ์">อุตรดิตถ์ </option>
+                                    <option value="อุทัยธานี">อุทัยธานี </option>
+                                    <option value="อุบลราชธานี">อุบลราชธานี</option>
+                                    <option value="อ่างทอง">อ่างทอง </option>
+                                    <option value="อื่นๆ">อื่นๆ</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
+                    <!-- END Second Step -->
+
+                    <!-- Third Step -->
+                    <div id="progress-third" class="step">
+                       
+                            <div class="form-group">
+                            <label class="col-md-4 control-label" for="hospital">โรงพยาบาลปัจจุบัน</label>
+                            <div class="col-md-6">
+                                <select id="hospital" name="hospital" class="select-chosen" data-placeholder="โรงพยาบาล...">
+                                    ${hospital}
+                                </select>
+                            </div>
+                            </div>
+                       <div class="form-group">
+                            <label class="col-md-4 control-label" for="doctor">แพทย์ที่รักษา</label>
+                            <div class="col-md-6">
+                                <select id="doctor" name="doctor" class="select-chosen" data-placeholder="แพทย์...">
+                                    ${doctor}
+                                </select>
+                            </div>
+                            </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"><a href="#modal-terms" data-toggle="modal">ข้อตกลง</a></label>
+                            <div class="col-md-8">
+                                <label class="switch switch-primary" for="example-progress-terms">
+                                    <input type="checkbox" id="example-progress-terms" name="example-progress-terms" value="1">
+                                    <span data-toggle="tooltip" title="I agree to the terms!"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Third Step -->
+
+                    <!-- Form Buttons -->
                     <div class="form-group form-actions">
-                        <div class="col-xs-6">
-                            <label class="csscheckbox csscheckbox-primary" data-toggle="tooltip" title="Agree to the terms">
-                                <input type="checkbox" id="register-terms" name="register-terms">
-                                <span></span>
-                            </label>
-                            <a href="#modal-terms" data-toggle="modal">ข้อตกลง</a>
-                        </div>
-                        <div class="col-xs-6 text-right">
-                            <button type="submit" class="btn btn-effect-ripple btn-success"><i class="fa fa-plus"></i> สร้างผู้ใช้</button>
+                        <div class="col-md-8 col-md-offset-4">
+                            <button type="reset" class="btn btn-effect-ripple btn-danger" id="back1">กลับ</button>
+                            <button type="submit" class="btn btn-effect-ripple btn-primary" id="next2">ต่อไป</button>
                         </div>
                     </div>
+                    <!-- END Form Buttons -->
                 </form>
-                <!-- END Register Form -->
+                <!-- END Progress Bar Wizard Content -->
             </div>
-            <!-- END Register Block -->
+            <!-- END Progress Bar Wizard Block -->
+
         </div>
         <!-- END Login Container -->
 
@@ -169,6 +310,14 @@ html {
 
         <!-- Load and execute javascript code used only in this page -->
         <script src="js/pages/readyRegister.js"></script>
-        <script>$(function(){ ReadyRegister.init(); });</script>
+        <script>$(function() {
+                ReadyRegister.init();
+            });</script>
+        <!-- Load and execute javascript code used only in this page -->
+        <script src="js/pages/formsWizard.js"></script>
+        <script>$(function() {
+                FormsWizard.init();
+            });</script>
+
     </body>
 </html>

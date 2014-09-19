@@ -19,7 +19,7 @@ import model.User;
  *
  * @author sarunpeetasai
  */
-public class tools extends HttpServlet {
+public class news extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +38,7 @@ public class tools extends HttpServlet {
         
         request.setAttribute("name", u.getFirstname()+" "+u.getLastname());
         request.setAttribute("profilepic", u.getProfilePIC());
-        getServletContext().getRequestDispatcher("/tools.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/news.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

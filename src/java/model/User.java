@@ -247,7 +247,34 @@ public class User {
         u.setPassword(toMD5(nPass));
         return nPass;
     }
-    
+    public static List<User> getDoctor(){
+        Connection con = ConnectionAgent.getConnection();
+        String sql = "SELECT * FROM User WHERE type = 2";
+        Statement st;
+        ResultSet rst;
+        List<User> user = new ArrayList();
+        User usr;
+        try {
+            st = con.createStatement();
+            rst = st.executeQuery(sql);
+            while(rst.next()){
+                usr = new User();
+                usr.setFirstname(rst.getString("firstname"));
+                usr.setLastname(rst.getString("lastname"));
+                usr.setUserID(rst.getInt("userID"));
+                user.add(usr);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return user;
+    }
     public static boolean userIsAvaiable(String username){
          Connection con = ConnectionAgent.getConnection();
          boolean result=false;
@@ -309,17 +336,33 @@ public class User {
             String username,
             String password,
             String email,
+            String firstname,
+            String lastname,
+            String telephone,
+            String province,
+            int hospital,
+            int doctor,
             int type
             ){
         password = toMD5(password);
         Connection con = ConnectionAgent.getConnection();
          boolean result = false;
-         String sql = "INSERT INTO User(username,password,email,type) VALUES (\'"+username+"\',\'"+password+"\',\'"+email+"\',"+type+")";
-         
+         PreparedStatement ps;
+         String sql = "INSERT INTO User(username,password,email,firstname,lastname,telephone,province,hospitalID,relatedUserID,type) VALUES (?,?,?,?,?,?,?,?,?,?)";
          try { 
              System.out.println(sql);
-             Statement st = con.createStatement();
-             st.executeUpdate(sql);
+             ps = con.prepareStatement(sql);
+             ps.setString(1, username);
+             ps.setString(2, password);
+             ps.setString(3, email);
+             ps.setString(4, firstname);
+             ps.setString(5, lastname);
+             ps.setString(6, telephone);
+             ps.setString(7, province);
+             ps.setInt(8, hospital);
+             ps.setInt(9, doctor);
+             ps.setInt(10, type);
+             ps.executeUpdate();
              result=true;
          } catch (SQLException ex) {
              Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);

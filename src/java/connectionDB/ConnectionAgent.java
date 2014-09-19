@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class ConnectionAgent {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://www.baowhan.com/admin_baowhan";
+    private static final String URL = "jdbc:mysql://128.199.170.216/admin_baowhan";
     private static final String USER = "admin_baowhan";
     private static final String PASSWORD = "iambaowhan";
 

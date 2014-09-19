@@ -68,7 +68,7 @@ public class Hospital {
         this.telephone = telephone;
     }
     
-    public static List<Hospital> showHospital(String str) {
+    public static List<Hospital> showHospital() {
         String sqlCmd = "SELECT * FROM hospital ";
         Connection con = ConnectionAgent.getConnection();
         Hospital h = null;

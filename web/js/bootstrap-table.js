@@ -129,19 +129,19 @@
         rowStyle: function (row, index) {return {};},
 
         formatLoadingMessage: function () {
-            return 'Loading, please wait…';
+            return 'กำลังอ่านข้อมูล, โปรดรอซักครู่…';
         },
         formatRecordsPerPage: function (pageNumber) {
-            return sprintf('%s records per page', pageNumber);
+            return sprintf('%s เนื้อหาต่อหน้า', pageNumber);
         },
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
-            return sprintf('Showing %s to %s of %s rows', pageFrom, pageTo, totalRows);
+            return sprintf('แสดงผลจาก %s ถึง %s จากจำนวนทั้งหมด %s เนื้อหา', pageFrom, pageTo, totalRows);
         },
         formatSearch: function () {
-            return 'Search';
+            return 'ค้นหา';
         },
         formatNoMatches: function () {
-            return 'No matching records found';
+            return 'ค้นหาไม่พบ';
         },
 
         onAll: function (name, args) {return false;},

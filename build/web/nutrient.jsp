@@ -127,7 +127,7 @@
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="#"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    <a href="dashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
                                 </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
@@ -251,7 +251,7 @@
                                         <h2>ตารางโภชนาการ</h2>
                                     </div>
                                     <!-- END General Elements Title -->
-   <table data-toggle="table" data-url="getNutrientDB" data-pagination="true" data-show-toggle="true" data-cache="true" data-search="true" >
+   <table data-toggle="table" data-url="getNutrientDB" data-pagination="true"  data-cache="true" data-search="true" >
     <thead>
         <tr>
             <th data-field="name">ชื่ออาหาร</th>

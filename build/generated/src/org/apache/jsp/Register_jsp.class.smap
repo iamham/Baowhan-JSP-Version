@@ -1,13 +1,10 @@
 SMAP
-Register_jsp.java
+REGISTER_jsp.java
 JSP
 *S JSP
 *F
-+ 0 Register.jsp
-Register.jsp
++ 0 REGISTER.jsp
+REGISTER.jsp
 *L
-5,11:50
-26:71,2
-27,78:73
-163,10:151
+5,227:50
 *E
