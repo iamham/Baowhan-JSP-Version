@@ -8,10 +8,14 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Ranking;
+import model.User;
 
 /**
  *
@@ -31,18 +35,26 @@ public class ranking extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ranking</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ranking at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        HttpSession session = request.getSession(false);
+        User u = (User) session.getAttribute("user");
+        List<Ranking> ranking = Ranking.showRanking();
+        int position;
+        String result="",table="";
+        for(int i=0;i<ranking.size();i++){
+            if(ranking.get(i).getUserId()==u.getUserID()){
+                position = ranking.get(i).getId();
+                result = result.concat("คุณอยู่อันดับที่ "+ position +" ด้วยค่าเฉลี่ยน้ำตาลที่ (eAG) "+ranking.get(i).geteAG());
+                break;
+            }
         }
+        for(int i=0;i<ranking.size();i++){
+            table = table.concat("<tr><td class=\"text-center\">"+ranking.get(i).getId()+"</td><td>"+User.getUserName(ranking.get(i).getUserId())+"</td><td>"+ranking.get(i).geteAG()+"</td></tr>");
+        }
+        request.setAttribute("table", table);
+        request.setAttribute("result", result);
+        request.setAttribute("name", u.getFirstname()+" "+u.getLastname());
+        request.setAttribute("profilepic", u.getProfilePIC());
+        getServletContext().getRequestDispatcher("/ranking.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

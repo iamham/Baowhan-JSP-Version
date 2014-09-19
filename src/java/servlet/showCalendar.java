@@ -63,6 +63,9 @@ public class showCalendar extends HttpServlet {
         }
         json = json.concat(" ] ");
         request.setAttribute("cal", json);
+        }else{
+            String json = "[]";
+            request.setAttribute("cal", json);
         }
         getServletContext().getRequestDispatcher("/calendar.jsp").forward(request, response);
         /*[

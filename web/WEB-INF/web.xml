@@ -108,6 +108,18 @@
         <servlet-name>ranking</servlet-name>
         <servlet-class>servlet.ranking</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>setting</servlet-name>
+        <servlet-class>servlet.setting</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>docdashboard</servlet-name>
+        <servlet-class>servlet.docdashboard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>showUser</servlet-name>
+        <servlet-class>servlet.showUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -211,6 +223,18 @@
     <servlet-mapping>
         <servlet-name>ranking</servlet-name>
         <url-pattern>/ranking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>setting</servlet-name>
+        <url-pattern>/setting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>docdashboard</servlet-name>
+        <url-pattern>/docdashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showUser</servlet-name>
+        <url-pattern>/showUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

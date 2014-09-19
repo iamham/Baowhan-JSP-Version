@@ -242,14 +242,35 @@
 
                     <!-- Page content -->
                     <div id="page-content">
-                        
+                        <!-- Widgets Header -->
+                        <div class="content-header">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="header-section">
+                                        <h1>${pname}</h1>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 hidden-xs">
+                                    <div class="header-section">
+                                        <ul class="breadcrumb breadcrumb-top">
+                                            <li>หน้าหลัก</li>
+                                            <li><a href="docdashboard">ผู้ป่วยทั้งหมด</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Widgets Header -->
+
                                     <!-- Datatables Block -->
                         <!-- Datatables is initialized in js/pages/uiTables.js -->
+                        <div class="row">
+                                <div class="col-sm-8">
                         <div class="block full">
                             <div class="block-title">
                                 <h2>ผลบันทึกวันที่ ${from} ถึงวันที่ ${to}</h2>
                             </div>
-                            <form action="checkRecord" method="post" class="form-horizontal form-bordered" >
+                            <form action="showUser" method="post" class="form-horizontal form-bordered" >
                                         <!-- Datepicker for Bootstrap (classes are initialized in js/app.js -> uiInit()), for extra usage examples you can check out http://eternicode.github.io/bootstrap-datepicker -->
                                         <div class="form-group">
                                             <label class="col-md-2 control-label" for="from">เลือกช่วงของข้อมูล</label>
@@ -258,7 +279,7 @@
                                                     <input type="text" id="from" name="from" class="form-control" placeholder="จากวันที่">
                                                     <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
                                                     <input type="text" id="to" name="to" class="form-control" placeholder="ถึงวันที่">
-                                                    
+                                                    <input type="text" id="id" name="id" hidden value="${pid}">
                                                 </div>
                                                 <button type="submit" class="btn btn-effect-ripple btn-success"><i class="fa fa-plus"></i> แสดงผล</button>
                                             </div>
@@ -284,7 +305,7 @@
                                        
                                 </div>
                                 <!-- END General Elements Block -->
-
+                        </div></div>
 
                     </div>
                     <!-- END Page Content -->

@@ -40,7 +40,7 @@ public class User {
     private String address;
     private String province;
     private String amphur;
-    private String zipcode;
+
     private int relatedUserID;
     private int hospitalID;
     private String currentmed;
@@ -53,7 +53,7 @@ public class User {
 
     public User(int userID, String username, String password, String email, 
             String firstname, String lastname, String profilePIC, String telephone, 
-            String address, String province, String amphur, String zipcode, 
+            String address, String province, String amphur,  
             int relatedUserID, int hospitalID, String currentmed, String pastmed, int type) {
         this.userID = userID;
         this.username = username;
@@ -66,7 +66,6 @@ public class User {
         this.address = address;
         this.province = province;
         this.amphur = amphur;
-        this.zipcode = zipcode;
         this.relatedUserID = relatedUserID;
         this.hospitalID = hospitalID;
         this.currentmed = currentmed;
@@ -76,7 +75,7 @@ public class User {
         
     }
 
-    public User(String username, String password, String email, String firstname, String lastname, String profilePIC, String telephone, String address, String province, String amphur, String zipcode) {
+    public User(String username, String password, String email, String firstname, String lastname, String profilePIC, String telephone, String address, String province, String amphur) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -87,7 +86,6 @@ public class User {
         this.address = address;
         this.province = province;
         this.amphur = amphur;
-        this.zipcode = zipcode;
     }
 
     public int getUserID() {
@@ -184,14 +182,6 @@ public class User {
 
     public void setAmphur(String amphur) {
         this.amphur = amphur;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
     }
 
     public int getRelatedUserID() {
@@ -380,7 +370,7 @@ public class User {
     public static boolean updateUser(User u){
         Connection con = ConnectionAgent.getConnection();
          boolean result = false;
-         String sql = "UPDATE User = \'"+u.getUsername()+"\', \'password\' = \'"+u.getPassword()+"\', \'email\' = \'"+u.getEmail()+"\',\'firstname\' = \'"+u.getFirstname()+"\', \'lastname\' = \'"+u.getLastname()+"\', \'profilePIC\' = \'"+u.getProfilePIC()+"\', \'telephone\' = \'"+u.getTelephone()+"\', \'address\' = \'"+u.getAddress()+"\', \'province\' = \'"+u.getProvince()+"\', \'zipcode\' = \'"+u.getZipcode()+"\', \'relatedUserID\' = "+u.getRelatedUserID()+", \'hospitalID\' = "+u.getHospitalID()+", \'currentmed\' = \'"+u.getCurrentmed()+"\', \'pastmed\' = \'"+u.getPastmed()+"\', \'fbid\' = \'"+u.getFbID()+"\' WHERE userID = "+u.getUserID()+";\n";
+         String sql = "UPDATE User = \'"+u.getUsername()+"\', \'password\' = \'"+u.getPassword()+"\', \'email\' = \'"+u.getEmail()+"\',\'firstname\' = \'"+u.getFirstname()+"\', \'lastname\' = \'"+u.getLastname()+"\', \'profilePIC\' = \'"+u.getProfilePIC()+"\', \'telephone\' = \'"+u.getTelephone()+"\', \'address\' = \'"+u.getAddress()+"\', \'province\' = \'"+u.getProvince()+"\',  \'relatedUserID\' = "+u.getRelatedUserID()+", \'hospitalID\' = "+u.getHospitalID()+", \'currentmed\' = \'"+u.getCurrentmed()+"\', \'pastmed\' = \'"+u.getPastmed()+"\', \'fbid\' = \'"+u.getFbID()+"\' WHERE userID = "+u.getUserID()+";\n";
          try { 
              Statement st = con.createStatement();
              st.executeUpdate(sql);
@@ -422,7 +412,7 @@ public class User {
     
     public static User getUser(String user) {
         Connection con = ConnectionAgent.getConnection();
-        String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province,zipcode,userID,hospitalID,relatedUserID from User where username= ?";
+        String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province,userID,hospitalID,relatedUserID,type from User where username= ?";
         PreparedStatement ps;
         User u = null;
         try {
@@ -440,10 +430,10 @@ public class User {
                 u.setTelephone(rs.getString(7));
                 u.setAddress(rs.getString(8));
                 u.setProvince(rs.getString(9));
-                u.setZipcode(rs.getString(10));
-                u.setUserID(rs.getInt(11));
-                u.setHospitalID(rs.getInt(12));
-                u.setRelatedUserID(rs.getInt(13));
+                u.setUserID(rs.getInt(10));
+                u.setHospitalID(rs.getInt(11));
+                u.setRelatedUserID(rs.getInt(12));
+                u.setType(rs.getInt(13));
             }
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
@@ -459,7 +449,7 @@ public class User {
     
     public static User getUserByEmail(String email) {
         Connection con = ConnectionAgent.getConnection();
-        String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province,zipcode from User where email= ?";
+        String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province from User where email= ?";
         PreparedStatement ps;
         User u = null;
         try {
@@ -477,7 +467,6 @@ public class User {
                 u.setTelephone(rs.getString(7));
                 u.setAddress(rs.getString(8));
                 u.setProvince(rs.getString(9));
-                u.setZipcode(rs.getString(10));
                
             }
         } catch (SQLException ex) {
@@ -536,6 +525,7 @@ public class User {
         }
         return name;
     }
+    
     public static User getUserRecord(String ur) {
         Connection con = ConnectionAgent.getConnection();
         String sql = "select userid,username,firstname,lastname,profilePIC,telephone from User where userid= ?";
@@ -591,7 +581,56 @@ public class User {
         return ul;
     }
     
-    
+    public static List<User> showAccPatientList(int doctorID) {
+        Connection con = ConnectionAgent.getConnection();
+        String sqlCmd = "SELECT * FROM User WHERE relatedUserID = ? AND reqStatus = 2";
+        User u = null;
+        List<User> ul = new ArrayList<User>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, doctorID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                u = new User();
+                rToO(u, rs);
+                ul.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return ul;
+    }
+    public static List<User> showAccRequest(int doctorID) {
+        Connection con = ConnectionAgent.getConnection();
+        String sqlCmd = "SELECT * FROM User WHERE relatedUserID = ? AND reqStatus = 1";
+        User u = null;
+        List<User> ul = new ArrayList<User>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlCmd);
+            ps.setInt(1, doctorID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                u = new User();
+                rToO(u, rs);
+                ul.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return ul;
+    }
     
      private static void rToO(User u, ResultSet rs) {
         try {
@@ -603,10 +642,13 @@ public class User {
             u.setProfilePIC(rs.getString("profilePIC"));
             u.setTelephone(rs.getString("telephone"));
             u.setAddress(rs.getString("address"));
-            u.setProvince(rs.getString("province"));
-            //u.setAmphur(rs.getString("amphur"));           
-            u.setZipcode(rs.getString("zipCode"));
-            
+            u.setProvince(rs.getString("province"));         
+            u.setHospitalID(rs.getInt("hospitalID"));
+            u.setRelatedUserID(rs.getInt("relatedUserID"));
+            u.setType(rs.getInt("type"));
+            u.setCurrentmed(rs.getString("currentmed"));
+            u.setPastmed(rs.getString("pastmed"));
+            u.setUserID(rs.getInt("userid"));
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -619,12 +661,11 @@ public class User {
                 + password + ", email=" + email + ", firstname=" + firstname + ", lastname=" 
                 + lastname + ", profilePIC=" + profilePIC + ", telephone=" + telephone + 
                 ", address=" + address + ", province=" + province + ", amphur=" + amphur + 
-                ", zipcode=" + zipcode + ", relatedUserID=" + relatedUserID + ", hospitalID=" + 
+                ", relatedUserID=" + relatedUserID + ", hospitalID=" + 
                 hospitalID + ", currentmed=" + currentmed + ", pastmed=" + pastmed + ", type=" + type + '}';
     }
-    
     public static void main(String[] args) {
-        System.out.println(toMD5("iambaowhan"));
-        updateEAG(18);
+        System.out.println(User.showAccPatientList(2));
+        System.out.println(User.showAccRequest(2));
     }
 }

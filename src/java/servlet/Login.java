@@ -36,27 +36,38 @@ public class Login extends HttpServlet {
         HttpSession s = request.getSession();
         String msg = "";
         boolean success = false;
-        
-        if(User.getUser(username)==null){
-                msg = "ไม่พบชื่อผู้ใช้ในระบบ หรือ รหัสผ่านไม่ถูกต้อง";
-        }else{
+        int type = 0;
+
+        if (User.getUser(username) == null) {
+            msg = "ไม่พบชื่อผู้ใช้ในระบบ หรือ รหัสผ่านไม่ถูกต้อง";
+        } else {
             User u = User.getUser(username);
-            if(u.getPassword().equals(User.toMD5(password))){
+            if (u.getPassword().equals(User.toMD5(password))) {
                 s.setAttribute("user", u);
+                type = u.getType();
+                System.out.println(type);
                 success = true;
-            }else{
+            } else {
                 msg = "ไม่พบชื่อผู้ใช้ในระบบ หรือ รหัสผ่านไม่ถูกต้อง";
             }
         }
         request.setAttribute("msg", msg);
-        if(success){
-            getServletContext().getRequestDispatcher("/dashboard").forward(request, response);
-            
-        }else{
+        if (success) {
+            if (type == 1) {
+                getServletContext().getRequestDispatcher("/dashboard").forward(request, response);
+            } else if (type == 2) {
+                System.out.println("Going");
+                getServletContext().getRequestDispatcher("/docdashboard").forward(request, response);
+            } else if (type == 3) {
+                getServletContext().getRequestDispatcher("/addashboard").forward(request, response);
+            }else{
+                getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            }
+        } else {
             getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-            
+
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

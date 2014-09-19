@@ -263,6 +263,7 @@
                                                 <button type="submit" class="btn btn-effect-ripple btn-success"><i class="fa fa-plus"></i> แสดงผล</button>
                                             </div>
                                         </div>
+                            </form>
 <div class="widget-content themed-background-muted">
                                         <!-- Flot Charts (initialized in js/pages/readyDashboard.js), for more examples you can check out http://www.flotcharts.org/ -->
                                         <div id="chart-classic-dash" style="height: 393px;"></div>
