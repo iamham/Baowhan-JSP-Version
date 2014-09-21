@@ -126,26 +126,37 @@
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="docdashboard" class="active"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    <a href="dashboard" ><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
                                 </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </li>
-                                
                                 <li>
-                                    <a href="docmessage" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อคนไข้</span></a>
+                                    <a href="#" class="sidebar-nav-submenu"><i class="fa fa-tint sidebar-nav-icon"></i><i class="fa fa-chevron-left sidebar-nav-indicator"></i><span class="sidebar-nav-mini-hide">ผลน้ำตาล</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="addRecord">เพิ่ม/บันทึก ผลน้ำตาล</a>
+                                        </li>
+                                        <li>
+                                            <a href="checkRecord">ตรวจสอบผลน้ำตาล</a>
+                                        </li>
+                                    </ul>
+
                                 </li>
                                 <li>
-                                    <a href="doccalendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน/นัดหมาย</span></a>
+                                    <a href="message" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
                                 </li>
                                 <li>
-                                    <a href="doctools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
+                                    <a href="calendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน</span></a>
                                 </li>
                                 <li>
-                                    <a href="docnutrient" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
+                                    <a href="tools" class=" active"><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
                                 </li>
                                 <li>
-                                    <a href="docnews" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
+                                    <a href="nutrient" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
+                                </li>
+                                <li>
+                                    <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
                                 </li>
 
 
@@ -233,91 +244,75 @@
                     <div id="page-content">
                         <!-- First Row -->
                         <div class="row">
-                            <!-- Simple Stats Widgets -->
+                            <div class="col-xs-12">
 
-                            <div class="col-sm-2 col-lg-2">
-                                <a href="req"class="widget">
-                                    <div class="widget-content themed-background-danger text-light-op text-center">
-                                        <div class="widget-icon center-block push">
-                                            <i class="fa fa-database"></i>
+                                <div class="widget">
+                                    <div class="widget-content widget-content-mini themed-background-dark text-light-op">
+                                        แปลงค่าเฉลี่ยนน้ำตาล
+                                    </div>
+                                    <div class="widget-content" >
+                                        <div class="row">
+                                            <form class="form-horizontal form-bordered" >
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label" for="HbA1c">HbA1c</label>
+                                                    <div class="col-md-6">
+                                                        <input type="number" id="HbA1c" name="HbA1c" class="form-control" placeholder="HbA1c" required>
+                                                        <span class="help-block">ใส่ค่าในรูปของตัวเลข</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label" for="date">eAG (ค่าเฉลี่ยน้ำตาล)</label>
+                                                    <div class="col-md-5">
+                                                        <input type="number" id="eAG" name="eAG" class="form-control" placeholder="eAG" disabled>
+                                                        <span class="help-block">mg/dL ค่าเฉลี่ยน้ำตาล</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-md-9 col-md-offset-3">
+                                                        <button type="button" ONCLICK="compute(this.form)" class="btn btn-effect-ripple btn-primary">คำนวน</button>
+                                                        <button type="reset" class="btn btn-effect-ripple btn-danger">ล้างข้อมูล</button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <strong>คนไข้ทั้งหมด ${pno} คน</strong>
                                     </div>
-                                </a>
+
+                                </div>
                             </div>
-                            <div class="col-sm-2 col-lg-2">
-                                <a href="req"class="widget">
-                                    <div class="widget-content themed-background-info text-light-op text-center">
-                                        <div class="widget-icon center-block push">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                        <strong>คุณมี ${noreq} คำขอ</strong>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-sm-4 col-lg-4">
-                                <a href="calendar" class="widget">
-                                    <div class="widget-content widget-content-mini themed-background-warning text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>${name}</strong>
-                                    </div>
-                                    <div class="widget-content text-right clearfix">
-                                        <div class="widget-icon pull-left">
-                                            <i class="fa fa-calendar text-muted"></i>
-                                        </div>
-                                        <h2 class="widget-heading h3 text-success">
-                                            <i class="fa fa-plus"></i> <strong>${nextApp}</strong>
-                                        </h2>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-sm-4 col-lg-4">
-                                <a href="calendar" class="widget">
-                                    <div class="widget-content widget-content-mini themed-background-success text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>ตารางนัดหมหาย</strong>
-                                    </div>
-                                    <div class="widget-content text-right clearfix">
-                                        <div class="widget-icon pull-left">
-                                            <i class="fa fa-calendar text-muted"></i>
-                                        </div>
-                                        <h2 class="widget-heading h3 text-success">
-                                            <i class="fa fa-plus"></i> <strong>${nextApp}</strong>
-                                        </h2>
-                                    </div>
-                                </a>
-                            </div>
-                                ${userList}
-                            
+
+
+
+
 
                         </div>
-
+                        <!-- END Page Content -->
                     </div>
-                    <!-- END Third Row -->
+                    <!-- END Main Container -->
                 </div>
-                <!-- END Page Content -->
+                <!-- END Page Container -->
             </div>
-            <!-- END Main Container -->
-        </div>
-        <!-- END Page Container -->
-    </div>
-    <!-- END Page Wrapper -->
+            <!-- END Page Wrapper -->
 
-    <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
+            <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
 
-    <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/app.js"></script>
+            <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
+            <script src="js/vendor/bootstrap.min.js"></script>
+            <script src="js/plugins.js"></script>
+            <script src="js/app.js"></script>
 
-    <!-- Load and execute javascript code used only in this page -->
-    <script>
-        var dataBlood = ${chartValue}
-        var dataMonths = ${chartDate}
-    </script>
-    <script src="js/pages/readyDashboard.js"></script>
-    <script>$(function() {
-            ReadyDashboard.init();
-        });</script>
-</body>
+            <!-- Load and execute javascript code used only in this page -->
+            <script LANGUAGE="javascript1.2">
+
+function compute(form) { 
+if((form.HbA1c.value==null)||(form.HbA1c.value=="")||(isNaN(form.HbA1c.value))){
+alert('โปรดใส่ค่า HbA1c');
+return false;
+}
+form.eAG.value=Math.round((form.HbA1c.value*35.6)-77.3);
+	 }
+</script>
+    </body>
 </html>

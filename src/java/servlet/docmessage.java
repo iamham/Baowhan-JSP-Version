@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
@@ -14,16 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.User;
+import model.Message;
 import java.util.List;
 import model.DiabetesLog;
-import model.Hospital;
-import model.Ranking;
-
 /**
  *
  * @author sarunpeetasai
  */
-public class docdashboard extends HttpServlet {
+public class docmessage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,27 +36,36 @@ public class docdashboard extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String result ="";
         HttpSession session = request.getSession(false);
+        SimpleDateFormat sf = new SimpleDateFormat("d/M/yy HH:mm:ss");
+        SimpleDateFormat sf1 = new SimpleDateFormat("d");
         User u = (User) session.getAttribute("user");
+        List allCid = Message.getAllCID(u.getUserID());
         List<User> allP = User.showAccPatientList(u.getUserID());
-        List<User> allR = User.showAccRequest(u.getUserID());
-        String userList = "";
-        for (int i = 0; i < allP.size(); i++) {
-            userList = userList.concat("<div class=\"col-lg-4 col-lg-pull-4\"><a href=\"showUser?id=" + allP.get(i).getUsername() + "\" class=\"widget\"><div class=\"widget-content text-center\">\n<img src=\"img/user/" + allP.get(i).getProfilePIC() + "\" alt=\"avatar\" class=\"img-circle img-thumbnail img-thumbnail-avatar-2x\">\n"
-                    + "                                        <h2 class=\"widget-heading h3 text-muted\">" + allP.get(i).getFirstname() + " " + allP.get(i).getLastname() + "</h2></div><div class=\"widget-content themed-background-muted text-dark text-center\"><strong>" + Hospital.findById(allP.get(i).getHospitalID()) + "</strong>"
-                    + "                                    </div><div class=\"widget-content\"><div class=\"row text-center\"><div class=\"col-xs-6\"><h3 class=\"widget-heading\"><i class=\"gi gi-tint text-info\"></i> <br><small> eAG : " + DiabetesLog.getEAG(allP.get(i).getUserID()) + "</small></h3>\n"
-                    + "                                            </div><div class=\"col-xs-6\"><h3 class=\"widget-heading\"><i class=\"gi gi-sorting text-danger\"></i> <br><small>" + Ranking.position(allP.get(i).getUserID()) + "</small></h3></div>\n"
-                    + "                                        </div></div></a></div>");
+        String allpa="";
+        for(int i=0;i<allP.size();i++){
+            allpa = allpa.concat("<tr><td class=\"text-center\" style=\"width: 100px;\"><img src=\"img/user/"+allP.get(i).getProfilePIC()+"\" alt=\"User Image\" width=\"50px\" class=\"img-circle\">\n" +
+"                                                    </td><td><a href=\"showMessage?pid="+allP.get(i).getUserID()+"\" class=\"text-info\">"+allP.get(i).getFirstname()+" "+allP.get(i).getLastname()+"</a><br></td><td class=\"text-center\" style=\"width: 80px;\">" +
+"                                                        <a href=\"showMessage?pid="+allP.get(i).getUserID()+" class=\"btn btn-effect-ripple btn-xs btn-danger\" data-toggle=\"tooltip\" title=\"Follow\"><i class=\"fa fa-share\"></i></a>\n" +
+"                                                    </td>\n" +
+"                                                </tr>");
         }
-        System.out.println("Done");
-        request.setAttribute("userList", userList);
-        int noreq = 0;
-        noreq = allR.size();
+        request.setAttribute("allp", allpa);
         request.setAttribute("pno", allP.size());
-        request.setAttribute("name", u.getFirstname() + " " + u.getLastname());
-        request.setAttribute("noreq", noreq);
-        request.setAttribute("profilepic", u.getProfilePIC());
-        getServletContext().getRequestDispatcher("/docdashboard.jsp").forward(request, response);
+        for(int i=0;i<allCid.size();i++){
+        String val = (String) allCid.get(i);
+        int pid = Message.getPatientID(Integer.parseInt(val), u.getUserID());
+        User pu = User.getUserByID(pid);
+        List last = Message.getLastMessage(Integer.parseInt(val));
+        if(last.isEmpty()){
+            last.add("");
+            last.add("");
+        }
+        result = result.concat("<tr><td td-label td-label-danger class=\"text-center\" style=\"width: 100px;\"> <img src=\"img/user/"+pu.getProfilePIC()+"\" width=\"60px\" alt=\"avatar\" class=\"img-circle\"></td><td><h4><a href=\"showMessage?id="+val+"\" class=\"text-dark\"><strong>"+pu.getFirstname()+" "+pu.getLastname()+"</strong></a></h4><span class=\"text-muted\">"+last.get(0)+"</span></td><td class=\"hidden-xs text-center\" style=\"width: 30px;\">  </td> <td class=\"hidden-xs text-right text-muted\" style=\"width: 120px;\"></td><td class=\"hidden-xs text-right text-muted\" style=\"width: 120px;\"><em>"+last.get(1)+"</em></td> </tr>");
+        }
+        request.setAttribute("message", result);
+        getServletContext().getRequestDispatcher("/docmessage.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

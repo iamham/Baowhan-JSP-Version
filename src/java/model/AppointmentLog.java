@@ -105,6 +105,7 @@ public class AppointmentLog {
     public void setDetail(String detail) {
         this.detail = detail;
     }
+    
     public static boolean addRecord(int patientID,int doctorID,Date date,Date logtime,String detail,int origin,int type,int status){
         Connection con = ConnectionAgent.getConnection();
         boolean success = false;
@@ -246,6 +247,71 @@ public class AppointmentLog {
         }
         return result;
     }
+    public static List<AppointmentLog> getDocRequest(int userID) {
+        Connection con = ConnectionAgent.getConnection();
+        String sql = "SELECT doctorID,checktime,detail,status,originID,patientID,logID FROM AppointmentLog WHERE doctorID = ? AND status = 1 AND originID != ?";
+        PreparedStatement ps;
+        AppointmentLog al = null;
+        List<AppointmentLog> result = new ArrayList();
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, userID);
+            ps.setInt(2, userID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                al = new AppointmentLog();
+                al.setDoctorId(rs.getInt(1));
+                al.setChecktime(rs.getDate(2));
+                al.setDetail(rs.getString(3));
+                al.setStatus(rs.getInt(4));
+                al.setOriginID(rs.getInt(5));
+                al.setPatientId(rs.getInt(6));
+                al.setLogId(rs.getInt(7));
+                result.add(al);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AppointmentLog.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
+    }
+     public static List<AppointmentLog> getDocCalendar(int userID) {
+        Connection con = ConnectionAgent.getConnection();
+        String sql = "SELECT patientID,checktime,detail,status,originID,patientID,logID FROM AppointmentLog WHERE doctorID = ? AND status = 2";
+        PreparedStatement ps;
+        AppointmentLog al = null;
+        List<AppointmentLog> result = new ArrayList();
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, userID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                al = new AppointmentLog();
+                al.setDoctorId(rs.getInt(1));
+                al.setChecktime(rs.getDate(2));
+                al.setDetail(rs.getString(3));
+                al.setStatus(rs.getInt(4));
+                al.setOriginID(rs.getInt(5));
+                al.setPatientId(rs.getInt(6));
+                al.setLogId(rs.getInt(7));
+                result.add(al);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AppointmentLog.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
+    }
     public static List<AppointmentLog> getCalendar(int userID) {
         Connection con = ConnectionAgent.getConnection();
         String sql = "SELECT doctorID,checktime,detail,status,originID,patientID,logID FROM AppointmentLog WHERE patientID = ? AND status = 2";
@@ -301,7 +367,7 @@ public class AppointmentLog {
 
     }public static void main(String[] args) {
             Date s = new Date();
-            System.out.println(AppointmentLog.getRequest(1));
+            System.out.println(AppointmentLog.getDocRequest(23));
     }
 
     

@@ -3,27 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.User;
-import java.util.List;
 import model.DiabetesLog;
 import model.Hospital;
-import model.Ranking;
+import model.Message;
+import model.User;
 
 /**
  *
  * @author sarunpeetasai
  */
-public class docdashboard extends HttpServlet {
+public class showMessage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,26 +39,43 @@ public class docdashboard extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
+        SimpleDateFormat sf = new SimpleDateFormat("d/M/yy HH:mm:ss");
+        SimpleDateFormat sf1 = new SimpleDateFormat("d");
         User u = (User) session.getAttribute("user");
-        List<User> allP = User.showAccPatientList(u.getUserID());
-        List<User> allR = User.showAccRequest(u.getUserID());
-        String userList = "";
-        for (int i = 0; i < allP.size(); i++) {
-            userList = userList.concat("<div class=\"col-lg-4 col-lg-pull-4\"><a href=\"showUser?id=" + allP.get(i).getUsername() + "\" class=\"widget\"><div class=\"widget-content text-center\">\n<img src=\"img/user/" + allP.get(i).getProfilePIC() + "\" alt=\"avatar\" class=\"img-circle img-thumbnail img-thumbnail-avatar-2x\">\n"
-                    + "                                        <h2 class=\"widget-heading h3 text-muted\">" + allP.get(i).getFirstname() + " " + allP.get(i).getLastname() + "</h2></div><div class=\"widget-content themed-background-muted text-dark text-center\"><strong>" + Hospital.findById(allP.get(i).getHospitalID()) + "</strong>"
-                    + "                                    </div><div class=\"widget-content\"><div class=\"row text-center\"><div class=\"col-xs-6\"><h3 class=\"widget-heading\"><i class=\"gi gi-tint text-info\"></i> <br><small> eAG : " + DiabetesLog.getEAG(allP.get(i).getUserID()) + "</small></h3>\n"
-                    + "                                            </div><div class=\"col-xs-6\"><h3 class=\"widget-heading\"><i class=\"gi gi-sorting text-danger\"></i> <br><small>" + Ranking.position(allP.get(i).getUserID()) + "</small></h3></div>\n"
-                    + "                                        </div></div></a></div>");
+        String id =request.getParameter("id");
+        String pid =request.getParameter("pid");
+        if(id==null){
+            id = ""+Message.getCid(u.getUserID(), Integer.parseInt(pid));
         }
-        System.out.println("Done");
-        request.setAttribute("userList", userList);
-        int noreq = 0;
-        noreq = allR.size();
-        request.setAttribute("pno", allP.size());
-        request.setAttribute("name", u.getFirstname() + " " + u.getLastname());
-        request.setAttribute("noreq", noreq);
-        request.setAttribute("profilepic", u.getProfilePIC());
-        getServletContext().getRequestDispatcher("/docdashboard.jsp").forward(request, response);
+        User p = User.getUserByID(Message.getPatientID(Integer.parseInt(id), u.getUserID()));
+        request.setAttribute("pname", p.getFirstname()+" "+p.getLastname());
+        request.setAttribute("pp", p.getProfilePIC());
+        request.setAttribute("hospital", "โรงพยาบาล"+Hospital.findById(p.getHospitalID()));
+        List<DiabetesLog> log = DiabetesLog.getAllUserRecord(Message.getPatientID(Integer.parseInt(id), u.getUserID()));
+        List<Message> mes = Message.getAllMessage(Integer.parseInt(id));
+        String stMessage="";
+        for(int i=0;i<mes.size();i++){
+            stMessage = stMessage.concat("<tr><td><b>"+User.getUserName(mes.get(i).getUser_id_fk())+"</b><br>"+mes.get(i).getMessage()+"</td><td class=\"text-center\" style=\"width: 80px;\"><span class=\"text-muted\">"+sf.format(mes.get(i).getTime())+"</span></td></tr>");
+        }
+        if(mes.isEmpty()){
+            stMessage = stMessage.concat("<center><h4>คุณยังไม่มีข้อความใดๆ ส่งข้อความได้ด้านล่าง</h4></center>");
+        }
+        
+        String chartValue = "[";
+        String chartDate = "[";
+            int itemp = 1;
+            for(int i=0;i<log.size();i++){
+                chartValue = chartValue.concat("[\""+itemp+"\", "+log.get(i).getValue()+"],");
+                chartDate = chartDate.concat("[\""+itemp+"\", \'"+sf1.format(log.get(i).getChecktime())+"\'],");
+                itemp++;
+            }
+        chartValue = chartValue.concat("];");
+        chartDate = chartDate.concat("];");
+        request.setAttribute("chartDate", chartDate);
+        request.setAttribute("chartValue", chartValue);
+        request.setAttribute("msg",  stMessage);
+        request.setAttribute("cid", id);
+        getServletContext().getRequestDispatcher("/showMessage.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

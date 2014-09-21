@@ -39,7 +39,11 @@ public class calAcc extends HttpServlet {
         String iid =request.getParameter("id");
         int id = Integer.parseInt(iid);
         AppointmentLog.changeStatus(id, 2);
+        if(u.getType()==1){
         getServletContext().getRequestDispatcher("/calendar").forward(request, response);
+        }else if(u.getType()==2){
+            getServletContext().getRequestDispatcher("/doccalendar").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

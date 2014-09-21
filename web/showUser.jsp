@@ -100,7 +100,7 @@
                     <div id="sidebar-scroll-alt">
                         <!-- Sidebar Content -->
                         <div class="sidebar-content">
-                            
+
 
                         </div>
                         <!-- END Sidebar Content -->
@@ -114,7 +114,7 @@
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
                         <a href="dashboard" class="sidebar-title">
-                             <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
+                            <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
                     <!-- END Sidebar Brand -->
@@ -126,40 +126,29 @@
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="dashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    <a href="docdashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
                                 </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </li>
-                                <li class="active">
-                                    <a href="#" class="sidebar-nav-submenu"><i class="fa fa-tint sidebar-nav-icon"></i><i class="fa fa-chevron-left sidebar-nav-indicator"></i><span class="sidebar-nav-mini">ผลน้ำตาล</span></a>
-                                     <ul>
-                                                <li>
-                                                    <a href="addRecord" >เพิ่ม/บันทึก ผลน้ำตาล</a>
-                                                </li>
-                                                <li>
-                                                    <a href="checkRecord" class="active">ตรวจสอบผลน้ำตาล</a>
-                                                </li>
-                                    </ul>
+                                
+                                <li>
+                                    <a href="docmessage" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
+                                </li>
+                                <li>
+                                    <a href="doccalendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน</span></a>
+                                </li>
+                                <li>
+                                    <a href="doctools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
+                                </li>
+                                <li>
+                                    <a href="docnutrient" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
+                                </li>
+                                <li>
+                                    <a href="docnews" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
+                                </li>
 
-                                </li>
-                                <li>
-                                    <a href="message" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
-                                </li>
-                                 <li>
-                                    <a href="calendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน</span></a>
-                                </li>
-                                <li>
-                                    <a href="tools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
-                                </li>
-                                <li>
-                                    <a href="nutrient" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
-                                </li>
-                                <li>
-                                    <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
-                                </li>
-                                        
-                                           
+
                             </ul>
                             <!-- END Sidebar Navigation -->
                         </div>
@@ -167,7 +156,7 @@
                     </div>
                     <!-- END Wrapper for scrolling functionality -->
 
-                    
+
                 </div>
                 <!-- END Main Sidebar -->
 
@@ -191,11 +180,11 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
-                            
+
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
-                           
+
                             <!-- END Header Link -->
                         </ul>
                         <!-- END Left Header Navigation -->
@@ -210,14 +199,14 @@
                                     <img src="img/user/${user.getProfilePIC()}" alt="avatar"> ${user.getFirstname()} ${user.getLastname()}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    
+
                                     <li>
                                         <a href="message">
                                             <i class="fa fa-inbox fa-fw pull-right"></i>
                                             กล่องจดหมาย
                                         </a>
                                     </li>
-                                    
+
                                     <li class="divider"><li>
                                     <li>
                                         <a href="setting">
@@ -225,7 +214,7 @@
                                             ตั้งค่า
                                         </a>
                                     </li>
-                                   
+
                                     <li>
                                         <a href="logout">
                                             <i class="fa fa-power-off fa-fw pull-right"></i>
@@ -262,78 +251,104 @@
                         </div>
                         <!-- END Widgets Header -->
 
-                                    <!-- Datatables Block -->
+                        <!-- Datatables Block -->
                         <!-- Datatables is initialized in js/pages/uiTables.js -->
                         <div class="row">
-                                <div class="col-sm-8">
-                        <div class="block full">
-                            <div class="block-title">
-                                <h2>ผลบันทึกวันที่ ${from} ถึงวันที่ ${to}</h2>
-                            </div>
-                            <form action="showUser" method="post" class="form-horizontal form-bordered" >
+                            <div class="col-sm-8">
+                                <div class="block full">
+                                    <div class="block-title">
+                                        <h2>ผลบันทึกวันที่ ${from} ถึงวันที่ ${to}</h2>
+                                    </div>
+                                    <form action="showUser" method="post" class="form-horizontal form-bordered" >
                                         <!-- Datepicker for Bootstrap (classes are initialized in js/app.js -> uiInit()), for extra usage examples you can check out http://eternicode.github.io/bootstrap-datepicker -->
                                         <div class="form-group">
                                             <label class="col-md-2 control-label" for="from">เลือกช่วงของข้อมูล</label>
                                             <div class="col-md-9">
                                                 <div class="input-group input-daterange" data-date-format="dd/mm/yy">
-                                                    <input type="text" id="from" name="from" class="form-control" placeholder="จากวันที่">
+                                                    <input type="text" id="from" name="from" class="form-control" placeholder="จากวันที่" required="">
                                                     <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
-                                                    <input type="text" id="to" name="to" class="form-control" placeholder="ถึงวันที่">
+                                                    <input type="text" id="to" name="to" class="form-control" placeholder="ถึงวันที่" required>
                                                     <input type="text" id="id" name="id" hidden value="${pid}">
                                                 </div>
                                                 <button type="submit" class="btn btn-effect-ripple btn-success"><i class="fa fa-plus"></i> แสดงผล</button>
                                             </div>
                                         </div>
-                            </form>
-<div class="widget-content themed-background-muted">
+                                    </form>
+                                    <div class="widget-content themed-background-muted">
                                         <!-- Flot Charts (initialized in js/pages/readyDashboard.js), for more examples you can check out http://www.flotcharts.org/ -->
                                         <div id="chart-classic-dash" style="height: 393px;"></div>
                                     </div>
-                            <div class="table-responsive">
-                                <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center" style="width: 50px;">ID</th>
-                                            <th>วันที่</th>
-                                            <th>ค่าที่วัดได้</th>
-                                            <th>บันทึกเพิ่มเติม</th>
-                                            <th class="text-center" style="width: 75px;"><i class="fa fa-flash"></i></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       ${table}
-                                       
-                                </div>
-                                <!-- END General Elements Block -->
-                        </div></div>
+                                    <div class="table-responsive">
+                                        <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" style="width: 50px;">ID</th>
+                                                    <th>วันที่</th>
+                                                    <th>ค่าที่วัดได้</th>
+                                                    <th>บันทึกเพิ่มเติม</th>
+                                                    <th class="text-center" style="width: 75px;"><i class="fa fa-flash"></i></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                ${table}
+                                            </tbody>
+                                        </table>
+                                     </div>
+                                                <!-- END General Elements Block -->
+                                                </div></div>
+                                            <div class="col-sm-4">
+                                            <a class="widget">    
+                                            <div class="widget-content text-center">
+                                                <img src="img/user/${profilep}" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar-2x">
+                                                <h2 class="widget-heading h3 text-muted">${pname}</h2>
+                                            </div>
+                                            <div class="widget-content themed-background-muted text-dark text-center">
+                                                <strong>โรงพยาบาล${phospital}</strong>
+                                            </div>
+                                            <div class="widget-content">
+                                                <div class="row text-center">
+                                                    <div class="col-xs-6">
+                                                        <h3 class="widget-heading"><i class="gi gi-briefcase text-info"></i> <br><small>eAG:${eAG}</small></h3>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <h3 class="widget-heading"><i class="gi gi-heart_empty text-danger"></i> <br><small>Position:${position}</small></h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </a>
+                                            </div>
+                        </div>
+                                                </div>
+                                                <!-- END Page Content -->
+                                                </div>
+                                                <!-- END Main Container -->
+                                                </div>
+                                                <!-- END Page Container -->
+                                                </div>
+                                                <!-- END Page Wrapper -->
 
-                    </div>
-                    <!-- END Page Content -->
-                </div>
-                <!-- END Main Container -->
-            </div>
-            <!-- END Page Container -->
-        </div>
-        <!-- END Page Wrapper -->
+                                                <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
+                                            <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                                            <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
 
-        <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
+                                            <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
+                                            <script src="js/vendor/bootstrap.min.js"></script>
+                                            <script src="js/plugins.js"></script>
+                                            <script src="js/app.js"></script>
 
-        <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/app.js"></script>
+                                            <!-- Load and execute javascript code used only in this page -->
+                                            <script>
+            var dataBlood = ${chartValue}
+            var dataMonths = ${chartDate}
+                                            </script>
+                                            <script src="js/pages/readyDashboard.js"></script>
+                                            <script>$(function() {
+                ReadyDashboard.init();
+            });</script>
+                                            <script src="js/pages/uiTables.js"></script>
+                                            <script>$(function() {
+                UiTables.init();
+            });</script>
 
-        <!-- Load and execute javascript code used only in this page -->
-        <script>
-            var dataBlood= ${chartValue}
-            var dataMonths= ${chartDate}
-        </script>
-        <script src="js/pages/readyDashboard.js"></script>
-        <script>$(function(){ ReadyDashboard.init(); });</script>
-        <script src="js/pages/uiTables.js"></script>
-        <script>$(function(){ UiTables.init(); });</script>
-
-    </body>
-</html>
+                                            </body>
+                                            </html>

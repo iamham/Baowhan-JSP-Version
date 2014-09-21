@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -152,6 +153,74 @@ public class Message {
             }
         }
         return success;
+    }
+    public static List getLastMessage(int cid){
+        Connection con = ConnectionAgent.getConnection();
+        SimpleDateFormat sf = new SimpleDateFormat("d/M/yy HH:mm:ss");
+        List result = new ArrayList();
+        PreparedStatement pstm;
+        String sql = "SELECT * FROM  conversation_reply WHERE c_id_fk ="+cid+" ORDER BY TIME DESC LIMIT 1;";
+        try {
+            pstm = con.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while(rs.next()){
+                Date date = rs.getTimestamp("time");
+                result.add(rs.getString("reply"));
+                result.add(sf.format(date));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+    public static List getAllCID(int doctorID){
+        Connection con = ConnectionAgent.getConnection();
+        List cid = new ArrayList();
+        PreparedStatement pstm;
+        String sql = "SELECT * FROM  conversation WHERE user_one = "+doctorID+" OR user_two ="+doctorID;
+        try {
+            pstm = con.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while(rs.next()){
+            cid.add(rs.getString("c_id"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return cid;
+    }
+    public static int getPatientID(int cid,int user){
+        Connection con = ConnectionAgent.getConnection();
+        PreparedStatement pstm;
+        int result=0;
+        String sql = "SELECT * FROM  conversation WHERE c_id = "+cid;
+        try {
+            pstm = con.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while(rs.next()){
+                if(rs.getInt("user_one")!=user){
+                    result = rs.getInt("user_one");
+                }
+                if(rs.getInt("user_two")!=user){
+                    result = rs.getInt("user_two");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
     }
     public static List<Message> getAllMessage(int cid){
         Connection con = ConnectionAgent.getConnection();

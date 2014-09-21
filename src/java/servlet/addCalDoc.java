@@ -3,27 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.AppointmentLog;
 import model.User;
-import java.util.List;
-import model.DiabetesLog;
-import model.Hospital;
-import model.Ranking;
+import model.utility;
 
 /**
  *
  * @author sarunpeetasai
  */
-public class docdashboard extends HttpServlet {
+public class addCalDoc extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,25 +42,29 @@ public class docdashboard extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("user");
-        List<User> allP = User.showAccPatientList(u.getUserID());
-        List<User> allR = User.showAccRequest(u.getUserID());
-        String userList = "";
-        for (int i = 0; i < allP.size(); i++) {
-            userList = userList.concat("<div class=\"col-lg-4 col-lg-pull-4\"><a href=\"showUser?id=" + allP.get(i).getUsername() + "\" class=\"widget\"><div class=\"widget-content text-center\">\n<img src=\"img/user/" + allP.get(i).getProfilePIC() + "\" alt=\"avatar\" class=\"img-circle img-thumbnail img-thumbnail-avatar-2x\">\n"
-                    + "                                        <h2 class=\"widget-heading h3 text-muted\">" + allP.get(i).getFirstname() + " " + allP.get(i).getLastname() + "</h2></div><div class=\"widget-content themed-background-muted text-dark text-center\"><strong>" + Hospital.findById(allP.get(i).getHospitalID()) + "</strong>"
-                    + "                                    </div><div class=\"widget-content\"><div class=\"row text-center\"><div class=\"col-xs-6\"><h3 class=\"widget-heading\"><i class=\"gi gi-tint text-info\"></i> <br><small> eAG : " + DiabetesLog.getEAG(allP.get(i).getUserID()) + "</small></h3>\n"
-                    + "                                            </div><div class=\"col-xs-6\"><h3 class=\"widget-heading\"><i class=\"gi gi-sorting text-danger\"></i> <br><small>" + Ranking.position(allP.get(i).getUserID()) + "</small></h3></div>\n"
-                    + "                                        </div></div></a></div>");
+        String typ = request.getParameter("type");
+        String dat = request.getParameter("date");
+        String time = request.getParameter("time");
+        String note = request.getParameter("note");
+        String to = request.getParameter("to");
+        System.out.println("1"+note);
+        note = utility.toUTF8(note);
+        System.out.println("2"+note);
+        Date ndate = new Date();
+        String irdate = dat.concat(" "+time);
+        Date rdate=null;
+        try {
+            rdate = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(irdate);
+        } catch (ParseException ex) {
+            Logger.getLogger(addCalDoc.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Done");
-        request.setAttribute("userList", userList);
-        int noreq = 0;
-        noreq = allR.size();
-        request.setAttribute("pno", allP.size());
-        request.setAttribute("name", u.getFirstname() + " " + u.getLastname());
-        request.setAttribute("noreq", noreq);
-        request.setAttribute("profilepic", u.getProfilePIC());
-        getServletContext().getRequestDispatcher("/docdashboard.jsp").forward(request, response);
+        if(typ.equals("1")){
+            int docID = u.getRelatedUserID();
+            AppointmentLog.addRecord(Integer.parseInt(to), u.getUserID(), rdate, ndate, note, u.getUserID(), 1,1);
+        }if(typ.equals("2")){
+            AppointmentLog.addRecord(0, u.getUserID(), rdate, ndate, note, u.getUserID(), 2,2);
+        }
+        getServletContext().getRequestDispatcher("/doccalendar").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

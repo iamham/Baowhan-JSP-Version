@@ -51,6 +51,7 @@
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
         <link rel="stylesheet" href="css/themes.css">
+        <link rel="stylesheet" href="css/bootstrap-table.css">
         <!-- END Stylesheets -->
 
         <!-- Modernizr (browser feature detection library) -->
@@ -100,7 +101,7 @@
                     <div id="sidebar-scroll-alt">
                         <!-- Sidebar Content -->
                         <div class="sidebar-content">
-
+                            
 
                         </div>
                         <!-- END Sidebar Content -->
@@ -113,8 +114,8 @@
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="index.html" class="sidebar-title">
-                            <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
+                        <a href="dashboard" class="sidebar-title">
+                             <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
                     <!-- END Sidebar Brand -->
@@ -126,29 +127,40 @@
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="docdashboard" class="active"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    <a href="dashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
                                 </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </li>
-                                
                                 <li>
-                                    <a href="docmessage" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อคนไข้</span></a>
-                                </li>
-                                <li>
-                                    <a href="doccalendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน/นัดหมาย</span></a>
-                                </li>
-                                <li>
-                                    <a href="doctools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
-                                </li>
-                                <li>
-                                    <a href="docnutrient" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
-                                </li>
-                                <li>
-                                    <a href="docnews" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
-                                </li>
+                                    <a href="#" class="sidebar-nav-submenu"><i class="fa fa-tint sidebar-nav-icon"></i><i class="fa fa-chevron-left sidebar-nav-indicator"></i><span class="sidebar-nav-mini">ผลน้ำตาล</span></a>
+                                     <ul>
+                                                <li>
+                                                    <a href="addRecord">เพิ่ม/บันทึก ผลน้ำตาล</a>
+                                                </li>
+                                                <li>
+                                                    <a href="checkRecord">ตรวจสอบผลน้ำตาล</a>
+                                                </li>
+                                    </ul>
 
-
+                                </li>
+                                <li>
+                                    <a href="message" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
+                                </li>
+                                 <li>
+                                    <a href="calendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน</span></a>
+                                </li>
+                                <li>
+                                    <a href="tools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
+                                </li>
+                                <li>
+                                    <a href="nutrient" class="active" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
+                                </li>
+                                <li>
+                                    <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
+                                </li>
+                                        
+                                           
                             </ul>
                             <!-- END Sidebar Navigation -->
                         </div>
@@ -156,7 +168,7 @@
                     </div>
                     <!-- END Wrapper for scrolling functionality -->
 
-
+                    
                 </div>
                 <!-- END Main Sidebar -->
 
@@ -180,11 +192,11 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
-
+                            
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
-
+                           
                             <!-- END Header Link -->
                         </ul>
                         <!-- END Left Header Navigation -->
@@ -199,14 +211,14 @@
                                     <img src="img/user/${profilepic}" alt="avatar"> ${name}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
-
+                                    
                                     <li>
                                         <a href="message">
                                             <i class="fa fa-inbox fa-fw pull-right"></i>
                                             กล่องจดหมาย
                                         </a>
                                     </li>
-
+                                    
                                     <li class="divider"><li>
                                     <li>
                                         <a href="setting">
@@ -214,7 +226,7 @@
                                             ตั้งค่า
                                         </a>
                                     </li>
-
+                                   
                                     <li>
                                         <a href="logout">
                                             <i class="fa fa-power-off fa-fw pull-right"></i>
@@ -231,93 +243,67 @@
 
                     <!-- Page content -->
                     <div id="page-content">
-                        <!-- First Row -->
-                        <div class="row">
-                            <!-- Simple Stats Widgets -->
-
-                            <div class="col-sm-2 col-lg-2">
-                                <a href="req"class="widget">
-                                    <div class="widget-content themed-background-danger text-light-op text-center">
-                                        <div class="widget-icon center-block push">
-                                            <i class="fa fa-database"></i>
-                                        </div>
-                                        <strong>คนไข้ทั้งหมด ${pno} คน</strong>
-                                    </div>
-                                </a>
+                        
+            
+                     <div class="block full">
+                            <div class="block-title">
+                                <h2>แก้ไขข้อมูลโภชนาการ</h2>
                             </div>
-                            <div class="col-sm-2 col-lg-2">
-                                <a href="req"class="widget">
-                                    <div class="widget-content themed-background-info text-light-op text-center">
-                                        <div class="widget-icon center-block push">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                        <strong>คุณมี ${noreq} คำขอ</strong>
-                                    </div>
-                                </a>
+                         <div>
+                        <form action="editNutrient" method="post"  class="form-horizontal form-bordered" >
+                            <input type="number" id="id" name="id" hidden="" value="${nid}" >
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="name">ชื่อ</label>
+                                <div class="col-md-9">
+                                    <input type="text" id="name" name="name" class="form-control" value="${nname}" required>
+                                </div>
                             </div>
-                            <div class="col-sm-4 col-lg-4">
-                                <a href="calendar" class="widget">
-                                    <div class="widget-content widget-content-mini themed-background-warning text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>${name}</strong>
-                                    </div>
-                                    <div class="widget-content text-right clearfix">
-                                        <div class="widget-icon pull-left">
-                                            <i class="fa fa-calendar text-muted"></i>
-                                        </div>
-                                        <h2 class="widget-heading h3 text-success">
-                                            <i class="fa fa-plus"></i> <strong>${nextApp}</strong>
-                                        </h2>
-                                    </div>
-                                </a>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="carb">คาโบไฮเดรต</label>
+                                <div class="col-md-9">
+                                    <input type="number" id="carb" name="carb" class="form-control" value="${carb}" required>
+                                    
+                                </div>
                             </div>
-                            <div class="col-sm-4 col-lg-4">
-                                <a href="calendar" class="widget">
-                                    <div class="widget-content widget-content-mini themed-background-success text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>ตารางนัดหมหาย</strong>
-                                    </div>
-                                    <div class="widget-content text-right clearfix">
-                                        <div class="widget-icon pull-left">
-                                            <i class="fa fa-calendar text-muted"></i>
-                                        </div>
-                                        <h2 class="widget-heading h3 text-success">
-                                            <i class="fa fa-plus"></i> <strong>${nextApp}</strong>
-                                        </h2>
-                                    </div>
-                                </a>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="cal">แตลลอรี่</label>
+                                <div class="col-md-9">
+                                    <input type="number" id="cal" name="cal" class="form-control" value = "${cal}" required>
+                                </div>
                             </div>
-                                ${userList}
+                                <div class="form-group">
+                                 <div class="col-md-9 col-md-offset-3">
+                            <button type="submit" class="btn btn-effect-ripple btn-primary">บันทึก</button>
+                        <button type="reset" class="btn btn-effect-ripple btn-danger">ล้างข้อมูล</button>
+                                 </div></div>
+                        </form>
                             
-
-                        </div>
-
                     </div>
-                    <!-- END Third Row -->
+                        
                 </div>
-                <!-- END Page Content -->
             </div>
-            <!-- END Main Container -->
+                    
+                    <!-- END Page Content -->
+                </div>
+                <!-- END Main Container -->
+            </div>
+            <!-- END Page Container -->
         </div>
-        <!-- END Page Container -->
-    </div>
-    <!-- END Page Wrapper -->
+        <!-- END Page Wrapper -->
 
-    <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
+        <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
 
-    <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/app.js"></script>
+        <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
+        
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/bootstrap-table.js"></script>
 
-    <!-- Load and execute javascript code used only in this page -->
-    <script>
-        var dataBlood = ${chartValue}
-        var dataMonths = ${chartDate}
-    </script>
-    <script src="js/pages/readyDashboard.js"></script>
-    <script>$(function() {
-            ReadyDashboard.init();
-        });</script>
-</body>
+        <!-- Load and execute javascript code used only in this page -->
+        <script src="js/pages/uiTables.js"></script>
+        <script>$(function(){ UiTables.init(); });</script>
+    </body>
 </html>

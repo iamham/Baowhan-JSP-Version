@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.DiabetesLog;
 import model.Hospital;
+import model.Ranking;
 import model.User;
 
 /**
@@ -86,7 +87,7 @@ public class showUser extends HttpServlet {
         chartDate = chartDate.concat("];");
         request.setAttribute("pname", pa.getFirstname()+" "+pa.getLastname());
         request.setAttribute("phospital", Hospital.findById(pa.getHospitalID()));
-        request.setAttribute("pid", pa.getUserID());
+        request.setAttribute("pid", pa.getUsername());
         request.setAttribute("eAG", DiabetesLog.getEAG(pa.getUserID()));
         request.setAttribute("profilep", pa.getProfilePIC());
         request.setAttribute("chartDate", chartDate);
@@ -95,6 +96,8 @@ public class showUser extends HttpServlet {
         request.setAttribute("from", sf.format(fd));
         request.setAttribute("to", sf.format(td));
         //Done chart and table
+        
+        request.setAttribute("position", Ranking.position(pa.getUserID()));
         request.setAttribute("name", u.getFirstname() + " " + u.getLastname());
         request.setAttribute("profilepic", u.getProfilePIC());
         getServletContext().getRequestDispatcher("/showUser.jsp").forward(request, response);

@@ -113,7 +113,7 @@
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="index.html" class="sidebar-title">
+                        <a href="dashboard" class="sidebar-title">
                             <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
@@ -126,26 +126,37 @@
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="docdashboard" class="active"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    <a href="dashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
                                 </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </li>
-                                
                                 <li>
-                                    <a href="docmessage" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อคนไข้</span></a>
+                                    <a href="#" class="sidebar-nav-submenu"><i class="fa fa-tint sidebar-nav-icon"></i><i class="fa fa-chevron-left sidebar-nav-indicator"></i><span class="sidebar-nav-mini">ผลน้ำตาล</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="addRecord" >เพิ่ม/บันทึก ผลน้ำตาล</a>
+                                        </li>
+                                        <li>
+                                            <a href="checkRecord" >ตรวจสอบผลน้ำตาล</a>
+                                        </li>
+                                    </ul>
+
                                 </li>
                                 <li>
-                                    <a href="doccalendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน/นัดหมาย</span></a>
+                                    <a href="message" class="active" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
                                 </li>
                                 <li>
-                                    <a href="doctools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
+                                    <a href="calendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน</span></a>
                                 </li>
                                 <li>
-                                    <a href="docnutrient" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
+                                    <a href="tools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
                                 </li>
                                 <li>
-                                    <a href="docnews" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
+                                    <a href="nutrient" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
+                                </li>
+                                <li>
+                                    <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
                                 </li>
 
 
@@ -196,7 +207,7 @@
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="img/user/${profilepic}" alt="avatar"> ${name}
+                                    <img src="img/user/${user.getProfilePIC()}" alt="avatar"> ${user.getFirstname()} ${user.getLastname()}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
 
@@ -231,93 +242,93 @@
 
                     <!-- Page content -->
                     <div id="page-content">
-                        <!-- First Row -->
                         <div class="row">
-                            <!-- Simple Stats Widgets -->
+                            <div class="col-xs-8">
+                               
+                                    <div class="widget">
+                                    <div class="widget-content widget-content-mini themed-background-dark text-light-op">
+                                        Chat
+                                    </div>
+                                        <div class="widget-content" style="padding-top: 0">
+                                        <div class="row" style="min-height:500px;max-height:500px;overflow: scroll; ">
+                                            <table class="table table-striped table-borderless remove-margin" style="max-height: 400px">
+                                                    <tbody>
+                                                        ${msg}
+                                                    </tbody>
+                                              </table>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content themed-background-muted">
+                                        <form action="addDocMsg" method="post">
+                                                <div class="input-group">
+                                                    <input type="text" id="msg" name="msg" class="form-control" placeholder="ข้อความ">
+                                                    <input type="text" id="cid" name="cid" value="${cid}" hidden="">
+                                                    <span class="input-group-btn">
+                                                        <button type="submit" class="btn btn-effect-ripple btn-primary">ส่ง</button>
+                                                    </span>
+                                            </div>                     
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <a href="javascript:void(0)" class="widget">
+                                            <div class="widget-content themed-background-danger clearfix">
+                                                <img src="img/user/${pp}" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
+                                                <h2 class="widget-heading h3 text-light"><strong>${pname}</strong></h2>
+                                                <span class="text-light-op">${hospital}</span>
+                                            </div>
+                                        </a>
 
-                            <div class="col-sm-2 col-lg-2">
-                                <a href="req"class="widget">
-                                    <div class="widget-content themed-background-danger text-light-op text-center">
-                                        <div class="widget-icon center-block push">
-                                            <i class="fa fa-database"></i>
+                                <div class="widget">
+                                    <div class="widget-content widget-content-mini themed-background-dark text-light-op">
+                                        ผลน้ำตาลในรอบ 1 เดือน
+                                    </div>
+                                        <div class="widget-content" style="padding-top: 0">
+                                        <div class="row" style="padding:3px">
+                                        <div id="chart-classic-dash" style="height: 300px;"></div>
+                                    </div>
                                         </div>
-                                        <strong>คนไข้ทั้งหมด ${pno} คน</strong>
-                                    </div>
-                                </a>
+                                </div>
+                                    
+                                
                             </div>
-                            <div class="col-sm-2 col-lg-2">
-                                <a href="req"class="widget">
-                                    <div class="widget-content themed-background-info text-light-op text-center">
-                                        <div class="widget-icon center-block push">
-                                            <i class="fa fa-plus"></i>
-                                        </div>
-                                        <strong>คุณมี ${noreq} คำขอ</strong>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-sm-4 col-lg-4">
-                                <a href="calendar" class="widget">
-                                    <div class="widget-content widget-content-mini themed-background-warning text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>${name}</strong>
-                                    </div>
-                                    <div class="widget-content text-right clearfix">
-                                        <div class="widget-icon pull-left">
-                                            <i class="fa fa-calendar text-muted"></i>
-                                        </div>
-                                        <h2 class="widget-heading h3 text-success">
-                                            <i class="fa fa-plus"></i> <strong>${nextApp}</strong>
-                                        </h2>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-sm-4 col-lg-4">
-                                <a href="calendar" class="widget">
-                                    <div class="widget-content widget-content-mini themed-background-success text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>ตารางนัดหมหาย</strong>
-                                    </div>
-                                    <div class="widget-content text-right clearfix">
-                                        <div class="widget-icon pull-left">
-                                            <i class="fa fa-calendar text-muted"></i>
-                                        </div>
-                                        <h2 class="widget-heading h3 text-success">
-                                            <i class="fa fa-plus"></i> <strong>${nextApp}</strong>
-                                        </h2>
-                                    </div>
-                                </a>
-                            </div>
-                                ${userList}
-                            
+                                
+
+
 
                         </div>
-
                     </div>
-                    <!-- END Third Row -->
+                    <!-- END Page Content -->
                 </div>
-                <!-- END Page Content -->
+                <!-- END Main Container -->
             </div>
-            <!-- END Main Container -->
+            <!-- END Page Container -->
         </div>
-        <!-- END Page Container -->
-    </div>
-    <!-- END Page Wrapper -->
+        <!-- END Page Wrapper -->
 
-    <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
+        <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
 
-    <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/app.js"></script>
+        <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/app.js"></script>
+        <!-- Load and execute javascript code used only in this page -->
+        <script>
+            var dataBlood= ${chartValue}
+            var dataMonths= ${chartDate}
+        </script>
+        <script src="js/pages/readyDashboard.js"></script>
+        <script>$(function(){ ReadyDashboard.init(); });</script><!-- Load and execute javascript code used only in this page -->
+        <script>
+            var dataBlood= ${chartValue}
+            var dataMonths= ${chartDate}
+        </script>
+        <script src="js/pages/readyDashboard.js"></script>
+        <script>$(function(){ ReadyDashboard.init(); });</script>
 
-    <!-- Load and execute javascript code used only in this page -->
-    <script>
-        var dataBlood = ${chartValue}
-        var dataMonths = ${chartDate}
-    </script>
-    <script src="js/pages/readyDashboard.js"></script>
-    <script>$(function() {
-            ReadyDashboard.init();
-        });</script>
-</body>
+
+    </body>
 </html>

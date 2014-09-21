@@ -446,7 +446,42 @@ public class User {
         }
         return u;
     }
-    
+    public static User getUserByID(int user) {
+        Connection con = ConnectionAgent.getConnection();
+        String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province,userID,hospitalID,relatedUserID,type from User where userID= ?";
+        PreparedStatement ps;
+        User u = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, user);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                u = new User();
+                u.setUsername(rs.getString(1));
+                u.setPassword(rs.getString(2));
+                u.setEmail(rs.getString(3));
+                u.setFirstname(rs.getString(4));
+                u.setLastname(rs.getString(5));
+                u.setProfilePIC(rs.getString(6));
+                u.setTelephone(rs.getString(7));
+                u.setAddress(rs.getString(8));
+                u.setProvince(rs.getString(9));
+                u.setUserID(rs.getInt(10));
+                u.setHospitalID(rs.getInt(11));
+                u.setRelatedUserID(rs.getInt(12));
+                u.setType(rs.getInt(13));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return u;
+    }
     public static User getUserByEmail(String email) {
         Connection con = ConnectionAgent.getConnection();
         String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province from User where email= ?";

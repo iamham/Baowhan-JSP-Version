@@ -120,6 +120,54 @@
         <servlet-name>showUser</servlet-name>
         <servlet-class>servlet.showUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>docmessage</servlet-name>
+        <servlet-class>servlet.docmessage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>docnews</servlet-name>
+        <servlet-class>servlet.docnews</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>docnutrient</servlet-name>
+        <servlet-class>servlet.docnutrient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doctools</servlet-name>
+        <servlet-class>servlet.doctool</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doccalendar</servlet-name>
+        <servlet-class>servlet.doccalendar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addCalDoc</servlet-name>
+        <servlet-class>servlet.addCalDoc</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addNutrient</servlet-name>
+        <servlet-class>servlet.addNutrient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editNutrient</servlet-name>
+        <servlet-class>servlet.editNutrient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>delNutrient</servlet-name>
+        <servlet-class>servlet.delNutrient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>showNutrient</servlet-name>
+        <servlet-class>servlet.showNutrient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>showMessage</servlet-name>
+        <servlet-class>servlet.showMessage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addDocMsg</servlet-name>
+        <servlet-class>servlet.addDocMsg</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -235,6 +283,54 @@
     <servlet-mapping>
         <servlet-name>showUser</servlet-name>
         <url-pattern>/showUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>docmessage</servlet-name>
+        <url-pattern>/docmessage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>docnews</servlet-name>
+        <url-pattern>/docnews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>docnutrient</servlet-name>
+        <url-pattern>/docnutrient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doctools</servlet-name>
+        <url-pattern>/doctools</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doccalendar</servlet-name>
+        <url-pattern>/doccalendar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addCalDoc</servlet-name>
+        <url-pattern>/addCalDoc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addNutrient</servlet-name>
+        <url-pattern>/addNutrient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editNutrient</servlet-name>
+        <url-pattern>/editNutrient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>delNutrient</servlet-name>
+        <url-pattern>/delNutrient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showNutrient</servlet-name>
+        <url-pattern>/showNutrient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showMessage</servlet-name>
+        <url-pattern>/showMessage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addDocMsg</servlet-name>
+        <url-pattern>/addDocMsg</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
