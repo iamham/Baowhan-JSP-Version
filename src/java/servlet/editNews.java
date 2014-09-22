@@ -3,29 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.AppointmentLog;
+import model.NewsDB;
+import model.NutritionDB;
 import model.User;
-import model.utility;
 
 /**
  *
  * @author sarunpeetasai
  */
-public class addCal extends HttpServlet {
+public class editNews extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,29 +37,11 @@ public class addCal extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("user");
-        String typ = request.getParameter("type");
-        String dat = request.getParameter("date");
-        String time = request.getParameter("time");
-        String note = request.getParameter("note");
-        System.out.println("1" + note);
-        note = utility.toUTF8(note);
-        System.out.println("2" + note);
-        Date ndate = new Date();
-        String irdate = dat.concat(" " + time);
-        Date rdate = null;
-        try {
-            rdate = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(irdate);
-        } catch (ParseException ex) {
-            Logger.getLogger(addCal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (typ.equals("1")) {
-            int docID = u.getRelatedUserID();
-            AppointmentLog.addRecord(u.getUserID(), docID, rdate, ndate, note, u.getUserID(), 1, 1);
-        }
-        if (typ.equals("2")) {
-            AppointmentLog.addRecord(u.getUserID(), 0, rdate, ndate, note, u.getUserID(), 2, 2);
-        }
-        getServletContext().getRequestDispatcher("/calendar").forward(request, response);
+        String id =request.getParameter("id");
+        String name =request.getParameter("name");
+        String detail = request.getParameter("detail");
+        NewsDB.editNews(Integer.parseInt(id), name, detail, u.getUserID());
+        getServletContext().getRequestDispatcher("/docnews").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

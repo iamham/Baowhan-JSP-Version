@@ -84,6 +84,28 @@ public class Message {
         }
         return cid;
     }
+    public static int getAllMessageCount(){
+        Connection con = ConnectionAgent.getConnection();
+        int amount=0;
+        String sql = "SELECT COUNT(cr_id) FROM conversation_reply";
+        PreparedStatement pstm;
+        try {
+            pstm=con.prepareStatement(sql);
+             ResultSet rs = pstm.executeQuery();
+        while(rs.next()){
+            amount = rs.getInt(1);
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return amount;
+    }
     public static int getExistsCid(int from,int to){
         Connection con = ConnectionAgent.getConnection();
         int cid = 0;
@@ -255,7 +277,7 @@ public class Message {
     }
     public static void main(String[] args) {
         Date date = new Date();
-       Message.addReply(2, 1, "Hello", date);
+        System.out.println(Message.getAllMessageCount());
         
     }
 }

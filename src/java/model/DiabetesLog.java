@@ -375,7 +375,28 @@ public class DiabetesLog {
         }
         return ul;
     }
-    
+    public static int getAllLogCount(){
+        Connection con = ConnectionAgent.getConnection();
+        int amount=0;
+        String sql = "SELECT COUNT(logid) FROM DiabetesLog";
+        PreparedStatement pstm;
+        try {
+            pstm=con.prepareStatement(sql);
+             ResultSet rs = pstm.executeQuery();
+        while(rs.next()){
+            amount = rs.getInt(1);
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Message.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return amount;
+    }
       public static List<DiabetesLog> getAllUserRecord(int userID) {
         Connection con = ConnectionAgent.getConnection();
         String sql = "select value,note,checktime,logtime,logID from DiabetesLog where userid = ? order by checktime ASC";

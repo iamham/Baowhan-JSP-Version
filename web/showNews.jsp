@@ -154,10 +154,10 @@
                                     <a href="tools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
                                 </li>
                                 <li>
-                                    <a href="nutrient"  ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
+                                    <a href="nutrient" class="active" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
                                 </li>
                                 <li>
-                                    <a href="news" class="active"><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
+                                    <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
                                 </li>
                                         
                                            
@@ -243,71 +243,41 @@
 
                     <!-- Page content -->
                     <div id="page-content">
-                        <!-- General Elements Block -->
-                        <div class="form-group">
-                            <a href="#add" class="btn btn-effect-ripple btn-info" data-toggle="modal">เพิ่มข่าวสาร</a>
-                        </div>
-                                <div class="block full">
+                        
+            
+                     <div class="block full">
                             <div class="block-title">
-                                <h2>ข้อมูลโภชนาการ</h2>
+                                <h2>แก้ไขข้อมูลข่าว/ประกาศ</h2>
                             </div>
-                            
-                            <div class="table-responsive">
-                                <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center" style="width: 50px;">ID</th>
-                                            <th>ชื่อ</th>
-                                            <th>เนื้อหา</th>
-                                            <th class="text-center" style="width: 75px;"><i class="fa fa-flash"></i></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       ${table}
-                                    </tbody>
-                                </table>
-                                </div>
-                                <!-- END General Elements Block -->
-                        </div>
-                                <!-- END General Elements Block -->
-
-
-                    </div>
-                    <!-- END Page Content -->
-                </div>
-                <div id="add" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h3 class="modal-title"><strong>เพิ่มข่าวสาร</strong></h3>
-                    </div>
-                    <div class="modal-body">
-                        <form action="addNews" method="post"  class="form-horizontal form-bordered" >
+                         <div>
+                        <form action="editNews" method="post"  class="form-horizontal form-bordered" >
+                            <input type="number" id="id" name="id" hidden="" value="${nid}" >
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="name">ชื่อ</label>
                                 <div class="col-md-9">
-                                    <input type="text" id="name" name="name" class="form-control" required>
+                                    <input type="text" id="name" name="name" class="form-control" value="${nname}" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="detail">เนื้อข่าว</label>
+                                <label class="col-md-3 control-label" for="detail">เนื้อหา</label>
                                 <div class="col-md-9">
-                                    <textarea id="detail" name="detail" class="form-control" rows="15"></textarea>
-                         
+                                    <textarea id="detail" name="detail" rows="15" class="form-control">${detail}</textarea>
                                 </div>
                             </div>
                             
-                            
-                            
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-effect-ripple btn-primary">บันทึก</button>
+                                <div class="form-group">
+                                 <div class="col-md-9 col-md-offset-3">
+                            <button type="submit" class="btn btn-effect-ripple btn-primary">บันทึก</button>
                         <button type="reset" class="btn btn-effect-ripple btn-danger">ล้างข้อมูล</button>
+                                 </div></div>
                         </form>
+                            
                     </div>
+                        
                 </div>
             </div>
+                    
+                    <!-- END Page Content -->
                 </div>
                 <!-- END Main Container -->
             </div>
@@ -327,6 +297,7 @@
         <script src="js/bootstrap-table.js"></script>
 
         <!-- Load and execute javascript code used only in this page -->
-        
+        <script src="js/pages/uiTables.js"></script>
+        <script>$(function(){ UiTables.init(); });</script>
     </body>
 </html>

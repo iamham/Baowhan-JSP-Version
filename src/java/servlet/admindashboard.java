@@ -7,25 +7,22 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.AppointmentLog;
+import model.DiabetesLog;
+import model.Hospital;
+import model.Message;
 import model.User;
-import model.utility;
 
 /**
  *
  * @author sarunpeetasai
  */
-public class addCal extends HttpServlet {
+public class admindashboard extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,31 +36,20 @@ public class addCal extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession(false);
-        User u = (User) session.getAttribute("user");
-        String typ = request.getParameter("type");
-        String dat = request.getParameter("date");
-        String time = request.getParameter("time");
-        String note = request.getParameter("note");
-        System.out.println("1" + note);
-        note = utility.toUTF8(note);
-        System.out.println("2" + note);
-        Date ndate = new Date();
-        String irdate = dat.concat(" " + time);
-        Date rdate = null;
-        try {
-            rdate = new SimpleDateFormat("dd/MM/yy HH:mm:ss").parse(irdate);
-        } catch (ParseException ex) {
-            Logger.getLogger(addCal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (typ.equals("1")) {
-            int docID = u.getRelatedUserID();
-            AppointmentLog.addRecord(u.getUserID(), docID, rdate, ndate, note, u.getUserID(), 1, 1);
-        }
-        if (typ.equals("2")) {
-            AppointmentLog.addRecord(u.getUserID(), 0, rdate, ndate, note, u.getUserID(), 2, 2);
-        }
-        getServletContext().getRequestDispatcher("/calendar").forward(request, response);
+        
+            HttpSession session = request.getSession(false);
+            User u = (User) session.getAttribute("user");
+            List<User> alluser = User.showPatientList();
+            String table = "";
+            for (int i = 0; i < alluser.size(); i++) {
+                table = table.concat("<tr><td class=\"text-center\">" + alluser.get(i).getUserID() + "</td><td>" + alluser.get(i).getFirstname() + " " + alluser.get(i).getLastname() + "</td><td>" + User.getUserName(alluser.get(i).getRelatedUserID()) + "</td><td>" + Hospital.findById(alluser.get(i).getHospitalID()) + "</td><td class=\"text-center\"><a href=\"showUser?id=" + alluser.get(i).getUserID() + "\" data-toggle=\"tooltip\" title=\"แก้ไข\" class=\"btn btn-effect-ripple btn-sm btn-success\"><i class=\"fa fa-pencil\"></i></a><a href=\"delUser?id=" + alluser.get(i).getUserID() + "\" data-toggle=\"tooltip\" title=\"Delete User\" class=\"btn btn-effect-ripple btn-sm btn-danger\"> <i class=\"fa fa-times\"></i></a>");
+            }
+            request.setAttribute("msgno", Message.getAllMessageCount());
+            request.setAttribute("logno", DiabetesLog.getAllLogCount());
+            request.setAttribute("table", table);
+            request.setAttribute("nouser", alluser.size());
+            getServletContext().getRequestDispatcher("/admindashboard.jsp").forward(request, response);
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -103,6 +89,5 @@ public class addCal extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.NewsDB;
+import model.User;
 
 
 /**
@@ -33,11 +34,11 @@ public class getNewsDB extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         List<NewsDB> nd = NewsDB.showNews();
+        List<NewsDB> nd = NewsDB.showNews();
         String json = "[ ";
         int siz = nd.size();
         for(int i=0;i<nd.size();i++){
-            json = json.concat("{ \"name\": \""+nd.get(i).getName()+"\", \"detail\": \""+nd.get(i).getDetail()+"\", \"author\": \""+nd.get(i).getAuthorid()+"\" }");
+            json = json.concat("{ \"name\": \""+nd.get(i).getName()+"\", \"detail\": \""+nd.get(i).getDetail()+"\", \"author\": \""+User.getUserName(nd.get(i).getAuthorid())+"\" }");
             if(i!=(siz-1)){
                 json = json.concat(" , ");
             }
