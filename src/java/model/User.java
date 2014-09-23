@@ -237,6 +237,20 @@ public class User {
         u.setPassword(toMD5(nPass));
         return nPass;
     }
+    public static boolean delUser(int id){
+        boolean success = false;
+        Connection con = ConnectionAgent.getConnection();
+        String sql = "DELETE FROM User WHERE userID  = "+id;
+        Statement st;
+        try {
+            st = con.prepareStatement(sql);
+            st.executeUpdate(sql);
+            success = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return success;
+    }
     public static List<User> getDoctor(){
         Connection con = ConnectionAgent.getConnection();
         String sql = "SELECT * FROM User WHERE type = 2";

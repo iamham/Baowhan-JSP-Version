@@ -3,28 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.DiabetesLog;
-import model.Hospital;
-import model.Message;
 import model.User;
 
 /**
  *
  * @author sarunpeetasai
  */
-public class admindashboard extends HttpServlet {
+public class delUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,22 +33,11 @@ public class admindashboard extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            SimpleDateFormat sf = new SimpleDateFormat("EEE, d MMM yyyy");
-            Date date = new Date();
-            HttpSession session = request.getSession(false);
-            User u = (User) session.getAttribute("user");
-            List<User> alluser = User.showPatientList();
-            String table = "";
-            for (int i = 0; i < alluser.size(); i++) {
-                table = table.concat("<tr><td class=\"text-center\">" + alluser.get(i).getUserID() + "</td><td>" + alluser.get(i).getUsername() + "</td><td>" + alluser.get(i).getFirstname() + " " + alluser.get(i).getLastname() + "</td><td>" + Hospital.findById(alluser.get(i).getHospitalID()) + "</td><td class=\"text-center\"><a href=\"delUser?id=" + alluser.get(i).getUserID() + "\" data-toggle=\"tooltip\" title=\"Delete User\" class=\"btn btn-effect-ripple btn-sm btn-danger\"> <i class=\"fa fa-times\"></i></a>");
-            }
-            request.setAttribute("today", sf.format(date));
-            request.setAttribute("msgno", Message.getAllMessageCount());
-            request.setAttribute("logno", DiabetesLog.getAllLogCount());
-            request.setAttribute("table", table);
-            request.setAttribute("nouser", alluser.size());
-            getServletContext().getRequestDispatcher("/admindashboard.jsp").forward(request, response);
-    
+        HttpSession session = request.getSession(false);
+        User u = (User) session.getAttribute("user");
+        String id =request.getParameter("id");
+        User.delUser(Integer.parseInt(id));
+        getServletContext().getRequestDispatcher("/admindashboard").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -93,5 +77,6 @@ public class admindashboard extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
+
 }

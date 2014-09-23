@@ -248,6 +248,7 @@ public class DiabetesLog {
     } 
     
     public static double getEAG(int userID){
+        DecimalFormat df = new DecimalFormat("##.#");
         double result = 0;
         Connection con = ConnectionAgent.getConnection();
         String sql = "SELECT SUM( value ) / COUNT( * ) eAG\n" + "FROM DiabetesLog\n" +"WHERE userID =?";
@@ -268,7 +269,7 @@ public class DiabetesLog {
                 Logger.getLogger(DiabetesLog.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return result;
+        return Math.round(result);
     }
     public static boolean addRecord(int userID,double value,String note,Date recordTime,Date timestamp){
         boolean success = false;

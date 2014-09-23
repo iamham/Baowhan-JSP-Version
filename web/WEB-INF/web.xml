@@ -196,6 +196,10 @@
         <servlet-name>admindashboard</servlet-name>
         <servlet-class>servlet.admindashboard</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>delUser</servlet-name>
+        <servlet-class>servlet.delUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -379,6 +383,10 @@
     <servlet-mapping>
         <servlet-name>admindashboard</servlet-name>
         <url-pattern>/admindashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>delUser</servlet-name>
+        <url-pattern>/delUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

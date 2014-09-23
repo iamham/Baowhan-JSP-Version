@@ -114,53 +114,54 @@
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="dashboard" class="sidebar-title">
-                             <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
+                        <c:if test="${(user.getType() == 2)}">
+                        <a href="docdashboard" class="sidebar-title">
+                        </c:if>
+                        <c:if test="${(user.getType() == 3)}">
+                        <a href="admindashboard" class="sidebar-title">
+                        </c:if>  
+                            <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
                     <!-- END Sidebar Brand -->
 
                     <!-- Wrapper for scrolling functionality -->
-                    <div id="sidebar-scroll">
+                        <!-- Sidebar Content -->
+                        <div id="sidebar-scroll">
                         <!-- Sidebar Content -->
                         <div class="sidebar-content">
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="dashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
-                                </li>
+                                    <c:if test="${(user.getType() == 2)}">
+                                    <a href="docdashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    </c:if>
+                                    <c:if test="${(user.getType() == 3)}">
+                                    <a href="admindashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    </c:if>
+                                    </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </li>
+                                <c:if test="${(user.getType() == 2)}">
                                 <li>
-                                    <a href="#" class="sidebar-nav-submenu"><i class="fa fa-tint sidebar-nav-icon"></i><i class="fa fa-chevron-left sidebar-nav-indicator"></i><span class="sidebar-nav-mini">ผลน้ำตาล</span></a>
-                                     <ul>
-                                                <li>
-                                                    <a href="addRecord">เพิ่ม/บันทึก ผลน้ำตาล</a>
-                                                </li>
-                                                <li>
-                                                    <a href="checkRecord">ตรวจสอบผลน้ำตาล</a>
-                                                </li>
-                                    </ul>
+                                    <a href="docmessage"  ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อคนไข้</span></a>
+                                </li>
+                                <li>
+                                    <a href="doccalendar"><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน/นัดหมาย</span></a>
+                                </li>
+                                <li>
+                                    <a href="doctools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
+                                </li>
+                                </c:if>
+                                <li>
+                                    <a href="docnutrient" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
+                                </li>
+                                <li>
+                                    <a href="docnews" class="active"><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
+                                </li>
 
-                                </li>
-                                <li>
-                                    <a href="message" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
-                                </li>
-                                 <li>
-                                    <a href="calendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน</span></a>
-                                </li>
-                                <li>
-                                    <a href="tools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
-                                </li>
-                                <li>
-                                    <a href="nutrient"  ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
-                                </li>
-                                <li>
-                                    <a href="news" class="active"><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
-                                </li>
-                                        
-                                           
+
                             </ul>
                             <!-- END Sidebar Navigation -->
                         </div>

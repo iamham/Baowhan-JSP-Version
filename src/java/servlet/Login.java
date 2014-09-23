@@ -59,7 +59,7 @@ public class Login extends HttpServlet {
                 System.out.println("Going");
                 getServletContext().getRequestDispatcher("/docdashboard").forward(request, response);
             } else if (type == 3) {
-                getServletContext().getRequestDispatcher("/addashboard").forward(request, response);
+                getServletContext().getRequestDispatcher("/admindashboard").forward(request, response);
             }else{
                 getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
             }

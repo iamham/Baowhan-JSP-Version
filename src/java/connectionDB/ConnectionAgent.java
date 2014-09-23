@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class ConnectionAgent {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://128.199.170.216/admin_baowhan";
+    private static final String URL = "jdbc:mysql://128.199.170.216/admin_baowhan?useUnicode=yes&characterEncoding=UTF-8";
     private static final String USER = "admin_baowhan";
     private static final String PASSWORD = "iambaowhan";
 
@@ -33,4 +33,8 @@ public class ConnectionAgent {
         return con;
     }
 
+    public static void main(String []args){
+        Connection con =  ConnectionAgent.getConnection();
+        System.out.println(con);
+    }
 }

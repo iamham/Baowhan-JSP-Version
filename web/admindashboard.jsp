@@ -113,33 +113,34 @@
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="index.html" class="sidebar-title">
+                        <c:if test="${(user.getType() == 2)}">
+                        <a href="docdashboard" class="sidebar-title">
+                        </c:if>
+                        <c:if test="${(user.getType() == 3)}">
+                        <a href="admindashboard" class="sidebar-title">
+                        </c:if>  
                             <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
                     <!-- END Sidebar Brand -->
 
                     <!-- Wrapper for scrolling functionality -->
-                    <div id="sidebar-scroll">
+                        <!-- Sidebar Content -->
+                        <div id="sidebar-scroll">
                         <!-- Sidebar Content -->
                         <div class="sidebar-content">
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="docdashboard" class="active"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
-                                </li>
+                                    <c:if test="${(user.getType() == 2)}">
+                                        <a href="docdashboard" class="active"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    </c:if>
+                                    <c:if test="${(user.getType() == 3)}">
+                                            <a href="admindashboard" class="active"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    </c:if>
+                                    </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
-                                </li>
-                                
-                                <li>
-                                    <a href="docmessage" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อคนไข้</span></a>
-                                </li>
-                                <li>
-                                    <a href="doccalendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน/นัดหมาย</span></a>
-                                </li>
-                                <li>
-                                    <a href="doctools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
                                 </li>
                                 <li>
                                     <a href="docnutrient" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
@@ -196,7 +197,7 @@
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="img/user/${profilepic}" alt="avatar"> ${name}
+                                    <img src="img/user/${user.getProfilePIC()}" alt="avatar"> ${user.getUsername()}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
 
@@ -241,7 +242,7 @@
                                         <div class="widget-icon center-block push">
                                             <i class="fa fa-database"></i>
                                         </div>
-                                        <strong>คนไข้ทั้งหมด ${pno} คน</strong>
+                                        <strong>ผู้ใช้ทั้งหมด ${nouser} คน</strong>
                                     </div>
                                 </a>
                             </div>
@@ -251,41 +252,58 @@
                                         <div class="widget-icon center-block push">
                                             <i class="fa fa-plus"></i>
                                         </div>
-                                        <strong>คุณมี ${noreq} คำขอ</strong>
+                                        <strong>บันทึก ${logno} ครั้ง</strong>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-sm-4 col-lg-4">
-                                <a href="calendar" class="widget">
-                                    <div class="widget-content widget-content-mini themed-background-warning text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>${name}</strong>
-                                    </div>
-                                    <div class="widget-content text-right clearfix">
-                                        <div class="widget-icon pull-left">
-                                            <i class="fa fa-calendar text-muted"></i>
+                             <div class="col-sm-2 col-lg-2">
+                                <a href="req"class="widget">
+                                    <div class="widget-content themed-background-success text-light-op text-center">
+                                        <div class="widget-icon center-block push">
+                                            <i class="fa fa-plus"></i>
                                         </div>
-                                        <h2 class="widget-heading h3 text-success">
-                                            <i class="fa fa-plus"></i> <strong>${nextApp}</strong>
-                                        </h2>
+                                        <strong>${msgno} ข้อความ</strong>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-sm-4 col-lg-4">
+                            <div class="col-sm-6 col-lg-6">
                                 <a href="calendar" class="widget">
                                     <div class="widget-content widget-content-mini themed-background-success text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>ตารางนัดหมหาย</strong>
+                                        <i class="fa fa-clock-o"></i> <strong>วันนี้</strong>
                                     </div>
                                     <div class="widget-content text-right clearfix">
                                         <div class="widget-icon pull-left">
                                             <i class="fa fa-calendar text-muted"></i>
                                         </div>
                                         <h2 class="widget-heading h3 text-success">
-                                            <i class="fa fa-plus"></i> <strong>${nextApp}</strong>
+                                            <i class="fa fa-plus"></i> <strong>${today}</strong>
                                         </h2>
                                     </div>
                                 </a>
                             </div>
-                                ${userList}
+                        </div>
+                            <div class="block">
+                            <div class="block-title">
+                                <h2>ผู้ใช้ทั้งหมด</h2>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 50px;">ID</th>
+                                            <th>ชื่อผู้ใช้</th>
+                                            <th>ชื่อแพทย์ประจำตัว</th>
+                                            <th>โรงพยาบาล</th>
+                                            <th>ตัวเลือก</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       ${table}
+                                    </tbody>
+                                </table>
+                            </div>       
+                            </div>
+                        </div>
                             
 
                         </div>
@@ -311,13 +329,10 @@
     <script src="js/app.js"></script>
 
     <!-- Load and execute javascript code used only in this page -->
-    <script>
-        var dataBlood = ${chartValue}
-        var dataMonths = ${chartDate}
-    </script>
-    <script src="js/pages/readyDashboard.js"></script>
-    <script>$(function() {
-            ReadyDashboard.init();
-        });</script>
+    
+    <script src="js/pages/uiTables.js"></script>
+        <script>$(function() {
+                UiTables.init();
+            });</script>
 </body>
 </html>
