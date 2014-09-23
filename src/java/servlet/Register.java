@@ -9,16 +9,21 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import model.User;
 
 /**
  *
  * @author LudjaPae
  */
+@WebServlet("/upload")
+@MultipartConfig
 public class Register extends HttpServlet {
 
     /**
@@ -36,6 +41,7 @@ public class Register extends HttpServlet {
             String username =request.getParameter("username");
             String pwd1 =request.getParameter("pwd1");
             String email =request.getParameter("email");
+            Part filePart = request.getPart("pic");
             String firstname = request.getParameter("firstname");
             String lastname = request.getParameter("lastname");
             String telephone = request.getParameter("telephone");
