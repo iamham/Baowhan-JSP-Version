@@ -39,7 +39,7 @@ public class addCalDoc extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        
         HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("user");
         String typ = request.getParameter("type");

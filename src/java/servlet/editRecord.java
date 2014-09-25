@@ -38,7 +38,7 @@ public class editRecord extends HttpServlet {
         boolean success = false;
         SimpleDateFormat sft = new SimpleDateFormat("HH:mm:ss");
         SimpleDateFormat sfd = new SimpleDateFormat("dd/MM/yyyy");
-        response.setContentType("text/html;charset=UTF-8");
+        
         HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("user");
         String id =request.getParameter("id");
