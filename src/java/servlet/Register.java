@@ -22,8 +22,7 @@ import model.User;
  *
  * @author LudjaPae
  */
-@WebServlet("/upload")
-@MultipartConfig
+
 public class Register extends HttpServlet {
 
     /**
@@ -41,7 +40,7 @@ public class Register extends HttpServlet {
             String username =request.getParameter("username");
             String pwd1 =request.getParameter("pwd1");
             String email =request.getParameter("email");
-            Part filePart = request.getPart("pic");
+           
             String firstname = request.getParameter("firstname");
             String lastname = request.getParameter("lastname");
             String telephone = request.getParameter("telephone");

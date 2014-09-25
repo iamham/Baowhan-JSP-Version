@@ -250,7 +250,7 @@
                         </div>
                                 <div class="block full">
                             <div class="block-title">
-                                <h2>ข้อมูลโภชนาการ</h2>
+                                <h2>ข้อมูลข่าวสาร</h2>
                             </div>
                             
                             <div class="table-responsive">
@@ -328,6 +328,9 @@
         <script src="js/bootstrap-table.js"></script>
 
         <!-- Load and execute javascript code used only in this page -->
-        
+        <script src="js/pages/uiTables.js"></script>
+        <script>$(function() {
+                UiTables.init();
+            });</script>
     </body>
 </html>

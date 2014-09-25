@@ -55,6 +55,16 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
+        <style>
+           #page-content {
+background: url("img/bg.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+        </style>
     </head>
     <body>
         <!-- Page Wrapper -->
@@ -95,7 +105,7 @@
             <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
                 <!-- Alternative Sidebar -->
                 <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
-
+                    
                     <!-- Wrapper for scrolling functionality -->
                     <div id="sidebar-scroll-alt">
                         <!-- Sidebar Content -->
@@ -108,6 +118,7 @@
                     <!-- END Wrapper for scrolling functionality -->
                 </div>
                 <!-- END Alternative Sidebar -->
+                 
 
                 <!-- Main Sidebar -->
                 <div id="sidebar">
@@ -131,8 +142,8 @@
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </li>
-                                <li>
-                                    <a href="#" class="sidebar-nav-submenu"><i class="fa fa-tint sidebar-nav-icon"></i><i class="fa fa-chevron-left sidebar-nav-indicator"></i><span class="sidebar-nav-mini-hide">ผลน้ำตาล</span></a>
+                                <li class="active">
+                                    <a href="#" class="sidebar-nav-submenu" ><i class="fa fa-tint sidebar-nav-icon"></i><i class="fa fa-chevron-left sidebar-nav-indicator"></i><span class="sidebar-nav-mini-hide">ผลน้ำตาล</span></a>
                                      <ul>
                                                 <li>
                                                     <a href="addRecord">เพิ่ม/บันทึก ผลน้ำตาล</a>
@@ -199,6 +210,24 @@
                             <!-- END Header Link -->
                         </ul>
                         <!-- END Left Header Navigation -->
+                        <!-- Left Header Navigation -->
+                        <ul class="nav navbar-nav-custom">
+                            <!-- Main Sidebar Toggle Button -->
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
+
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>หน้าหลัก</strong></a>
+                            </li>
+                            <!-- END Header Link -->
+                        </ul>
+                        <!-- END Left Header Navigation -->
 
                         <!-- Right Header Navigation -->
                         <ul class="nav navbar-nav-custom pull-right">
@@ -245,65 +274,86 @@
                         <!-- First Row -->
                         <div class="row">
                             <!-- Simple Stats Widgets -->
-                            
-                            <div class="col-sm-6 col-lg-3">
-                                <a href="addRecord" class="widget">
-                                    <div class="widget-content themed-background-danger text-light-op text-center">
-                                                <div class="widget-icon center-block push">
-                                                    <i class="fa fa-plus"></i>
+                            <!-- Image Widgets -->
+                            <div class="col-sm-3">
+                                        <a href="addRecord" class="widget">
+                                            <div class="widget-image widget-image-sm">
+                                                <img src="img/notebook.jpg" alt="image">
+                                                <div class="widget-image-content">
+                                                    <h2 class="widget-heading text-light"><strong>จด-บันทึก ระดับน้ำตาล</strong></h2>
+                                                    <h3 class="widget-heading text-light-op h4"><em>ตรวจ และ จดบันทึกระดับน้ำตาลทุกวันเพื่อสุขภาพที่ดี</em></h3>
                                                 </div>
-                                                <strong>เพิ่ม/บันทึก ผลน้ำตาล</strong>
+                                                <i class="fa fa-plus"></i>
                                             </div>
-                                </a>
+                                        </a>
+                                    </div>
+                            <div class="col-sm-3">
+                                        <a href="checkRecord" class="widget">
+                                            <div class="widget-image widget-image-sm">
+                                                <img src="img/graph.jpg" alt="image">
+                                                <div class="widget-image-content">
+                                                    <h2 class="widget-heading text-light"><strong>ตรวจสอบ ระดับน้ำตาล</strong></h2>
+                                                    <h3 class="widget-heading text-light-op h4"><em>ตรวจสอบระดับน้ำตาลย้อนหลัง แสดงข้อมูลแบบกราฟ</em></h3>
+                                                </div>
+                                                <i class="fa fa-bar-chart-o"></i>
+                                            </div>
+                                        </a>
                             </div>
-                            <div class="col-sm-6 col-lg-3">
+                                    <div class="col-sm-3">
+                                        <a href="message" class="widget">
+                                            <div class="widget-image widget-image-sm">
+                                                <img src="img/doctor.jpg" alt="image">
+                                                <div class="widget-image-content">
+                                                    <h2 class="widget-heading text-light"><strong>ติดต่อกับแพทย์ผู้รักษา</strong></h2>
+                                                    <h3 class="widget-heading text-light-op h4"><em>พูดดคุยกับแพทย์ผู้รักษา พร้อมแสดงข้อมูลการบันทึก</em></h3>
+                                                </div>
+                                                <i class="fa fa-comments"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a href="ranking" class="widget">
+                                            <div class="widget-image widget-image-sm">
+                                                <img src="img/winner.jpg" alt="image">
+                                                <div class="widget-image-content">
+                                                    <h2 class="widget-heading text-light"><strong>การแข่งขัน</strong></h2>
+                                                    <h3 class="widget-heading text-light-op h4"><em>รักษาระดับน้ำตาลให้ดี แล้วมาแข่งกันใครคุมน้ำตาลดีกว่ากัน !</em></h3>
+                                                </div>
+                                                <i class="fa fa-trophy"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <!-- END Image Widgets -->
+
+
+                            <div class="col-sm-6">
+                            <a href="ranking" class="widget">
+                                <div class="widget-content themed-background-danger clearfix">
+                                    <img src="img/king.png" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
+                                    ${result}
+                                    <span class="text-light-op">รักษาระดับน้ำตาลของคุณให้ดี แล้วมาสนุกกัน !<br />กดเพื่อดูรายละเอียด</span>
+                                </div>
+                            </a>
+                        </div>
+                            <div class="col-sm-3">
                                 <a href="calendar" class="widget">
-                                    <div class="widget-content widget-content-mini themed-background-success text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>ตารางนัดหมหาย</strong>
-                                    </div>
-                                    <div class="widget-content text-right clearfix">
-                                        <div class="widget-icon pull-left">
-                                            <i class="fa fa-calendar text-muted"></i>
-                                        </div>
-                                        <h2 class="widget-heading h3 text-success">
-                                            <i class="fa fa-plus"></i> <strong>${nextApp}</strong>
-                                        </h2>
-                                        <span class="text-muted">รพ.${hospital}</span>
+                                    <div class="widget-content themed-background-info clearfix">
+                                        <img src="img/king.png" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
+                                        <h3 class="widget-heading h3 text-light"><strong>${nextApp}</strong></h3>
+                                        <span class="text-light-op">วันที่นัดหมายครั้งต่อไป<br />กดเพื่อดูรายละเอียด</span>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <a href="javascript:void(0)" class="widget">
-                                    <div class="widget-content widget-content-mini themed-background-warning text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>ผลบันทึกล่าสุด</strong>
-                                    </div>
-                                    <div class="widget-content text-right clearfix">
-                                        <div class="widget-icon pull-left">
-                                            <i class="fa fa-tint text-muted"></i>
-                                        </div>
-                                        <h2 class="widget-heading h3 text-warning">
-                                            <i class="fa fa-plus"></i> <strong><span data-toggle="counter" data-to="${lastRec}"></span></strong>
-                                        </h2>
-                                        <span class="text-muted">mg/dL</span>
+                            <div class="col-sm-3">
+                                <a href="checkRecord" class="widget">
+                                    <div class="widget-content themed-background-info clearfix">
+                                        <img src="img/king.png" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
+                                        <h3 class="widget-heading h3 text-light"><strong>${lastRec} mg/dl</strong></h3>
+                                        <span class="text-light-op">ระดับน้ำตาลล่าสุด<br />กดเพื่อดูรายละเอียด</span>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <a href="ranking" class="widget">
-                                    <div class="widget-content widget-content-mini themed-background-danger text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>อันดับคะแนน</strong>
-                                    </div>
-                                    <div class="widget-content text-right clearfix">
-                                        <div class="widget-icon pull-left">
-                                            <i class="gi gi-cardio text-muted"></i>
-                                        </div>
-                                        <h2 class="widget-heading h3 text-danger">
-                                            <i class="fa fa-plus"></i> <strong><span data-toggle="counter" data-to="${position}"></span></strong>
-                                        </h2>
-                                        <span class="text-muted">อันดับที่</span>
-                                    </div>
-                                </a>
-                            </div>
+                            
                             
                             <!-- END Simple Stats Widgets -->
                         </div>
@@ -311,16 +361,8 @@
 
                         <!-- Second Row -->
                         
-                            <div class="block">
-                                <div class="widget-content">
-                                        <div class="row text-center">
-                                            
-                                            <div class="widget-content widget-content-mini themed-background-<c:if test="${eAG > 160}" >danger</c:if><c:if test="${eAG < 160}" >success</c:if> text-light-op">
-                                                ค่าเฉลี่ยน้ำตาลของคุณคือ ${eAG} ${instruction}
-                                                 </div>
-                                            
-                                        </div>
-                                    </div>
+                            
+                                
                                 <!-- Chart Widget -->
                                 <div class="widget">
                                     <div class="widget-content widget-content-mini themed-background-dark text-light-op">
@@ -334,7 +376,7 @@
                                     
                                 </div>
                                 <!-- END Chart Widget -->
-                            </div>
+                            
                             
                         </div>
                         <!-- END Third Row -->

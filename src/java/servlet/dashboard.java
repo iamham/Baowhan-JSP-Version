@@ -51,6 +51,16 @@ public class dashboard extends HttpServlet {
             //System.out.println("APP:"+AppointmentLog.getNextCheckDate(u.getUserID()));
             int position = Ranking.position(u.getUserID());
             //System.out.println("POS:"+position);
+            List<Ranking> ranking = Ranking.showRanking();
+            int rposition;
+            String result="",table="";
+        for(int i=0;i<ranking.size();i++){
+            if(ranking.get(i).getUserId()==u.getUserID()){
+                rposition = ranking.get(i).getId();
+                result = result.concat("<h3 class=\"widget-heading h3 text-light\"class=\"widget-heading h3 text-light\"><strong>คุณอยู่อันดับที่ "+ rposition +" </strong><br />ค่าเฉลี่ยน้ำตาลที่ (eAG) "+ranking.get(i).geteAG()+"</h3>");
+                break;
+            }
+        }
             if(log.isEmpty()){
                 request.setAttribute("lastRec", "ยังไม่มีการบันทึกค่า");
             }else{
@@ -74,7 +84,7 @@ public class dashboard extends HttpServlet {
                 chartDate = chartDate.concat("[\""+itemp+"\", \'"+sf1.format(log.get(i).getChecktime())+"\'],");
                 itemp++;
             }
-            
+            request.setAttribute("result", result);
             chartValue = chartValue.concat("];");
             chartDate = chartDate.concat("];");
             request.setAttribute("instruction", utility.genInstrustion(User.getUserEAG(u.getUserID())));

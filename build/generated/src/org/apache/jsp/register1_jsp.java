@@ -122,7 +122,7 @@ public final class register1_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <!-- END Progress Bar Wizard Title -->\r\n");
       out.write("\r\n");
       out.write("                <!-- Progress Wizard Content -->\r\n");
-      out.write("                <form id=\"register\" action=\"register1\" method=\"post\" class=\"form-horizontal form-bordered\">\r\n");
+      out.write("                <form id=\"progress-wizard\" action=\"Register\"  method=\"post\" class=\"form-horizontal form-bordered\">\r\n");
       out.write("                    <div class=\"form-group\">\r\n");
       out.write("                        <div class=\"col-xs-12\">\r\n");
       out.write("                            <div class=\"progress progress-mini remove-margin\">\r\n");
@@ -158,6 +158,7 @@ public final class register1_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <input type=\"password\" id=\"pwd2\" name=\"pwd2\" class=\"form-control\" placeholder=\"ยืนยันรหัสผ่านอีกครั้ง\">\r\n");
       out.write("                            </div>\r\n");
       out.write("                        </div>\r\n");
+      out.write("                        \r\n");
       out.write("                    </div>\r\n");
       out.write("                    <!-- END First Step -->\r\n");
       out.write("\r\n");
@@ -274,7 +275,7 @@ public final class register1_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <div id=\"progress-third\" class=\"step\">\r\n");
       out.write("                       \r\n");
       out.write("                            <div class=\"form-group\">\r\n");
-      out.write("                            <label class=\"col-md-4 control-label\" for=\"province\">โรงพยาบาลปัจจุบัน</label>\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"hospital\">โรงพยาบาลปัจจุบัน</label>\r\n");
       out.write("                            <div class=\"col-md-6\">\r\n");
       out.write("                                <select id=\"hospital\" name=\"hospital\" class=\"select-chosen\" data-placeholder=\"โรงพยาบาล...\">\r\n");
       out.write("                                    ");
@@ -284,9 +285,9 @@ public final class register1_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </div>\r\n");
       out.write("                            </div>\r\n");
       out.write("                       <div class=\"form-group\">\r\n");
-      out.write("                            <label class=\"col-md-4 control-label\" for=\"province\">แพทย์ที่รักษา</label>\r\n");
+      out.write("                            <label class=\"col-md-4 control-label\" for=\"doctor\">แพทย์ที่รักษา</label>\r\n");
       out.write("                            <div class=\"col-md-6\">\r\n");
-      out.write("                                <select id=\"hospital\" name=\"hospital\" class=\"select-chosen\" data-placeholder=\"แพทย์...\">\r\n");
+      out.write("                                <select id=\"doctor\" name=\"doctor\" class=\"select-chosen\" data-placeholder=\"แพทย์...\">\r\n");
       out.write("                                    ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${doctor}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");

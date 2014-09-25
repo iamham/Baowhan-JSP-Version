@@ -256,25 +256,28 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-sm-4 col-lg-4">
+                            
+                                    <div class="col-sm-4 col-lg-4">
                                 <a href="calendar" class="widget">
-                                    <div class="widget-content widget-content-mini themed-background-warning text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>${name}</strong>
+                                    <div class="widget-content widget-content-mini themed-background-info text-light-op">
+                                        <i class="fa fa-clock-o"></i> <strong>ยินดีต้อนรับ</strong>
                                     </div>
                                     <div class="widget-content text-right clearfix">
                                         <div class="widget-icon pull-left">
-                                            <i class="fa fa-calendar text-muted"></i>
+                                            <i class="fa fa-user-md text-muted"></i>
                                         </div>
-                                        <h2 class="widget-heading h3 text-success">
-                                            <i class="fa fa-plus"></i> <strong>${nextApp}</strong>
+                                        <h2 class="widget-heading h3 text-info">
+                                            <i class="fa fa-plus"></i> <strong>${name}</strong>
                                         </h2>
+                                        <span class="text-muted">แพทย์ผู้รักษา</span>
+
                                     </div>
                                 </a>
                             </div>
                             <div class="col-sm-4 col-lg-4">
                                 <a href="calendar" class="widget">
                                     <div class="widget-content widget-content-mini themed-background-success text-light-op">
-                                        <i class="fa fa-clock-o"></i> <strong>ตารางนัดหมหาย</strong>
+                                        <i class="fa fa-clock-o"></i> <strong>ตารางนัดหมาย</strong>
                                     </div>
                                     <div class="widget-content text-right clearfix">
                                         <div class="widget-icon pull-left">
@@ -283,6 +286,7 @@
                                         <h2 class="widget-heading h3 text-success">
                                             <i class="fa fa-plus"></i> <strong>${nextApp}</strong>
                                         </h2>
+                                        <span class="text-muted">แสดงวันการนัดหมายครั้งถัดไป</span>
                                     </div>
                                 </a>
                             </div>

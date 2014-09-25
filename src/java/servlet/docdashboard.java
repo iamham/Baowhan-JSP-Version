@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.User;
 import java.util.List;
+import model.AppointmentLog;
 import model.DiabetesLog;
 import model.Hospital;
 import model.Ranking;
@@ -37,9 +38,11 @@ public class docdashboard extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        SimpleDateFormat sf = new SimpleDateFormat("dd-MM");
         HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("user");
         List<User> allP = User.showAccPatientList(u.getUserID());
+        AppointmentLog appointment = AppointmentLog.getNextCheckDate(u.getUserID());
         List<User> allR = User.showAccRequest(u.getUserID());
         String userList = "";
         for (int i = 0; i < allP.size(); i++) {
@@ -49,7 +52,11 @@ public class docdashboard extends HttpServlet {
                     + "                                            </div><div class=\"col-xs-6\"><h3 class=\"widget-heading\"><i class=\"gi gi-sorting text-danger\"></i> <br><small>" + Ranking.position(allP.get(i).getUserID()) + "</small></h3></div>\n"
                     + "                                        </div></div></a></div>");
         }
-        System.out.println("Done");
+        if(appointment!=null){
+               request.setAttribute("nextApp", sf.format(appointment.getChecktime())); 
+            }else{
+               request.setAttribute("nextApp", "ไม่มีการนัดหมาย");
+            }
         request.setAttribute("userList", userList);
         int noreq = 0;
         noreq = allR.size();

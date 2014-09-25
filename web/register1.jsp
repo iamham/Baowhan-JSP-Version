@@ -77,7 +77,7 @@
                 <!-- END Progress Bar Wizard Title -->
 
                 <!-- Progress Wizard Content -->
-                <form id="progress-wizard" action="Register" method="post" class="form-horizontal form-bordered">
+                <form id="progress-wizard" action="Register"  method="post" class="form-horizontal form-bordered">
                     <div class="form-group">
                         <div class="col-xs-12">
                             <div class="progress progress-mini remove-margin">
@@ -113,6 +113,7 @@
                                 <input type="password" id="pwd2" name="pwd2" class="form-control" placeholder="ยืนยันรหัสผ่านอีกครั้ง">
                             </div>
                         </div>
+                        
                     </div>
                     <!-- END First Step -->
 
@@ -249,7 +250,7 @@
                             <div class="col-md-8">
                                 <label class="switch switch-primary" for="example-progress-terms">
                                     <input type="checkbox" id="example-progress-terms" name="example-progress-terms" value="1">
-                                    <span data-toggle="tooltip" title="I agree to the terms!"></span>
+                                    <span data-toggle="tooltip" title="ฉันยอมรับข้อตกลง"></span>
                                 </label>
                             </div>
                         </div>
