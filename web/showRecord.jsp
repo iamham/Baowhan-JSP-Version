@@ -55,6 +55,16 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
+        <style>
+            #page-content {
+                background: url("img/bg.jpg") no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
+        </style>
     </head>
     <body>
         <!-- Page Wrapper -->
@@ -100,7 +110,7 @@
                     <div id="sidebar-scroll-alt">
                         <!-- Sidebar Content -->
                         <div class="sidebar-content">
-                            
+
 
                         </div>
                         <!-- END Sidebar Content -->
@@ -114,7 +124,7 @@
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
                         <a href="dashboard" class="sidebar-title">
-                             <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
+                            <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
                     <!-- END Sidebar Brand -->
@@ -133,20 +143,20 @@
                                 </li>
                                 <li class="active">
                                     <a href="#" class="sidebar-nav-submenu"><i class="fa fa-tint sidebar-nav-icon"></i><i class="fa fa-chevron-left sidebar-nav-indicator"></i><span class="sidebar-nav-mini">ผลน้ำตาล</span></a>
-                                     <ul>
-                                                <li>
-                                                    <a href="addRecord" >เพิ่ม/บันทึก ผลน้ำตาล</a>
-                                                </li>
-                                                <li>
-                                                    <a href="checkRecord" class="active">ตรวจสอบผลน้ำตาล</a>
-                                                </li>
+                                    <ul>
+                                        <li>
+                                            <a href="addRecord" >เพิ่ม/บันทึก ผลน้ำตาล</a>
+                                        </li>
+                                        <li>
+                                            <a href="checkRecord" class="active">ตรวจสอบผลน้ำตาล</a>
+                                        </li>
                                     </ul>
 
                                 </li>
                                 <li>
                                     <a href="message" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
                                 </li>
-                                 <li>
+                                <li>
                                     <a href="calendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน</span></a>
                                 </li>
                                 <li>
@@ -158,8 +168,8 @@
                                 <li>
                                     <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
                                 </li>
-                                        
-                                           
+
+
                             </ul>
                             <!-- END Sidebar Navigation -->
                         </div>
@@ -167,7 +177,7 @@
                     </div>
                     <!-- END Wrapper for scrolling functionality -->
 
-                    
+
                 </div>
                 <!-- END Main Sidebar -->
 
@@ -191,11 +201,22 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
-                            
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
-                           
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>ตรวจสอบผลน้ำตาล</strong></a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
+
+                            <!-- Header Link -->
+
                             <!-- END Header Link -->
                         </ul>
                         <!-- END Left Header Navigation -->
@@ -210,14 +231,14 @@
                                     <img src="img/user/${user.getProfilePIC()}" alt="avatar"> ${user.getFirstname()} ${user.getLastname()}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    
+
                                     <li>
                                         <a href="message">
                                             <i class="fa fa-inbox fa-fw pull-right"></i>
                                             กล่องจดหมาย
                                         </a>
                                     </li>
-                                    
+
                                     <li class="divider"><li>
                                     <li>
                                         <a href="setting">
@@ -225,7 +246,7 @@
                                             ตั้งค่า
                                         </a>
                                     </li>
-                                   
+
                                     <li>
                                         <a href="logout">
                                             <i class="fa fa-power-off fa-fw pull-right"></i>
@@ -242,32 +263,32 @@
 
                     <!-- Page content -->
                     <div id="page-content">
-                        
-                                    <!-- Datatables Block -->
+
+                        <!-- Datatables Block -->
                         <!-- Datatables is initialized in js/pages/uiTables.js -->
-                        <div class="block full">
+                        <div class="block col-sm-9">
                             <div class="block-title">
                                 <h2>ผลบันทึกวันที่ ${from} ถึงวันที่ ${to}</h2>
                             </div>
                             <form action="checkRecord" method="post" class="form-horizontal form-bordered" >
-                                        <!-- Datepicker for Bootstrap (classes are initialized in js/app.js -> uiInit()), for extra usage examples you can check out http://eternicode.github.io/bootstrap-datepicker -->
-                                        <div class="form-group">
-                                            <label class="col-md-2 control-label" for="from">เลือกช่วงของข้อมูล</label>
-                                            <div class="col-md-9">
-                                                <div class="input-group input-daterange" data-date-format="dd/mm/yy">
-                                                    <input type="text" id="from" name="from" class="form-control" placeholder="จากวันที่">
-                                                    <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
-                                                    <input type="text" id="to" name="to" class="form-control" placeholder="ถึงวันที่">
-                                                    
-                                                </div>
-                                                <button type="submit" class="btn btn-effect-ripple btn-success"><i class="fa fa-plus"></i> แสดงผล</button>
-                                            </div>
+                                <!-- Datepicker for Bootstrap (classes are initialized in js/app.js -> uiInit()), for extra usage examples you can check out http://eternicode.github.io/bootstrap-datepicker -->
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="from">เลือกช่วงของข้อมูล</label>
+                                    <div class="col-md-9">
+                                        <div class="input-group input-daterange" data-date-format="dd/mm/yy">
+                                            <input type="text" id="from" name="from" class="form-control" placeholder="จากวันที่">
+                                            <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
+                                            <input type="text" id="to" name="to" class="form-control" placeholder="ถึงวันที่">
+
                                         </div>
-                            </form>
-<div class="widget-content themed-background-muted">
-                                        <!-- Flot Charts (initialized in js/pages/readyDashboard.js), for more examples you can check out http://www.flotcharts.org/ -->
-                                        <div id="chart-classic-dash" style="height: 393px;"></div>
+                                        <button type="submit" class="btn btn-effect-ripple btn-success"><i class="fa fa-plus"></i> แสดงผล</button>
                                     </div>
+                                </div>
+                            </form>
+                            <div class="widget-content themed-background-muted">
+                                <!-- Flot Charts (initialized in js/pages/readyDashboard.js), for more examples you can check out http://www.flotcharts.org/ -->
+                                <div id="chart-classic-dash"  style="height: 393px;"></div>
+                            </div>
                             <div class="table-responsive">
                                 <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
                                     <thead>
@@ -280,39 +301,56 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       ${table}
-                                       
+                                        ${table}
+                                </table>   
+                            </div>
+
+                            <!-- END General Elements Block -->
+
+
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="addRecord" class="widget">
+                                <div class="widget-image widget-image-sm">
+                                    <img src="img/paper.jpg" alt="image">
+                                    <div class="widget-image-content">
+                                        <h2 class="widget-heading text-light"><strong>เกณท์วัดระดับน้ำตาล</strong></h2>
+                                        <h4><b class="text-success">< 115 mg/dL</b><br /><b class="text-warning">150-180 mg/dL</b><br /><b class="text-danger"> > 181 mg/dL</b></h4>
+                                    </div>
+                                    <i class="gi gi-tint"></i>
                                 </div>
-                                <!-- END General Elements Block -->
-
-
+                            </a>
+                        </div>
+                        <!-- END Page Content -->
                     </div>
-                    <!-- END Page Content -->
+                    <!-- END Main Container -->
                 </div>
-                <!-- END Main Container -->
+                <!-- END Page Container -->
             </div>
-            <!-- END Page Container -->
-        </div>
-        <!-- END Page Wrapper -->
+            <!-- END Page Wrapper -->
 
-        <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
+            <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
 
-        <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/app.js"></script>
+            <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
+            <script src="js/vendor/bootstrap.min.js"></script>
+            <script src="js/plugins.js"></script>
+            <script src="js/app.js"></script>
 
-        <!-- Load and execute javascript code used only in this page -->
-        <script>
-            var dataBlood= ${chartValue}
-            var dataMonths= ${chartDate}
-        </script>
-        <script src="js/pages/readyDashboard.js"></script>
-        <script>$(function(){ ReadyDashboard.init(); });</script>
-        <script src="js/pages/uiTables.js"></script>
-        <script>$(function(){ UiTables.init(); });</script>
+            <!-- Load and execute javascript code used only in this page -->
+            <script>
+                                    var dataBlood = ${chartValue}
+                                    var dataMonths = ${chartDate}
+            </script>
+            <script src="js/pages/readyDashboard.js"></script>
+            <script>$(function() {
+                                        ReadyDashboard.init();
+                                    });</script>
+            <script src="js/pages/uiTables.js"></script>
+            <script>$(function() {
+                                        UiTables.init();
+                                    });</script>
 
     </body>
 </html>

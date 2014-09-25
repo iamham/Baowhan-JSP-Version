@@ -55,6 +55,16 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
+        <style>
+            #page-content {
+                background: url("img/bg.jpg") no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
+        </style>
     </head>
     <body>
         <!-- Page Wrapper -->
@@ -191,7 +201,26 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
+<ul class="nav navbar-nav-custom">
+                            <!-- Main Sidebar Toggle Button -->
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
 
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>ติดต่อแพทย์</strong></a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
+
+                            <!-- Header Link -->
+
+                            <!-- END Header Link -->
+                        </ul>
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
@@ -243,7 +272,7 @@
                     <!-- Page content -->
                     <div id="page-content">
                         <div class="row">
-                            <div class="col-xs-8">
+                            <div class="col-sm-7">
                                
                                     <div class="widget">
                                     <div class="widget-content widget-content-mini themed-background-dark text-light-op">
@@ -270,7 +299,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-4">
+                            <div class="col-sm-5">
+                                <div class="row">
+                                    <div>
+                                        <a href="javascript:void(0)" class="widget">
+                                            <div class="widget-content themed-background-danger clearfix">
+                                                <img src="img/placeholders/avatars/avatar12.jpg" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
+                                                <h2 class="widget-heading h3 text-light"><strong>Sara Wright</strong></h2>
+                                                <span class="text-light-op">Web Developer</span>
+                                            </div>
+                                        </a>
+                                    </div>
                                 <div class="widget">
                                     <div class="widget-content widget-content-mini themed-background-dark text-light-op">
                                         ผลน้ำตาลในรอบ 1 เดือน
@@ -280,6 +319,9 @@
                                         <div id="chart-classic-dash" style="height: 300px;"></div>
                                     </div>
                                         </div>
+                                </div>
+                                   
+
                                 </div></div>
                                 
 

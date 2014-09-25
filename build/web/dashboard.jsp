@@ -338,7 +338,7 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                             <div class="col-sm-3">
                                 <a href="calendar" class="widget">
                                     <div class="widget-content themed-background-info clearfix">
-                                        <img src="img/king.png" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
+                                        <img src="img/calendar.png" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
                                         <h3 class="widget-heading h3 text-light"><strong>${nextApp}</strong></h3>
                                         <span class="text-light-op">วันที่นัดหมายครั้งต่อไป<br />กดเพื่อดูรายละเอียด</span>
                                     </div>
@@ -347,7 +347,7 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                             <div class="col-sm-3">
                                 <a href="checkRecord" class="widget">
                                     <div class="widget-content themed-background-info clearfix">
-                                        <img src="img/king.png" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
+                                        <img src="img/glucose-meter.jpg" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
                                         <h3 class="widget-heading h3 text-light"><strong>${lastRec} mg/dl</strong></h3>
                                         <span class="text-light-op">ระดับน้ำตาลล่าสุด<br />กดเพื่อดูรายละเอียด</span>
                                     </div>
