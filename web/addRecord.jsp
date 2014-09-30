@@ -55,18 +55,10 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
-        <style>
-           #page-content {
-background: url("img/bg.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-        </style>
+        
     </head>
     <body>
+        <img src="img/bg.jpg" alt="Full Background" class="full-bg full-bg-bottom animation-pulseSlow">
         <!-- Page Wrapper -->
         <!-- In the PHP version you can set the following options from inc/config file -->
         <!--
@@ -123,7 +115,7 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="dashboard" class="sidebar-title">
+                        <a href="#" class="sidebar-title">
                              <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
@@ -168,7 +160,9 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                                 <li>
                                     <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
                                 </li>
-                                        
+                                <li>
+                                    <a href="setting"><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ตั้งค่า</span></a>
+                                </li>             
                                            
                             </ul>
                             <!-- END Sidebar Navigation -->
@@ -318,24 +312,17 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                                 </div>
                         <div class="row">
                          <div class="col-sm-3">
-                             
-                                     <div>
-                                        <a href="javascript:void(0)" class="widget">
+                                    <a href="javascript:void(0)" class="widget">
                                             <div class="widget-content themed-background-danger clearfix">
                                                 <h1 class="widget-heading h1 text-light" style="text-align:center;color:yellow"><strong><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></strong></h1>
-                                                <center><i class="text-light-op h4" >รับ 100 คะแนน<br />เมื่อบันทึกผลน้ำตาล</i>
+                                                <center><i class="text-light-op h4" >รับ 500 คะแนน<br />เมื่อบันทึกผลน้ำตาล<br /><br /></i><b class="text-light-op h4">หากค่าน้ำตาลอยู่ในเกณท์ดี (<150) รับเพิ่มอีก 300 คะแนน !</b>
                                                 <h1 class="widget-heading h1 text-light" style="text-align:center;color:yellow"><strong><i class="fa fa-trophy"></i></strong></h1>                          
-                                                <b class="text-light-op h4"  style="text-align:center;color:yellow" >คุณมี 1000 คะแนน</b><br /><br />
+                           
                                                 
-                                                <div class="widget-content themed-background-info clearfix">
-                                                    <strong class="text-light"><i class="fa fa-facebook "></i> แบ่งปันลง Facebook</strong>
-                                                </div>
                                                 </center>
                                             </div>
                                         </a>
-                                    </div>
-
-                                        <a href="addRecord" class="widget">
+                                      <a href="#" class="widget">
                                             <div class="widget-image widget-image-sm">
                                                 <img src="img/paper.jpg" alt="image">
                                                 <div class="widget-image-content">
@@ -347,6 +334,10 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                                                 <i class="gi gi-tint"></i>
                                             </div>
                                         </a>
+                                        
+                                    
+
+                                       
                                     </div>
                         </div>
                                 <!-- END General Elements Block -->

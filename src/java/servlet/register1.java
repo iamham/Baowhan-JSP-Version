@@ -33,17 +33,16 @@ public class register1 extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String hospital="",doctor="";
+        String msg =request.getParameter("msg");
+        String hospital="";
         List<Hospital> hos = Hospital.showHospital();
-        List<User> doc = User.getDoctor();
+        
         for(int i=0;i<hos.size();i++){
             hospital = hospital.concat("<option value=\""+hos.get(i).getId()+"\">โรงพยาบาล "+hos.get(i).getName()+"</option>");
         }
-        for(int i=0;i<doc.size();i++){
-            doctor = doctor.concat("<option value=\""+doc.get(i).getUserID()+"\">"+doc.get(i).getFirstname()+" "+doc.get(i).getLastname()+"</option>");
+        if(msg!=null){
+            request.setAttribute("msg", msg);
         }
-        request.setAttribute("doctor", doctor);
         request.setAttribute("hospital", hospital);
         getServletContext().getRequestDispatcher("/register1.jsp").forward(request, response);
     }

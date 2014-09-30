@@ -55,19 +55,17 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
-        <style type="text/css">
-            html { 
-                background: url(img/pizza.jpg) no-repeat center center fixed; 
-                -webkit-background-size: cover;
-                -moz-background-size: cover;
-                -o-background-size: cover;
-                background-size: cover;
-            }
-        </style>
+        
     </head>
     <body>
+        <img src="img/mountain.jpg" alt="Full Background" class="full-bg full-bg-bottom animation-pulseSlow">
         <!-- Login Container -->
-        <div id="login-container">
+        <div id="login-container" style="top:0px">
+            <h1 class="h2 text-light text-center push-top-bottom animation-slideDown" style="margin-bottom:5px">
+                <strong>ลงทะเบียนผู้ป่วย เบาหวาน</strong>.com
+                <h4 class="h4 text-light text-center push-top-bottom animation-slideDown" style="margin-top:0"><a href="dregister" class="text-light" style="text-decoration: none">สำหรับแพทย์โปรดลงทะเบียน ที่นี่</a></h4>
+            </h1>
+            ${msg}
             <!-- Progress Bars Wizard Title -->
             <div class="block animation-fadeInQuickInv">
                 <div class="block-title">
@@ -90,27 +88,27 @@
                     <!-- First Step -->
                     <div id="progress-first" class="step">
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="username">ชื่อผู้ใช้<br>Username</label>
+                            <label class="col-md-4 control-label" for="username">ชื่อผู้ใช้<b class="text-danger">*</b><br>Username</label>
                             <div class="col-md-6">
                                 <input type="text" id="username" name="username" class="form-control" placeholder="ชื่อผู้ใช้" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="email">อีเมล์<br>Email</label>
+                            <label class="col-md-4 control-label" for="email">อีเมล์<b class="text-danger">*</b><br>Email</label>
                             <div class="col-md-6">
                                 <input type="email" id="email" name="email" class="form-control" placeholder="อีเมล์" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="pwd1">รหัสผ่าน<br>Password</label>
+                            <label class="col-md-4 control-label" for="pwd1">รหัสผ่าน<b class="text-danger">*</b><br>Password</label>
                             <div class="col-md-6">
-                                <input type="password" id="pwd1" name="pwd1" class="form-control" placeholder="รหัสผ่าน">
+                                <input type="password" id="pwd1" name="pwd1" class="form-control" placeholder="รหัสผ่าน" required="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="pwd2">ระบุรหัสผ่านอีกครั้ง</label>
+                            <label class="col-md-4 control-label" for="pwd2">ระบุรหัสผ่านอีกครั้ง<b class="text-danger">*</b></label>
                             <div class="col-md-6">
-                                <input type="password" id="pwd2" name="pwd2" class="form-control" placeholder="ยืนยันรหัสผ่านอีกครั้ง">
+                                <input type="password" id="pwd2" name="pwd2" class="form-control" placeholder="ยืนยันรหัสผ่านอีกครั้ง" required>
                             </div>
                         </div>
                         
@@ -120,19 +118,19 @@
                     <!-- Second Step -->
                     <div id="progress-second" class="step">
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="firstname">ชื่อ<br>Firstname</label>
+                            <label class="col-md-4 control-label" for="firstname">ชื่อ<b class="text-danger">*</b><br>Firstname</label>
                             <div class="col-md-6">
                                 <input type="text" id="firstname" name="firstname" class="form-control" placeholder="ชื่อ" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="lastname">นามสกุล<br>Lastname</label>
+                            <label class="col-md-4 control-label" for="lastname">นามสกุล<b class="text-danger">*</b><br>Lastname</label>
                             <div class="col-md-6">
                                 <input type="text" id="lastname" name="lastname" class="form-control" placeholder="นามสกุล" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="telephone">เบอร์โทรศัพท์<br>Telephone</label>
+                            <label class="col-md-4 control-label" for="telephone">เบอร์โทรศัพท์<b class="text-danger">*</b><br>Telephone</label>
                             <div class="col-md-6">
                                 <input type="telephone" id="telephone" name="telephone" class="form-control" placeholder="เบอร์โทรศัพท์" required>
                             </div>
@@ -237,16 +235,9 @@
                                 </select>
                             </div>
                             </div>
-                       <div class="form-group">
-                            <label class="col-md-4 control-label" for="doctor">แพทย์ที่รักษา</label>
-                            <div class="col-md-6">
-                                <select id="doctor" name="doctor" class="select-chosen" data-placeholder="แพทย์...">
-                                    ${doctor}
-                                </select>
-                            </div>
-                            </div>
+                       
                         <div class="form-group">
-                            <label class="col-md-4 control-label"><a href="#modal-terms" data-toggle="modal">ข้อตกลง</a></label>
+                            <label class="col-md-4 control-label"><a href="#modal-terms" data-toggle="modal">ข้อตกลง<b class="text-danger">*</b></a></label>
                             <div class="col-md-8">
                                 <label class="switch switch-primary" for="example-progress-terms">
                                     <input type="checkbox" id="example-progress-terms" name="example-progress-terms" value="1">

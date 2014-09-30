@@ -56,6 +56,16 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
+        <style>
+            #page-content {
+                background: url("img/bgd.jpg") no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
+        </style>
     </head>
     <body>
         <!-- Page Wrapper -->
@@ -114,7 +124,7 @@
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="dashboard" class="sidebar-title">
+                        <a href="#" class="sidebar-title">
                              <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
@@ -127,37 +137,29 @@
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="dashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    <a href="docdashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
                                 </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </li>
+                                
                                 <li>
-                                    <a href="#" class="sidebar-nav-submenu"><i class="fa fa-tint sidebar-nav-icon"></i><i class="fa fa-chevron-left sidebar-nav-indicator"></i><span class="sidebar-nav-mini">ผลน้ำตาล</span></a>
-                                     <ul>
-                                                <li>
-                                                    <a href="addRecord">เพิ่ม/บันทึก ผลน้ำตาล</a>
-                                                </li>
-                                                <li>
-                                                    <a href="checkRecord">ตรวจสอบผลน้ำตาล</a>
-                                                </li>
-                                    </ul>
-
+                                    <a href="ranking"><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">การจัดอันดับ</span></a>
                                 </li>
                                 <li>
-                                    <a href="message" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
+                                    <a href="docmessage" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
                                 </li>
                                  <li>
-                                    <a href="calendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน</span></a>
+                                    <a href="doccalendar" ><i class="fa fa-calendar sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ปฏิทิน</span></a>
                                 </li>
                                 <li>
-                                    <a href="tools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
+                                    <a href="doctools" ><i class="fa fa-stethoscope sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">เครื่องมือ</span></a>
                                 </li>
                                 <li>
-                                    <a href="nutrient" class="active" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
+                                    <a href="docnutrient" class="active" ><i class="fa fa-cutlery sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">โภชนาการ</span></a>
                                 </li>
                                 <li>
-                                    <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
+                                    <a href="docnews" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
                                 </li>
                                         
                                            
@@ -192,7 +194,18 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
-                            
+                             <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
+
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>แก้ไขข้อมูลโภชนาการ</strong></a>
+                            </li>
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
@@ -245,7 +258,7 @@
                     <div id="page-content">
                         
             
-                     <div class="block full">
+                     <div class="block col-sm-9">
                             <div class="block-title">
                                 <h2>แก้ไขข้อมูลโภชนาการ</h2>
                             </div>
@@ -253,20 +266,20 @@
                         <form action="editNutrient" method="post"  class="form-horizontal form-bordered" >
                             <input type="number" id="id" name="id" hidden="" value="${nid}" >
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="name">ชื่อ</label>
+                                <label class="col-md-3 control-label" for="name">ชื่ออาหาร</label>
                                 <div class="col-md-9">
                                     <input type="text" id="name" name="name" class="form-control" value="${nname}" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="carb">คาโบไฮเดรต</label>
+                                <label class="col-md-3 control-label" for="carb">คาร์โบไฮเดรต</label>
                                 <div class="col-md-9">
                                     <input type="number" id="carb" name="carb" class="form-control" value="${carb}" required>
                                     
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="cal">แตลลอรี่</label>
+                                <label class="col-md-3 control-label" for="cal">แคลอรี่</label>
                                 <div class="col-md-9">
                                     <input type="number" id="cal" name="cal" class="form-control" value = "${cal}" required>
                                 </div>
@@ -281,6 +294,20 @@
                     </div>
                         
                 </div>
+                             <div class="col-sm-3">
+                                        <a href="" class="widget">
+                                            <div class="widget-image widget-image-sm">
+                                                <img src="img/bean.jpg" alt="image">
+                                                <div class="widget-image-content">
+                                                    
+                                                    <h4 class="widget-heading text-light"><strong>ข้อมูลที่จำเป็น</strong></h4>
+                                                    <h4><span class="text-light"><br />1. ชื่ออาหาร <br /><br />2. จำนวนคาร์โบไฮเดรต <br /><br />3. จำนวนแคลอรี่</span></h4>
+                                                   
+                                                </div>
+                                                
+                                            </div>
+                                        </a>
+                                    </div>
             </div>
                     
                     <!-- END Page Content -->

@@ -13,7 +13,8 @@ var ReadyRegister = function() {
              */
 
             /* Register form - Initialize Validation */
-            $('#form-register').validate({
+            $('#progress-wizard').validate({
+                onkeyup: true,
                 errorClass: 'help-block animation-slideUp', // You can change the animation class for a different entrance animation - check animations page
                 errorElement: 'div',
                 errorPlacement: function(error, e) {

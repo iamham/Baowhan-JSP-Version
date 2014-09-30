@@ -55,17 +55,11 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
-        <style type="text/css">
-html { 
-  background: url(img/pizza.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-        </style>
+
     </head>
     <body>
+        <img src="img/mountain.jpg" alt="Full Background" class="full-bg full-bg-bottom animation-pulseSlow">
+
         <!-- Login Container -->
         <div id="login-container">
             <!-- Login Header -->
@@ -80,7 +74,7 @@ html {
                 <div class="block-title">
                     <div class="block-options pull-right">
                         <a href="recovery.jsp" class="btn btn-effect-ripple btn-primary" data-toggle="tooltip" data-placement="left" title="ลืมรหัสผ่าน"><i class="fa fa-exclamation-circle"></i></a>
-                        <a href="register1.jsp" class="btn btn-effect-ripple btn-primary" data-toggle="tooltip" data-placement="left" title="สร้างผู้ใช้ใหม่"><i class="fa fa-plus"></i></a>
+                        <a href="register1" class="btn btn-effect-ripple btn-primary" data-toggle="tooltip" data-placement="left" title="สร้างผู้ใช้ใหม่"><i class="fa fa-plus"></i></a>
                     </div>
                     <h2>เข้าสู่ระบบ</h2>
                 </div>

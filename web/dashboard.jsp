@@ -55,18 +55,10 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
-        <style>
-           #page-content {
-background: url("img/bg.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-        </style>
+        
     </head>
     <body>
+        <img src="img/bg.jpg" alt="Full Background" class="full-bg full-bg-bottom animation-pulseSlow">
         <!-- Page Wrapper -->
         <!-- In the PHP version you can set the following options from inc/config file -->
         <!--
@@ -124,7 +116,7 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="index.html" class="sidebar-title">
+                        <a href="#" class="sidebar-title">
                              <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
@@ -142,7 +134,7 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </li>
-                                <li class="active">
+                                <li>
                                     <a href="#" class="sidebar-nav-submenu" ><i class="fa fa-tint sidebar-nav-icon"></i><i class="fa fa-chevron-left sidebar-nav-indicator"></i><span class="sidebar-nav-mini-hide">ผลน้ำตาล</span></a>
                                      <ul>
                                                 <li>
@@ -153,6 +145,9 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                                                 </li>
                                     </ul>
 
+                                </li>
+                                 <li>
+                                    <a href="ranking" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">การจัดอันดับ</span></a>
                                 </li>
                                 <li>
                                     <a href="message" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
@@ -169,7 +164,9 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                                 <li>
                                     <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
                                 </li>
-                                        
+                                <li>
+                                    <a href="setting"><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ตั้งค่า</span></a>
+                                </li>          
                                            
                             </ul>
                             <!-- END Sidebar Navigation -->
@@ -223,7 +220,7 @@ background: url("img/bg.jpg") no-repeat center center fixed;
 
                             <!-- Header Link -->
                             <li class="hidden-xs animation-fadeInQuick">
-                                <a href=""><strong>หน้าหลัก</strong></a>
+                                <a href="dashboard"><strong>หน้าหลัก</strong></a>
                             </li>
                             <!-- END Header Link -->
                         </ul>
@@ -317,7 +314,7 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                                                 <img src="img/winner.jpg" alt="image">
                                                 <div class="widget-image-content">
                                                     <h2 class="widget-heading text-light"><strong>การแข่งขัน</strong></h2>
-                                                    <h3 class="widget-heading text-light-op h4"><em>รักษาระดับน้ำตาลให้ดี แล้วมาแข่งกันใครคุมน้ำตาลดีกว่ากัน !</em></h3>
+                                                    <h3 class="widget-heading text-light-op h4"><em>ตรวจ และ บันทึกน้ำตาลเป็นประจำรับเพื่อรับคะแนนสะสม !</em></h3>
                                                 </div>
                                                 <i class="fa fa-trophy"></i>
                                             </div>
@@ -330,7 +327,7 @@ background: url("img/bg.jpg") no-repeat center center fixed;
                             <a href="ranking" class="widget">
                                 <div class="widget-content themed-background-danger clearfix">
                                     <img src="img/king.png" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
-                                    ${result}
+                                    <h3 class="widget-heading h3 text-light"><strong>${result}</strong></h3>
                                     <span class="text-light-op">รักษาระดับน้ำตาลของคุณให้ดี แล้วมาสนุกกัน !<br />กดเพื่อดูรายละเอียด</span>
                                 </div>
                             </a>

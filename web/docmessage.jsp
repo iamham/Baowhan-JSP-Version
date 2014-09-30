@@ -55,8 +55,10 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
+        
     </head>
     <body>
+         <img src="img/bgd.jpg" alt="Full Background" class="full-bg full-bg-bottom animation-pulseSlow">
         <!-- Page Wrapper -->
         <!-- In the PHP version you can set the following options from inc/config file -->
         <!--
@@ -181,7 +183,18 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
 
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>การติดต่อ</strong></a>
+                            </li>
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
@@ -255,8 +268,10 @@
                             </div>
                             <!-- END Message List -->
 
-                    </div>
+                    </div>  
                                         <div class="col-lg-4">
+                                            <div class="row">
+                                                
                                             <div class="widget">
                                     <div class="widget-content widget-content-mini themed-background-info text-light-op">
                                         <span class="pull-right text-dark-op">${pno} คน</span>
@@ -271,7 +286,7 @@
                                     </div>
                                 </div>
                                 <!-- END People Widget -->
-
+                                            </div>
                                         </div>
                     <!-- END Page Content -->
                 </div>
@@ -296,12 +311,7 @@
         </script>
         <script src="js/pages/readyDashboard.js"></script>
         <script>$(function(){ ReadyDashboard.init(); });</script><!-- Load and execute javascript code used only in this page -->
-        <script>
-            var dataBlood= ${chartValue}
-            var dataMonths= ${chartDate}
-        </script>
-        <script src="js/pages/readyDashboard.js"></script>
-        <script>$(function(){ ReadyDashboard.init(); });</script>
+        
 
 
     </body>

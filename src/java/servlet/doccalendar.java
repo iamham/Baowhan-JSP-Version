@@ -49,7 +49,7 @@ public class doccalendar extends HttpServlet {
         if(!req.isEmpty()){
             String sreq="";
             for(int i=0;i<req.size();i++){
-                sreq = sreq.concat("<div class=\"alert alert-info alert-dismissable animation-slideRight\">\n" +
+                sreq = sreq.concat("<div class=\"alert alert-info col-sm-12 alert-dismissable animation-slideRight\">\n" +
 "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><p>คุณมีคำขอนัดใหม่</p><p><strong>วันที่ "+req.get(i).getChecktime().toString()+" พบกับคนไข้ "+User.getUserName(req.get(i).getPatientId())+"<br />รายละเอียด "+req.get(i).getDetail()+"<a href=\"calAcc?id="+req.get(i).getLogId()+"\"><br /><button class=\"btn btn-sm btn-effect-ripple btn-success\">เพิ่ม</button></a><a href=\"calDec?id="+req.get(i).getLogId()+"\"> <button class=\"btn btn-sm btn-effect-ripple btn-danger\">ลบ</button></a></div>");
             }
             System.out.println(sreq);

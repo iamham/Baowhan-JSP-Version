@@ -56,6 +56,16 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
+        <style>
+            #page-content {
+                background: url("img/bgd.jpg") no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
+        </style>
     </head>
     <body>
         <!-- Page Wrapper -->
@@ -193,7 +203,18 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
-                            
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
+
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>ข้อมูลโภชนาการ</strong></a>
+                            </li>
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
@@ -247,6 +268,8 @@
                         <!-- General Elements Block -->
                                 <!-- Datatables Block -->
                         <!-- Datatables is initialized in js/pages/uiTables.js -->
+                        <div class="row">
+                            <div class="col-sm-9">
                         <div class="form-group">
                             <a href="#add" class="btn btn-effect-ripple btn-info" data-toggle="modal">เพิ่มข้อมูลโภชนาการ</a>
                         </div>
@@ -259,10 +282,10 @@
                                 <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
                                     <thead>
                                         <tr>
-                                            <th class="text-center" style="width: 50px;">ID</th>
-                                            <th>ชื่อ</th>
-                                            <th>Carbohydrate</th>
-                                            <th style="width: 120px;">Calories</th>
+                                            <th class="text-center" style="width: 50px;">#</th>
+                                            <th>ชื่ออาหาร</th>
+                                            <th>คาร์โบไฮเดรต</th>
+                                            <th style="width: 120px;">แคลอรี่</th>
                                             <th class="text-center" style="width: 75px;"><i class="fa fa-flash"></i></th>
                                         </tr>
                                     </thead>
@@ -283,19 +306,19 @@
                     <div class="modal-body">
                         <form action="addNutrient" method="post"  class="form-horizontal form-bordered" >
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="name">ชื่อ</label>
+                                <label class="col-md-3 control-label" for="name">ชื่ออาหาร</label>
                                 <div class="col-md-9">
                                     <input type="text" id="name" name="name" class="form-control" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="carb">คาโบไฮเดรต</label>
+                                <label class="col-md-3 control-label" for="carb">คาร์โบไฮเดรต</label>
                                 <div class="col-md-9">
                                     <input type="number" id="carb" name="carb" class="form-control" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="cal">แตลลอรี่</label>
+                                <label class="col-md-3 control-label" for="cal">แคลอรี่</label>
                                 <div class="col-md-9">
                                     <input type="number" id="cal" name="cal" class="form-control" required>
                                 </div>
@@ -312,7 +335,24 @@
             </div>
         </div>
                     </div>
+                        
+                                    <div class="col-sm-3">
+                                        <a href="" class="widget">
+                                            <div class="widget-image widget-image-sm">
+                                                <img src="img/bean.jpg" alt="image">
+                                                <div class="widget-image-content">
+                                                    
+                                                    <h4 class="widget-heading text-light"><strong>ข้อมูลโภชนาการ</strong></h4>
+                                                    <h4><span class="text-light">คุณสามารถ <br /><br />1. เพิ่มข้อมูลโภชนาการได้ โดยกดปุ่ม "เพิ่มข้อมูลโภชนาการ" และ กรอกรายละเอียด<br /><br />2. แก้ไข หรือ ลบข้อมูลนั้นๆ โดยกดที่ตารางช่องขวาสุด</span></h4>
+                                                   
+                                                </div>
+                                                
+                                            </div>
+                                        </a>
+                                    </div>
+                        </div>
                     <!-- END Page Content -->
+                    </div>
                 </div>
                 <!-- END Main Container -->
             </div>

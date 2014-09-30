@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,16 +26,16 @@ public class Ranking {
     private int id;
     private int userId;
     private int value;
-    private double eAG;
+    private int point;
     public Ranking() {
     }
 
-    public double geteAG() {
-        return eAG;
+    public int getPoint() {
+        return point;
     }
 
-    public void seteAG(double eAG) {
-        this.eAG = eAG;
+    public void setPoint(int point) {
+        this.point = point;
     }
 
     public Ranking(int id, int userId, int value) {
@@ -67,7 +69,53 @@ public class Ranking {
     }
     
     
-    
+    public static void addPoint(int userid,int point){
+        String sql = "INSERT INTO point (userID,point) VALUES (?,?)";
+        Connection con = ConnectionAgent.getConnection();
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, userid);
+            ps.setInt(2, point);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    public static List<Ranking> getAllPoint(Date from,Date to){
+        String sql = "SELECT userID,SUM(point) AS point FROM point WHERE timestamp >= ? AND timestamp <= ? GROUP BY userID ORDER BY point DESC";
+        java.sql.Timestamp fTime = new java.sql.Timestamp(from.getTime());
+        java.sql.Timestamp tTime = new java.sql.Timestamp(to.getTime());
+        Connection con = ConnectionAgent.getConnection();
+        PreparedStatement ps;
+        List point = null;
+        Ranking rk;
+        try {
+            point = new ArrayList();
+            ps = con.prepareStatement(sql);
+            ps.setTimestamp(1, fTime);
+            ps.setTimestamp(2, tTime);
+            ResultSet rs = ps.executeQuery();
+            int i = 1;
+            while(rs.next()){
+                rk = new Ranking();
+                rk.setId(i);
+                rk.setPoint(rs.getInt("point"));
+                rk.setUserId(rs.getInt("userID"));
+                point.add(rk);
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Ranking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return point;
+    }
     public static Ranking updateRanking(String up) {
         String sql = "update Ranking set  value = ? and id = ?";
         PreparedStatement ps;
@@ -110,7 +158,7 @@ public class Ranking {
                 r = new Ranking();
                 r.setId(x);
                 r.setUserId(rs.getInt(1));
-                r.seteAG(rs.getDouble(2));
+                r.setPoint(rs.getInt(2));
                 rl.add(r);
                 x++;
             }
@@ -131,6 +179,8 @@ public class Ranking {
     public String toString() {
         return "Ranking{" + "id=" + id + ", userId=" + userId + ", value=" + value + '}';
     }
-    
+    public static void main(String[] args) {
+            
+    }
     
 }

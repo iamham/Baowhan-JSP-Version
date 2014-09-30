@@ -38,16 +38,12 @@ public class addCal extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("user");
         String typ = request.getParameter("type");
         String dat = request.getParameter("date");
         String time = request.getParameter("time");
         String note = request.getParameter("note");
-        System.out.println("1" + note);
-        note = utility.toUTF8(note);
-        System.out.println("2" + note);
         Date ndate = new Date();
         String irdate = dat.concat(" " + time);
         Date rdate = null;

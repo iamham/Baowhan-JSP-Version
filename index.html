@@ -1,0 +1,55 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>My Page</title> 
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    </head> 
+    <body> 
+
+        <div data-role="page" class="jqm-demos ui-responsive-panel">
+            <br/><br/><br/><br/>
+            <center><img src="60223.jpg" width="150" height="150">
+                <br/><h1 align="center">The Assignment</h1><br/>
+                <div style="padding: 15px;width: 350px;background: #EEEEF6;border:#999 thin solid">
+                    <div class="ui-dialog" style="width:300px">
+                        <input type="text" id="username" placeholder="Username"/>
+                        <input type="password" id="password" placeholder="Password"/>
+                        <input type="submit" style="background-color:#385DB3" value="Sign in" id="login"/>
+                       
+                    </div>
+                </div>
+
+            </center>
+        </div><!-- /page -->
+<script>
+        $(document).ready(function() {
+            $('#login').click(function()
+            {   alert('clicked');
+                var username = $('#username').val();
+                var password = $('#password').val();
+                $.ajax({
+                    type: "POST",
+                    url: "mLogin",
+                    data: {"username": username, "password": password},
+                    success: function(data) {
+                        alert("success");
+                        if (data !== null) {
+                            alert(data.id);
+                            localStorage.setItem('id' , data.id);
+                            localStorage.setItem('name', data.name);
+                            
+                        } else {
+                            alert('Please try again...');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    </body>
+    
+</html>

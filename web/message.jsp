@@ -55,18 +55,10 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
-        <style>
-            #page-content {
-                background: url("img/bg.jpg") no-repeat center center fixed; 
-                -webkit-background-size: cover;
-                -moz-background-size: cover;
-                -o-background-size: cover;
-                background-size: cover;
-            }
-
-        </style>
+        
     </head>
     <body>
+        <img src="img/bg.jpg" alt="Full Background" class="full-bg full-bg-bottom animation-pulseSlow">
         <!-- Page Wrapper -->
         <!-- In the PHP version you can set the following options from inc/config file -->
         <!--
@@ -123,7 +115,7 @@
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="dashboard" class="sidebar-title">
+                        <a href="#" class="sidebar-title">
                             <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
@@ -154,6 +146,9 @@
 
                                 </li>
                                 <li>
+                                    <a href="ranking"><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">การจัดอันดับ</span></a>
+                                </li>
+                                <li>
                                     <a href="message" class="active" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
                                 </li>
                                 <li>
@@ -168,7 +163,9 @@
                                 <li>
                                     <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
                                 </li>
-
+                                <li>
+                                    <a href="setting"><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ตั้งค่า</span></a>
+                                </li>     
 
                             </ul>
                             <!-- END Sidebar Navigation -->
@@ -272,6 +269,7 @@
                     <!-- Page content -->
                     <div id="page-content">
                         <div class="row">
+                            <c:if test="${(status == 2)}">
                             <div class="col-sm-7">
                                
                                     <div class="widget">
@@ -304,9 +302,9 @@
                                     <div>
                                         <a href="javascript:void(0)" class="widget">
                                             <div class="widget-content themed-background-danger clearfix">
-                                                <img src="img/placeholders/avatars/avatar12.jpg" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
-                                                <h2 class="widget-heading h3 text-light"><strong>Sara Wright</strong></h2>
-                                                <span class="text-light-op">Web Developer</span>
+                                                <img src="img/user/${dpic}" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
+                                                <h2 class="widget-heading h3 text-light"><strong>${dname}</strong></h2>
+                                                <span class="text-light-op">แพทย์ประจำตัว</span>
                                             </div>
                                         </a>
                                     </div>
@@ -326,7 +324,37 @@
                                 
 
 
-
+                             </c:if>
+                            <c:if test="${(status == 0)}">
+                                 <div class="col-sm-12">
+                                        <a href="setting" class="widget">
+                                            <div class="widget-content text-right clearfix">
+                                                <h2 class="widget-heading h3"><strong>โปรดเพิ่มแพทย์ประจำตัวก่อนการใช้งาน</strong></h2>
+                                                <span class="text-muted">ท่านสามารถดูสถานะ, แก้ไข แพทย์ประจำตัวได้ที่หน้า ตั้งค่า หรือกดที่นี่</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                             </c:if>
+                             <c:if test="${(status == 1)}">
+                                 <div class="col-sm-12">
+                                        <a href="setting" class="widget">
+                                            <div class="widget-content text-right clearfix">
+                                                <h2 class="widget-heading h3"><strong>โปรดรอแพทย์ยืนยันคำขอเพิ่มแพทย์ ก่อนเริ่มใช้งาน</strong></h2>
+                                                <span class="text-muted">ท่านสามารถดูสถานะ, แก้ไข แพทย์ประจำตัวได้ที่หน้า ตั้งค่า หรือกดที่นี่</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                             </c:if>
+                            <c:if test="${(status == 3)}">
+                                 <div class="col-sm-12">
+                                        <a href="setting" class="widget">
+                                            <div class="widget-content text-right clearfix">
+                                                <h2 class="widget-heading h3"><strong>โปรดแก้ไข แพทย์ไม่รับคำขอของท่าน</strong></h2>
+                                                <span class="text-muted">ท่านสามารถดูสถานะ, แก้ไข แพทย์ประจำตัวได้ที่หน้า ตั้งค่า หรือกดที่นี่</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                             </c:if>  
                         </div>
                     </div>
                     <!-- END Page Content -->

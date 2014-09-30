@@ -55,8 +55,13 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
+         <style>
+
+
+        </style>
     </head>
     <body>
+        <img src="img/bgd.jpg" alt="Full Background" class="full-bg full-bg-bottom animation-pulseSlow">
         <!-- Page Wrapper -->
         <!-- In the PHP version you can set the following options from inc/config file -->
         <!--
@@ -188,7 +193,18 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
 
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>ปฏิทิน</strong></a>
+                            </li>
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
@@ -239,6 +255,7 @@
 
                     <!-- Page content -->
                     <div id="page-content">
+                        <div class="row">
                         <!-- Calendar Header -->
                         ${req}
                         <!-- FullCalendar Block -->
@@ -246,7 +263,7 @@
                         <a href="#addDoctor" class="btn btn-effect-ripple btn-info" data-toggle="modal">เพิ่มการนัดหมาย</a>
                         <a href="#addSelf" class="btn btn-effect-ripple btn-info" data-toggle="modal">เพิ่มปฏิทินส่วนตัว</a>
                          </div>
-                        <div class="block full">
+                        <div class="block col-sm-9">
                              
                             <div class="row">
                                 
@@ -255,10 +272,24 @@
                                 <div id="calendar"></div>
                             </div>
                         </div>
+                        <div class="col-sm-3">
+                                <a href="" class="widget">
+                                    <div class="widget-image widget-image-sm">
+                                        <img src="img/doctor.jpg" alt="image">
+                                        <div class="widget-image-content">
+                                            <h2 class="widget-heading text-light"><strong>นัดพบคนไข้ง่ายๆ</strong></h2>
+                                            <h3 class="widget-heading text-light-op h4">1. เพิ่มปฏิทินการนัดหมาย<br />2. กรอกรายละเอียด<br />3. รอคนไข้ตอบรับ การนัดหมายจะถูกเพิ่มในปฏิทินโดยอัตโนมัติ</h3>
+                                        </div>
+
+                                       
+                                    </div>
+                                </a>
+                            </div>
                         <!-- END FullCalendar Block -->
 
                     </div>
                     <!-- END Page Content -->
+                    </div>
                 </div>
                 <!-- END Main Container -->
             </div>

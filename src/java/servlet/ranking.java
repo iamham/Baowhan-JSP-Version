@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -37,22 +38,42 @@ public class ranking extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("user");
-        List<Ranking> ranking = Ranking.showRanking();
-        int position;
-        String result="",table="";
-        for(int i=0;i<ranking.size();i++){
-            if(ranking.get(i).getUserId()==u.getUserID()){
+        Calendar c = Calendar.getInstance();   // this takes current date
+        c.set(Calendar.DAY_OF_MONTH, 1);
+        Calendar cn = Calendar.getInstance();   // this takes current date
+        cn.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, -1);
+        cal.set(Calendar.DATE, 1);
+        Date firstDateOfPreviousMonth = cal.getTime();
+        cal.set(Calendar.DATE, cal.getActualMaximum(Calendar.DATE)); // changed calendar to cal
+        Date lastDateOfPreviousMonth = cal.getTime();
+        List<Ranking> lastmonth = Ranking.getAllPoint(firstDateOfPreviousMonth, lastDateOfPreviousMonth);
+        List<Ranking> ranking = Ranking.getAllPoint(c.getTime(), cn.getTime());
+        int position = Ranking.position(u.getUserID());
+        String lm= "";
+        String result = "", table = "";
+        for (int i = 0; i < ranking.size(); i++) {
+            if (ranking.get(i).getUserId() == u.getUserID()) {
                 position = ranking.get(i).getId();
-                result = result.concat("คุณอยู่อันดับที่ "+ position +" ด้วยค่าเฉลี่ยน้ำตาลที่ (eAG) "+ranking.get(i).geteAG());
-                break;
+                result = result.concat("คุณอยู่อันดับที่ " + position + " ด้วยคะแนน " + ranking.get(i).getPoint());
             }
         }
-        for(int i=0;i<ranking.size();i++){
-            table = table.concat("<tr><td class=\"text-center\">"+ranking.get(i).getId()+"</td><td>"+User.getUserName(ranking.get(i).getUserId())+"</td><td>"+ranking.get(i).geteAG()+"</td></tr>");
+        for (int i = 0; i < ranking.size(); i++) {
+            table = table.concat("<tr><td class=\"text-center\">" + (ranking.get(i).getId() + 1) + "</td><td>" + User.getUserName(ranking.get(i).getUserId()) + "</td><td>" + ranking.get(i).getPoint() + "</td></tr>");
         }
+        if(!lastmonth.isEmpty()){
+        for(int i=0;i<=3;i++){
+            lm = lm.concat("<div class=\"col-sm-4\"><a href=\"javascript:void(0)\" class=\"widget\">\n" +
+"                                            <div class=\"widget-content themed-background-warning clearfix\"><h2 class=\"widget-heading h3 text-light\"><strong>เดือนที่แล้ว #"+lastmonth.get(i).getId()+" <br/> คุณ "+User.getUserName(lastmonth.get(i).getUserId())+"</strong></h2>\n" +
+"                                                <span class=\"text-light-op\">ด้วยคะแนน "+lastmonth.get(i).getPoint()+"</span>\n" +
+"                                            </div>\n" +
+"                                        </a></div>");
+        }}
+        request.setAttribute("lastmonth", lm);
         request.setAttribute("table", table);
         request.setAttribute("result", result);
-        request.setAttribute("name", u.getFirstname()+" "+u.getLastname());
+        request.setAttribute("name", u.getFirstname() + " " + u.getLastname());
         request.setAttribute("profilepic", u.getProfilePIC());
         getServletContext().getRequestDispatcher("/ranking.jsp").forward(request, response);
     }

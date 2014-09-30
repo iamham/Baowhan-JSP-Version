@@ -56,8 +56,10 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
+        
     </head>
     <body>
+        <img src="img/bg.jpg" alt="Full Background" class="full-bg full-bg-bottom animation-pulseSlow">
         <!-- Page Wrapper -->
         <!-- In the PHP version you can set the following options from inc/config file -->
         <!--
@@ -114,7 +116,7 @@
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="dashboard" class="sidebar-title">
+                        <a href="#" class="sidebar-title">
                              <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
@@ -145,6 +147,9 @@
 
                                 </li>
                                 <li>
+                                    <a href="ranking"><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">การจัดอันดับ</span></a>
+                                </li>
+                                <li>
                                     <a href="message" ><i class="fa fa-comments sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ติดต่อแพทย์</span></a>
                                 </li>
                                  <li>
@@ -159,7 +164,9 @@
                                 <li>
                                     <a href="news" class="active"><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
                                 </li>
-                                        
+                                <li>
+                                    <a href="setting"><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ตั้งค่า</span></a>
+                                </li>            
                                            
                             </ul>
                             <!-- END Sidebar Navigation -->
@@ -192,7 +199,18 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
-                            
+                             <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
+
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>ข่าวสาร</strong></a>
+                            </li>
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
@@ -243,8 +261,9 @@
 
                     <!-- Page content -->
                     <div id="page-content">
+                        <div class="row">
                         <!-- General Elements Block -->
-                                <div class="block">
+                                <div class="block col-sm-9">
                                     <!-- General Elements Title -->
                                     <div class="block-title">
                                         
@@ -261,9 +280,22 @@
     </thead>
 </table>
                                 </div>
+                        <div class="col-sm-3">
+                                        <a href="ranking" class="widget">
+                                            <div class="widget-image widget-image-sm">
+                                                <img src="img/pizza.jpg" alt="image">
+                                                <div class="widget-image-content">
+                                                    <h2 class="widget-heading text-light"><strong>ข่าวสาร</strong></h2>
+                                                    <h3 class="widget-heading text-light-op h4"><em>ติดตามข่าวสารอยู่ตลอดเวลา เรียนรู้แนวทางในการรักษาใหม่ๆ</em></h3>
+                                                </div>
+                                                <i class="gi gi-notes"></i>
+                                            </div>
+                                        </a>
+                                    </div>
                                 <!-- END General Elements Block -->
 
 
+                    </div>
                     </div>
                     <!-- END Page Content -->
                 </div>

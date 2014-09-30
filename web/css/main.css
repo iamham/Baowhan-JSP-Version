@@ -28,7 +28,9 @@
 #page-wrapper.page-loading {
     overflow: hidden;
 }
-
+.thai{
+    font-family: "thaisans_neueregular";
+}
 #page-wrapper.page-loading .preloader {
     display: block;
 }
@@ -96,7 +98,7 @@
 
 /* Main Structure */
 body {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "thaisans_neueregular","Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #454e59;
     background-color: #454e59;
 }

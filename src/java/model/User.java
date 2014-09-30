@@ -40,7 +40,7 @@ public class User {
     private String address;
     private String province;
     private String amphur;
-
+    private int status;
     private int relatedUserID;
     private int hospitalID;
     private String currentmed;
@@ -49,6 +49,14 @@ public class User {
     private String fbID;
 
     public User() {
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public User(int userID, String username, String password, String email, 
@@ -251,6 +259,45 @@ public class User {
         }
         return success;
     }
+    public static void changeDoctor(int userid, int doctorid){
+        Connection con = ConnectionAgent.getConnection();
+        String sql = "UPDATE  User SET  relatedUserID =  "+doctorid+", reqStatus = 1 WHERE  userID = "+userid;
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    public static int getReqStatus(int user){
+        Connection con = ConnectionAgent.getConnection();
+        String sql = "SELECT reqStatus FROM User WHERE userID = "+user;
+        Statement st;
+        int result=0;
+        try {
+            ResultSet rst;
+            st = con.createStatement();
+            rst = st.executeQuery(sql);
+            while(rst.next()){
+                result = rst.getInt("reqStatus");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
+    }
     public static List<User> getDoctor(){
         Connection con = ConnectionAgent.getConnection();
         String sql = "SELECT * FROM User WHERE type = 2";
@@ -335,7 +382,31 @@ public class User {
         }
         return md5;
     }
-    
+    public static List<User> getAllDoctorRequest(){
+         Connection con = ConnectionAgent.getConnection();
+         String sql = "SELECT * FROM  User WHERE  type = 2 AND  reqStatus = 1";
+         Statement st;
+         User u;
+         List<User> result = new ArrayList();
+        try {
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+            u = new User();
+            rToO(u, rs);
+            result.add(u);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+             try {
+                 con.close();
+             } catch (SQLException ex) {
+                 Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }
+         return result;
+    }
     public static boolean pRegister(
             String username,
             String password,
@@ -384,7 +455,7 @@ public class User {
     public static boolean updateUser(User u){
         Connection con = ConnectionAgent.getConnection();
          boolean result = false;
-         String sql = "UPDATE User = \'"+u.getUsername()+"\', \'password\' = \'"+u.getPassword()+"\', \'email\' = \'"+u.getEmail()+"\',\'firstname\' = \'"+u.getFirstname()+"\', \'lastname\' = \'"+u.getLastname()+"\', \'profilePIC\' = \'"+u.getProfilePIC()+"\', \'telephone\' = \'"+u.getTelephone()+"\', \'address\' = \'"+u.getAddress()+"\', \'province\' = \'"+u.getProvince()+"\',  \'relatedUserID\' = "+u.getRelatedUserID()+", \'hospitalID\' = "+u.getHospitalID()+", \'currentmed\' = \'"+u.getCurrentmed()+"\', \'pastmed\' = \'"+u.getPastmed()+"\', \'fbid\' = \'"+u.getFbID()+"\' WHERE userID = "+u.getUserID()+";\n";
+         String sql = "UPDATE User SET email = \'"+u.getEmail()+"\',firstname = \'"+u.getFirstname()+"\', lastname = \'"+u.getLastname()+"\', profilePIC = \'"+u.getProfilePIC()+"\', telephone = \'"+u.getTelephone()+"\',  province = \'"+u.getProvince()+"\',  hospitalID = "+u.getHospitalID()+" WHERE userID = "+u.getUserID()+";";
          try { 
              Statement st = con.createStatement();
              st.executeUpdate(sql);
@@ -426,7 +497,7 @@ public class User {
     
     public static User getUser(String user) {
         Connection con = ConnectionAgent.getConnection();
-        String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province,userID,hospitalID,relatedUserID,type from User where username= ?";
+        String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province,userID,hospitalID,relatedUserID,type,reqStatus from User where username= ?";
         PreparedStatement ps;
         User u = null;
         try {
@@ -448,6 +519,8 @@ public class User {
                 u.setHospitalID(rs.getInt(11));
                 u.setRelatedUserID(rs.getInt(12));
                 u.setType(rs.getInt(13));
+                u.setStatus(rs.getInt(14));
+                System.out.println("status:"+rs.getInt(14));
             }
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
@@ -462,7 +535,7 @@ public class User {
     }
     public static User getUserByID(int user) {
         Connection con = ConnectionAgent.getConnection();
-        String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province,userID,hospitalID,relatedUserID,type from User where userID= ?";
+        String sql = "select username ,password ,email ,firstname ,lastname ,profilePIC ,telephone ,address ,province,userID,hospitalID,relatedUserID,type,reqStatus from User where userID= ?";
         PreparedStatement ps;
         User u = null;
         try {
@@ -484,6 +557,7 @@ public class User {
                 u.setHospitalID(rs.getInt(11));
                 u.setRelatedUserID(rs.getInt(12));
                 u.setType(rs.getInt(13));
+                u.setStatus(rs.getInt(14));
             }
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
@@ -629,7 +703,22 @@ public class User {
         }
         return ul;
     }
-    
+    public static void changeStatus(int userid,int status){
+        Connection con = ConnectionAgent.getConnection();
+        String sql = "UPDATE User SET  reqStatus = "+status+" WHERE userID = "+userid;
+        try {
+            Statement st = con.createStatement();
+            st.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     public static List<User> showAccPatientList(int doctorID) {
         Connection con = ConnectionAgent.getConnection();
         String sqlCmd = "SELECT * FROM User WHERE relatedUserID = ? AND reqStatus = 2";
@@ -698,6 +787,7 @@ public class User {
             u.setCurrentmed(rs.getString("currentmed"));
             u.setPastmed(rs.getString("pastmed"));
             u.setUserID(rs.getInt("userid"));
+            u.setStatus(rs.getInt("reqStatus"));
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -711,10 +801,9 @@ public class User {
                 + lastname + ", profilePIC=" + profilePIC + ", telephone=" + telephone + 
                 ", address=" + address + ", province=" + province + ", amphur=" + amphur + 
                 ", relatedUserID=" + relatedUserID + ", hospitalID=" + 
-                hospitalID + ", currentmed=" + currentmed + ", pastmed=" + pastmed + ", type=" + type + '}';
+                hospitalID + ", currentmed=" + currentmed + ", pastmed=" + pastmed + ", type=" + type + ",status" + status+'}';
     }
     public static void main(String[] args) {
-        System.out.println(User.showAccPatientList(2));
-        System.out.println(User.showAccRequest(2));
+        System.out.println(User.getAllDoctorRequest());
     }
 }

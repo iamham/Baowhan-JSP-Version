@@ -45,35 +45,36 @@ public class Register extends HttpServlet {
             String lastname = request.getParameter("lastname");
             String telephone = request.getParameter("telephone");
             String province = request.getParameter("province");
-            String doctor = request.getParameter("doctor");
             String hospital = request.getParameter("hospital");
-            int idoctor = Integer.parseInt(doctor);
             int ihospital = Integer.parseInt(hospital);
-            
+            String msg = "";
             boolean success = false;
             //String profilePIC =request.getParameter("profilePIC");
             
             if(User.getUser(username)!=null){
-                request.setAttribute("msg","ชื่อผู้ใช้นี้มีผู้ใช้แล้ว กรุณากรอกชื่อผู้ใช้ใหม่");
+                msg = "<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\"></button><h4><strong>ผิดพลาด</strong></h4><p>ชื่อผู้ใช้นี้มีผู้ใช้แล้ว กรุณากรอกชื่อผู้ใช้ใหม่</p></div>";
+                request.setAttribute("msg","<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><h4><strong>ผิดพลาด</strong></h4><p>ชื่อผู้ใช้นี้มีผู้ใช้แล้ว กรุณากรอกชื่อผู้ใช้ใหม่</p></div>");
             }else{
                 /*User u = new User(12,username ,pwd1 ,email ,firstname ,lastname ,profilePIC ,
                         telephone ,address ,province ,amphur ,zipcode);*/
-                if(User.pRegister(username,pwd1,email,firstname,lastname,telephone,province,idoctor,ihospital,1)){
+                if(User.pRegister(username,pwd1,email,firstname,lastname,telephone,province,ihospital,0,1)){
                     request.setAttribute("msg","ลงทะเบียนสำเร็จ กรุณากรอกข้อมูลส่วนตัว");
                     success = true;
                 }else{
-                    request.setAttribute("msg","เกิดข้อผิดพลาด กรูณาลองใหม่อีกครั้ง");
+                    msg = "เกิดข้อผิดพลาด กรูณาลองใหม่อีกครั้ง";
+                    request.setAttribute("msg","<div class=\"alert alert-danger alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><h4><strong>ผิดพลาด</strong></h4><p>เกิดข้อผิดพลาด กรูณาลองใหม่อีกครั้ง</p></div>");
                 }
                 
+
             //}
         }
         if(success){
         User u = User.getUser(username);
         s.setAttribute("user", u);
-        request.setAttribute("msg","ลงทะเบียนเรียบร้อย กรุณาทำการตั้งค่าการใช้งานครั้งแรก");
-        getServletContext().getRequestDispatcher("/dashboard").forward(request, response);
+        request.setAttribute("msg","<div class=\"col-sm-6 col-lg-3\"><div class=\"alert alert-success alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><h4><strong>Success</strong></h4><p>ลงทะเบียนเสร็จเรียบร้อย กรุณาเลือกแพทย์ที่รักษาอยู่ ณ ปัจจุบัน</p></div></div>");
+        getServletContext().getRequestDispatcher("/setting").forward(request, response);
         }else{
-        getServletContext().getRequestDispatcher("/register1.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/register1?msg="+msg).forward(request, response);
         }
     }
             

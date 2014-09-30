@@ -40,6 +40,7 @@ public class message extends HttpServlet {
         SimpleDateFormat sf = new SimpleDateFormat("d/M/yy HH:mm:ss");
         SimpleDateFormat sf1 = new SimpleDateFormat("d");
         User u = (User) session.getAttribute("user");
+        u = User.getUserByID(u.getUserID());
         List<DiabetesLog> log = DiabetesLog.getAllUserRecord(u.getUserID());
         int cid = model.Message.getCid(u.getUserID(), u.getRelatedUserID());
         List<Message> mes = Message.getAllMessage(cid);
@@ -60,9 +61,13 @@ public class message extends HttpServlet {
                 chartDate = chartDate.concat("[\""+itemp+"\", \'"+sf1.format(log.get(i).getChecktime())+"\'],");
                 itemp++;
             }
+        User doc = User.getUserByID(u.getRelatedUserID());
         chartValue = chartValue.concat("];");
         chartDate = chartDate.concat("];");
+        request.setAttribute("status", u.getStatus());
         request.setAttribute("chartDate", chartDate);
+        request.setAttribute("dname", doc.getFirstname()+" "+doc.getLastname());
+        request.setAttribute("dpic", doc.getProfilePIC());
         request.setAttribute("chartValue", chartValue);
         request.setAttribute("msg",  stMessage);
         getServletContext().getRequestDispatcher("/message.jsp").forward(request, response);

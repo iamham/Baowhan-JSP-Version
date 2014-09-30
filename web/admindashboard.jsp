@@ -57,6 +57,7 @@
         <script src="js/vendor/modernizr-2.8.3.js"></script>
     </head>
     <body>
+         <img src="img/bgd.jpg" alt="Full Background" class="full-bg full-bg-bottom animation-pulseSlow">
         <!-- Page Wrapper -->
         <!-- In the PHP version you can set the following options from inc/config file -->
         <!--
@@ -181,7 +182,18 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
+<li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
 
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>หน้าหลัก</strong></a>
+                            </li>
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
@@ -201,20 +213,9 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
 
-                                    <li>
-                                        <a href="message">
-                                            <i class="fa fa-inbox fa-fw pull-right"></i>
-                                            กล่องจดหมาย
-                                        </a>
-                                    </li>
+                                    
 
-                                    <li class="divider"><li>
-                                    <li>
-                                        <a href="setting">
-                                            <i class="gi gi-settings fa-fw pull-right"></i>
-                                            ตั้งค่า
-                                        </a>
-                                    </li>
+                                   
 
                                     <li>
                                         <a href="logout">
@@ -236,8 +237,8 @@
                         <div class="row">
                             <!-- Simple Stats Widgets -->
 
-                            <div class="col-sm-2 col-lg-2">
-                                <a href="req"class="widget">
+                            <div class="col-sm-3 ">
+                                <a href="#"class="widget">
                                     <div class="widget-content themed-background-danger text-light-op text-center">
                                         <div class="widget-icon center-block push">
                                             <i class="fa fa-database"></i>
@@ -246,28 +247,28 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-sm-2 col-lg-2">
-                                <a href="req"class="widget">
+                            <div class="col-sm-3">
+                                <a href="#"class="widget">
                                     <div class="widget-content themed-background-info text-light-op text-center">
                                         <div class="widget-icon center-block push">
-                                            <i class="fa fa-plus"></i>
+                                            <i class="gi gi-notes_2"></i>
                                         </div>
-                                        <strong>บันทึก ${logno} ครั้ง</strong>
+                                        <strong>มีการบันทึกผลตรวจ ${logno} ครั้ง</strong>
                                     </div>
                                 </a>
                             </div>
-                             <div class="col-sm-2 col-lg-2">
-                                <a href="req"class="widget">
+                             <div class="col-sm-3">
+                                <a href="#"class="widget">
                                     <div class="widget-content themed-background-success text-light-op text-center">
                                         <div class="widget-icon center-block push">
-                                            <i class="fa fa-plus"></i>
+                                           <i class="gi gi-message_out"></i>
                                         </div>
-                                        <strong>${msgno} ข้อความ</strong>
+                                        <strong>มีการส่งข้อความ ${msgno} ข้อความ</strong>
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-sm-6 col-lg-6">
-                                <a href="calendar" class="widget">
+                            <div class="col-sm-3">
+                                <a href="#" class="widget">
                                     <div class="widget-content widget-content-mini themed-background-success text-light-op">
                                         <i class="fa fa-clock-o"></i> <strong>วันนี้</strong>
                                     </div>
@@ -282,12 +283,36 @@
                                 </a>
                             </div>
                         </div>
-                            <div class="block">
+                            <div class="block col-sm-12">
+                                
+                                <div class="block-title">
+                                <h2>รายชื่อแพทย์ที่ยังไม่ได้รับการรับรอง</h2>
+                            </div>
+               
+                            <div class="table-responsive">
+                                <table id="example-datatable" class=" example-datatable table table-striped table-bordered table-vcenter">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 50px;">ID</th>
+                                            <th>ชื่อผู้ใช้</th>
+                                            <th></th>
+                                            <th>โรงพยาบาล</th>
+                                            <th>ตัวเลือก</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       ${req}
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                                    <div class="block col-sm-12">
                             <div class="block-title">
                                 <h2>ผู้ใช้ทั้งหมด</h2>
                             </div>
+               
                             <div class="table-responsive">
-                                <table id="example-datatable" class="table table-striped table-bordered table-vcenter">
+                                <table id="example-datatable"  class="example-datatable table table-striped table-bordered table-vcenter">
                                     <thead>
                                         <tr>
                                             <th class="text-center" style="width: 50px;">ID</th>
@@ -301,7 +326,8 @@
                                        ${table}
                                     </tbody>
                                 </table>
-                            </div>       
+                            </div> 
+                                    </div>  
                             </div>
                         </div>
                             
@@ -334,5 +360,11 @@
         <script>$(function() {
                 UiTables.init();
             });</script>
+            <script>
+function confirm() {
+    confirm("คุณแน่ใจว่าต้องการลบ User นี้ ?");
+}
+</script>
+
 </body>
 </html>

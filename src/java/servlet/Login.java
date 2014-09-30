@@ -36,8 +36,8 @@ public class Login extends HttpServlet {
         HttpSession s = request.getSession();
         String msg = "";
         boolean success = false;
-        int type = 0;
-
+        int type = 0,status = 0;
+        
         if (User.getUser(username) == null) {
             msg = "ไม่พบชื่อผู้ใช้ในระบบ หรือ รหัสผ่านไม่ถูกต้อง";
         } else {
@@ -45,6 +45,7 @@ public class Login extends HttpServlet {
             if (u.getPassword().equals(User.toMD5(password))) {
                 s.setAttribute("user", u);
                 type = u.getType();
+                status = u.getStatus();
                 System.out.println(type);
                 success = true;
             } else {
@@ -55,10 +56,13 @@ public class Login extends HttpServlet {
         if (success) {
             if (type == 1) {
                 getServletContext().getRequestDispatcher("/dashboard").forward(request, response);
-            } else if (type == 2) {
-                System.out.println("Going");
+            } else if (type == 2 & status==2) {
                 getServletContext().getRequestDispatcher("/docdashboard").forward(request, response);
-            } else if (type == 3) {
+            } else if (type == 2 & status==1){
+                msg = "กรุณารอการยืนยันบัญชีผู้ใช้งานจากผู้ดูแลระบบ เพิ่มเติมติดต่อ admin@baowhan.com";
+                request.setAttribute("msg", msg);
+                getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            }else if (type == 3) {
                 getServletContext().getRequestDispatcher("/admindashboard").forward(request, response);
             }else{
                 getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);

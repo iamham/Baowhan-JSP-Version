@@ -3,24 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/servlet/addCalDoc.java</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/web/docnews.jsp</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/servlet/admindashboard.java</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/web/register1.jsp</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/servlet/delUser.java</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/web/docnutrient.jsp</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/servlet/Login.java</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/web/ranking.jsp</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/servlet/dashboard.java</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/web/admindashboard.jsp</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/connectionDB/ConnectionAgent.java</file>
+            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/servlet/docmessage.java</file>
+            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/servlet/doccalendar.java</file>
+            <file>file:/Users/sarunpeetasai/baowhan.com/web/docmessage.jsp</file>
             <file>file:/Users/sarunpeetasai/baowhan.com/web/docdashboard.jsp</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/servlet/checkRecord.java</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/model/User.java</file>
             <file>file:/Users/sarunpeetasai/baowhan.com/web/doccalendar.jsp</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/servlet/docdashboard.java</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/filter/UTF8.java</file>
-            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/servlet/Register.java</file>
+            <file>file:/Users/sarunpeetasai/baowhan.com/web/dashboard.jsp</file>
+            <file>file:/Users/sarunpeetasai/baowhan.com/src/java/servlet/showCalendar.java</file>
         </group>
     </open-files>
 </project-private>

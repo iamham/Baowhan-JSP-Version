@@ -43,10 +43,15 @@ public class admindashboard extends HttpServlet {
             HttpSession session = request.getSession(false);
             User u = (User) session.getAttribute("user");
             List<User> alluser = User.showPatientList();
-            String table = "";
-            for (int i = 0; i < alluser.size(); i++) {
-                table = table.concat("<tr><td class=\"text-center\">" + alluser.get(i).getUserID() + "</td><td>" + alluser.get(i).getUsername() + "</td><td>" + alluser.get(i).getFirstname() + " " + alluser.get(i).getLastname() + "</td><td>" + Hospital.findById(alluser.get(i).getHospitalID()) + "</td><td class=\"text-center\"><a href=\"delUser?id=" + alluser.get(i).getUserID() + "\" data-toggle=\"tooltip\" title=\"Delete User\" class=\"btn btn-effect-ripple btn-sm btn-danger\"> <i class=\"fa fa-times\"></i></a>");
+            List<User> req = User.getAllDoctorRequest();
+            String table = "",reqt="";
+            for (int i = 0; i < req.size(); i++) {
+                reqt = reqt.concat("<tr><td class=\"text-center\">" + req.get(i).getUserID() + "</td><td>" + req.get(i).getUsername() + "</td><td>" + req.get(i).getFirstname() + " " + req.get(i).getLastname() + "</td><td>" + Hospital.findById(req.get(i).getHospitalID()) + "</td><td class=\"text-center\"><a onclick=\"confirm();return false;\" href=\"changeDRStatus?status=2&id=" + req.get(i).getUserID() + "\" data-toggle=\"tooltip\" title=\"เพิ่ม User\" class=\"btn btn-effect-ripple btn-sm btn-success\"> <i class=\"gi gi-circle_plus\"></i></a>");
             }
+            for (int i = 0; i < alluser.size(); i++) {
+                table = table.concat("<tr><td class=\"text-center\">" + alluser.get(i).getUserID() + "</td><td>" + alluser.get(i).getUsername() + "</td><td>" + alluser.get(i).getFirstname() + " " + alluser.get(i).getLastname() + "</td><td>" + Hospital.findById(alluser.get(i).getHospitalID()) + "</td><td class=\"text-center\"><a onclick=\"confirm();return false;\" href=\"delUser?id=" + alluser.get(i).getUserID() + "\" data-toggle=\"tooltip\" title=\"Delete User\" class=\"btn btn-effect-ripple btn-sm btn-danger\"> <i class=\"fa fa-times\"></i></a>");
+            }
+            request.setAttribute("req", reqt);
             request.setAttribute("today", sf.format(date));
             request.setAttribute("msgno", Message.getAllMessageCount());
             request.setAttribute("logno", DiabetesLog.getAllLogCount());

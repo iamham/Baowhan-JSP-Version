@@ -85,8 +85,8 @@ public class NewsDB {
             PreparedStatement pst;
          try {
             pst = con.prepareStatement(sql);
-            pst.setString(1, utility.toUTF8(name));
-            pst.setString(2, utility.toUTF8(detail));
+            pst.setString(1, name);
+            pst.setString(2, detail);
             pst.setInt(3, author);
             pst.setInt(4,id);
             pst.executeUpdate();

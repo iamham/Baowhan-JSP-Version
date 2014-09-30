@@ -56,6 +56,16 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
+        <style>
+            #page-content {
+                background: url("img/bgd.jpg") no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
+        </style>
     </head>
     <body>
         <!-- Page Wrapper -->
@@ -193,7 +203,18 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
-                            
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
+
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>ข่าวสาร</strong></a>
+                            </li>
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
@@ -244,6 +265,8 @@
 
                     <!-- Page content -->
                     <div id="page-content">
+                        <div class="row">
+                            <div class="col-sm-9">
                         <!-- General Elements Block -->
                         <div class="form-group">
                             <a href="#add" class="btn btn-effect-ripple btn-info" data-toggle="modal">เพิ่มข่าวสาร</a>
@@ -258,8 +281,8 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center" style="width: 50px;">ID</th>
-                                            <th>ชื่อ</th>
-                                            <th>เนื้อหา</th>
+                                            <th>หัวข้อข่าว</th>
+                                            <th>เนื้อหาข่าว</th>
                                             <th class="text-center" style="width: 75px;"><i class="fa fa-flash"></i></th>
                                         </tr>
                                     </thead>
@@ -273,6 +296,25 @@
                                 <!-- END General Elements Block -->
 
 
+                            </div>
+                                    
+                                        <div class="col-sm-3">
+                                        <a href="" class="widget">
+                                            <div class="widget-image widget-image-sm">
+                                                <img src="img/paper.jpg" alt="image">
+                                                <div class="widget-image-content">
+                                                   
+                                                    <h4 class="widget-heading text-light"><strong>ข้อมูลข่าวสาร</strong></h4>
+                                                    <h4><span class="text-light">1. คุณสามารถเพิ่มข้อมูลข่าวสารได้ โดยกดที่ "เพิ่มข่าวสาร" ด้านบน<br /><br />2. กดที่เครื่องหมายดินสอ เพื่อแก้ไข หรือ ปุ่มกากบาทสีแดงเพื่อลบข่าว</span></h4>
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                        </a>
+                                    </div>
+                                        
+                                    </div>
+                        </div>
                     </div>
                     <!-- END Page Content -->
                 </div>

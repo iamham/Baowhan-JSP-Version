@@ -55,8 +55,10 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
+        
     </head>
     <body>
+        <img src="img/bg.jpg" alt="Full Background" class="full-bg full-bg-bottom animation-pulseSlow">
         <!-- Page Wrapper -->
         <!-- In the PHP version you can set the following options from inc/config file -->
         <!--
@@ -126,7 +128,7 @@
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="dashboard"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
+                                    <a href="#"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าหลัก</span></a>
                                 </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
@@ -158,7 +160,9 @@
                                 <li>
                                     <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
                                 </li>
-
+                                <li>
+                                    <a href="setting"><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ตั้งค่า</span></a>
+                                </li>     
 
                             </ul>
                             <!-- END Sidebar Navigation -->
@@ -191,7 +195,18 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
 
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>ปฏิทิน</strong></a>
+                            </li>
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
@@ -242,24 +257,41 @@
 
                     <!-- Page content -->
                     <div id="page-content">
-                        <!-- Calendar Header -->
-                        ${req}
-                        <!-- FullCalendar Block -->
-                         <div class="form-group">
-                        <a href="#addDoctor" class="btn btn-effect-ripple btn-info" data-toggle="modal">เพิ่มการนัดหมาย</a>
-                        <a href="#addSelf" class="btn btn-effect-ripple btn-info" data-toggle="modal">เพิ่มปฏิทินส่วนตัว</a>
-                         </div>
-                        <div class="block full">
-                             
-                            <div class="row">
-                                
+                        <div class="row">
 
-                                <!-- FullCalendar (initialized in js/pages/compCalendar.js), for more info and examples you can check out http://arshaw.com/fullcalendar/ -->
-                                <div id="calendar"></div>
+                            <!-- Calendar Header -->
+                            ${req}
+                            <!-- FullCalendar Block -->
+                            <div class="form-group">
+                                <c:if test="${(status == 2)}">
+                                    <a href="#addDoctor" class="btn btn-effect-ripple btn-info" data-toggle="modal">เพิ่มการนัดหมาย</a>
+                                </c:if>
+                                <a href="#addSelf" class="btn btn-effect-ripple btn-info" data-toggle="modal">เพิ่มปฏิทินส่วนตัว</a>
                             </div>
-                        </div>
-                        <!-- END FullCalendar Block -->
+                            <div class="block col-sm-9">
 
+                                <div class="row">
+
+
+                                    <!-- FullCalendar (initialized in js/pages/compCalendar.js), for more info and examples you can check out http://arshaw.com/fullcalendar/ -->
+                                    <div id="calendar"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <a href="message" class="widget">
+                                    <div class="widget-image widget-image-sm">
+                                        <img src="img/doctor.jpg" alt="image">
+                                        <div class="widget-image-content">
+                                            <h2 class="widget-heading text-light"><strong>นัดพบแพทย์ง่ายๆ</strong></h2>
+                                            <h3 class="widget-heading text-light-op h4">1. เพิ่มปฏิทินการนัดหมาย<br />2. กรอกรายละเอียด<br />3. รอแพทย์ตอบรับ</h3>
+                                        </div>
+
+                                        <i class="fa fa-hospital-o"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- END FullCalendar Block -->
+                        </div>
                     </div>
                     <!-- END Page Content -->
                 </div>
@@ -370,70 +402,70 @@
 
         <!-- Load and execute javascript code used only in this page -->
         <script>
-            var CompCalendar = function() {
-                var calendarEvents = $('.calendar-events');
+                                    var CompCalendar = function() {
+                                        var calendarEvents = $('.calendar-events');
 
-                /* Function for initializing drag and drop event functionality */
-                var initEvents = function() {
-                    calendarEvents.find('li').each(function() {
-                        // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-                        var eventObject = {title: $.trim($(this).text()), color: $(this).css('background-color')};
+                                        /* Function for initializing drag and drop event functionality */
+                                        var initEvents = function() {
+                                            calendarEvents.find('li').each(function() {
+                                                // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+                                                var eventObject = {title: $.trim($(this).text()), color: $(this).css('background-color')};
 
-                        // store the Event Object in the DOM element so we can get to it later
-                        $(this).data('eventObject', eventObject);
+                                                // store the Event Object in the DOM element so we can get to it later
+                                                $(this).data('eventObject', eventObject);
 
-                        // make the event draggable using jQuery UI
-                        $(this).draggable({zIndex: 999, revert: true, revertDuration: 0});
-                    });
-                };
+                                                // make the event draggable using jQuery UI
+                                                $(this).draggable({zIndex: 999, revert: true, revertDuration: 0});
+                                            });
+                                        };
 
-                return {
-                    init: function() {
-                        /* Initialize drag and drop event functionality */
-                        initEvents();
+                                        return {
+                                            init: function() {
+                                                /* Initialize drag and drop event functionality */
+                                                initEvents();
 
-                        /* Add new event in the events list */
-                        var eventInput = $('#add-event');
-                        var eventInputVal = '';
+                                                /* Add new event in the events list */
+                                                var eventInput = $('#add-event');
+                                                var eventInputVal = '';
 
-                        // When the add button is clicked
-                        $('#add-event-btn').on('click', function() {
-                            // Get input value
-                            eventInputVal = eventInput.prop('value');
+                                                // When the add button is clicked
+                                                $('#add-event-btn').on('click', function() {
+                                                    // Get input value
+                                                    eventInputVal = eventInput.prop('value');
 
-                            // Check if the user entered something
-                            if (eventInputVal) {
-                                // Add it to the events list
-                                calendarEvents.prepend('<li class="animation-fadeInQuick2Inv"><i class="fa fa-calendar"></i> ' + $('<div />').text(eventInputVal).html() + '</li>');
+                                                    // Check if the user entered something
+                                                    if (eventInputVal) {
+                                                        // Add it to the events list
+                                                        calendarEvents.prepend('<li class="animation-fadeInQuick2Inv"><i class="fa fa-calendar"></i> ' + $('<div />').text(eventInputVal).html() + '</li>');
 
-                                // Clear input field
-                                eventInput.prop('value', '');
+                                                        // Clear input field
+                                                        eventInput.prop('value', '');
 
-                                // Init Events
-                                initEvents();
+                                                        // Init Events
+                                                        initEvents();
 
-                                // Focus the input at the end
-                                eventInput.focus();
-                            }
+                                                        // Focus the input at the end
+                                                        eventInput.focus();
+                                                    }
 
-                            // Don't let the form submit
-                            return false;
-                        });
+                                                    // Don't let the form submit
+                                                    return false;
+                                                });
 
-                        $('#calendar').fullCalendar({
-                            header: {
-                                left: 'title',
-                                center: '',
-                                right: 'today month,agendaWeek,agendaDay prev,next'
-                            },
-                            firstDay: 1,
-                            editable: false,
-                            droppable: false,
-                            events: ${cal}
-                        });
-                    }
-                };
-            }();
+                                                $('#calendar').fullCalendar({
+                                                    header: {
+                                                        left: 'title',
+                                                        center: '',
+                                                        right: 'today month,agendaWeek,agendaDay prev,next'
+                                                    },
+                                                    firstDay: 1,
+                                                    editable: false,
+                                                    droppable: false,
+                                                    events: ${cal}
+                                                });
+                                            }
+                                        };
+                                    }();
         </script>
         <script>$(function() {
                 CompCalendar.init();

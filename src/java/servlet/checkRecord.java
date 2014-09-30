@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.DiabetesLog;
 import model.User;
+import model.utility;
 
 /**
  *
@@ -79,6 +80,8 @@ public class checkRecord extends HttpServlet {
         }
         chartValue = chartValue.concat("];");
         chartDate = chartDate.concat("];");
+        request.setAttribute("eAG", DiabetesLog.getEAG(u.getUserID()));
+        request.setAttribute("detail", utility.genInstrustion(DiabetesLog.getEAG(u.getUserID())));
         request.setAttribute("chartDate", chartDate);
         request.setAttribute("chartValue", chartValue);
         request.setAttribute("table", table);

@@ -102,14 +102,13 @@ public class NutritionDB {
          return result;
     }
     public static boolean editNutrient(int id,String name,Double carb,Double cal){
-       
             Connection con = ConnectionAgent.getConnection();
             boolean result = false;
             String sql = "UPDATE  NutritionDB SET  name =?,carb=?,cal=? WHERE  nutriID = ?";
             PreparedStatement pst;
          try {
             pst = con.prepareStatement(sql);
-            pst.setString(1, utility.toUTF8(name));
+            pst.setString(1, name);
             pst.setDouble(2, carb);
             pst.setDouble(3, cal);
             pst.setInt(4,id);

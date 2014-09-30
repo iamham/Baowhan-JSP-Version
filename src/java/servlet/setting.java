@@ -8,10 +8,15 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Hospital;
+import model.User;
 
 /**
  *
@@ -30,19 +35,42 @@ public class setting extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet setting</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet setting at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        HttpSession session = request.getSession(false);
+        User u = (User) session.getAttribute("user");
+        u = User.getUserByID(u.getUserID());
+        int doctor = u.getRelatedUserID();
+        int st = User.getReqStatus(u.getUserID());
+        List<Hospital> hos = Hospital.showHospital();
+        List<User> doc = User.getDoctor();
+        String hospital="";
+        String dr = "";
+        for(int i=0;i<hos.size();i++){
+            hospital = hospital.concat("<option value=\""+hos.get(i).getId()+"\">โรงพยาบาล "+hos.get(i).getName()+"</option>");
+            if(u.getHospitalID()==hos.get(i).getId()){
+                hospital = hospital.concat("<option selected=\"selected\" value=\""+hos.get(i).getId()+"\">โรงพยาบาล "+hos.get(i).getName()+"</option>");
+            }
         }
+        for(int i=0;i<doc.size();i++){
+            dr = dr.concat("<option value=\""+doc.get(i).getUserID()+"\">"+doc.get(i).getFirstname()+" "+doc.get(i).getLastname()+"</option>");
+        }
+        String status="";
+        if(st==1){
+            status = "<b class=\"text-warning\"><i class=\"fa fa-spinner\"></i> รอการยืนยันจากแพทย์</b>";
+        }else if(st==2){
+            status = "<b class=\"text-success\"><i class=\"fa fa-check\"></i> ยืนยันเรียบร้อย</b>";
+        }else if(st==3){
+            status = "<b class=\"text-danger\"><i class=\"fa fa-ban\"></i> ไม่ได้รับการยืนยัน โปรดเลือกแพทย์ผู้อื่น</b>";
+        }
+        request.setAttribute("status", status);
+        request.setAttribute("drlist", dr);
+        request.setAttribute("hospital", hospital);
+        request.setAttribute("doctor", User.getUserName(u.getRelatedUserID()));
+        if(u.getType()==1){
+            getServletContext().getRequestDispatcher("/setting.jsp").forward(request, response);
+        }else if(u.getType()==2){
+            getServletContext().getRequestDispatcher("/docsetting.jsp").forward(request, response);
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

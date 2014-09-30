@@ -48,7 +48,6 @@ public class addCalDoc extends HttpServlet {
         String note = request.getParameter("note");
         String to = request.getParameter("to");
         System.out.println("1"+note);
-        note = utility.toUTF8(note);
         System.out.println("2"+note);
         Date ndate = new Date();
         String irdate = dat.concat(" "+time);

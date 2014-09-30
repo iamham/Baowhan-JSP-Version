@@ -200,6 +200,42 @@
         <servlet-name>delUser</servlet-name>
         <servlet-class>servlet.delUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>changeDoctor</servlet-name>
+        <servlet-class>servlet.changeDoctor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changeSetting</servlet-name>
+        <servlet-class>servlet.changeSetting</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>req</servlet-name>
+        <servlet-class>servlet.req</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>acc</servlet-name>
+        <servlet-class>servlet.acc</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>mLogin</servlet-name>
+        <servlet-class>servlet.mLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>share</servlet-name>
+        <servlet-class>servlet.share</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dregister</servlet-name>
+        <servlet-class>servlet.dregister</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getdRegister</servlet-name>
+        <servlet-class>servlet.getdRegister</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changeDRStatus</servlet-name>
+        <servlet-class>servlet.changeDRStatus</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -387,6 +423,42 @@
     <servlet-mapping>
         <servlet-name>delUser</servlet-name>
         <url-pattern>/delUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changeDoctor</servlet-name>
+        <url-pattern>/changeDoctor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changeSetting</servlet-name>
+        <url-pattern>/changeSetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>req</servlet-name>
+        <url-pattern>/req</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>acc</servlet-name>
+        <url-pattern>/acc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mLogin</servlet-name>
+        <url-pattern>/mLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>share</servlet-name>
+        <url-pattern>/share</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dregister</servlet-name>
+        <url-pattern>/dregister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getdRegister</servlet-name>
+        <url-pattern>/getdRegister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changeDRStatus</servlet-name>
+        <url-pattern>/changeDRStatus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -45,8 +45,9 @@ public class docdashboard extends HttpServlet {
         AppointmentLog appointment = AppointmentLog.getNextCheckDate(u.getUserID());
         List<User> allR = User.showAccRequest(u.getUserID());
         String userList = "";
+        String userTable = "";
         for (int i = 0; i < allP.size(); i++) {
-            userList = userList.concat("<div class=\"col-lg-4 col-lg-pull-4\"><a href=\"showUser?id=" + allP.get(i).getUsername() + "\" class=\"widget\"><div class=\"widget-content text-center\">\n<img src=\"img/user/" + allP.get(i).getProfilePIC() + "\" alt=\"avatar\" class=\"img-circle img-thumbnail img-thumbnail-avatar-2x\">\n"
+            userList = userList.concat("<div class=\"col-sm-4\"><a href=\"showUser?id=" + allP.get(i).getUsername() + "\" class=\"widget\"><div class=\"widget-content text-center\">\n<img src=\"img/user/" + allP.get(i).getProfilePIC() + "\" alt=\"avatar\" class=\"img-circle img-thumbnail img-thumbnail-avatar-2x\">\n"
                     + "                                        <h2 class=\"widget-heading h3 text-muted\">" + allP.get(i).getFirstname() + " " + allP.get(i).getLastname() + "</h2></div><div class=\"widget-content themed-background-muted text-dark text-center\"><strong>" + Hospital.findById(allP.get(i).getHospitalID()) + "</strong>"
                     + "                                    </div><div class=\"widget-content\"><div class=\"row text-center\"><div class=\"col-xs-6\"><h3 class=\"widget-heading\"><i class=\"gi gi-tint text-info\"></i> <br><small> eAG : " + DiabetesLog.getEAG(allP.get(i).getUserID()) + "</small></h3>\n"
                     + "                                            </div><div class=\"col-xs-6\"><h3 class=\"widget-heading\"><i class=\"gi gi-sorting text-danger\"></i> <br><small>" + Ranking.position(allP.get(i).getUserID()) + "</small></h3></div>\n"
@@ -55,8 +56,12 @@ public class docdashboard extends HttpServlet {
         if(appointment!=null){
                request.setAttribute("nextApp", sf.format(appointment.getChecktime())); 
             }else{
-               request.setAttribute("nextApp", "ไม่มีการนัดหมาย");
+               request.setAttribute("nextApp", "ไม่มี<br />การนัดหมาย");
             }
+        for (int i = 0; i < allP.size(); i++) {
+            userTable = userTable.concat("<tr><td><a href=\"showUser?id=" + allP.get(i).getUsername()+"\">"+allP.get(i).getUsername()+"</a></td><td><a href=\"showUser?id=" + allP.get(i).getUsername()+"\">"+allP.get(i).getFirstname()+" "+allP.get(i).getLastname()+"</a></td><td>"+Hospital.findById(allP.get(i).getHospitalID())+"</td><td>"+DiabetesLog.getEAG(allP.get(i).getUserID())+"</td><td>"+Ranking.position(allP.get(i).getUserID())+"</td></a></tr>");
+        }
+        request.setAttribute("userTable", userTable);
         request.setAttribute("userList", userList);
         int noreq = 0;
         noreq = allR.size();

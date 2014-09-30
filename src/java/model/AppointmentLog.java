@@ -118,8 +118,7 @@ public class AppointmentLog {
             pstm.setInt(2, doctorID);
             pstm.setTimestamp(3, ctime);
             pstm.setTimestamp(4, ltime);
-            pstm.setString(5, utility.toUTF8(detail));
-            System.out.println("3"+detail);
+            pstm.setString(5, detail);
             pstm.setInt(6, origin);
             pstm.setInt(7, type);
             pstm.setInt(8, status);

@@ -19,7 +19,7 @@
 
         <title>Baowhan:เบาหวาน - หน้าหลัก</title>
 
-        <meta name="description" content="AppUI is a Bootstrap Admin Web App Template created by pixelcave and published on Themeforest">
+        <meta name="description" content="Baowhan.com เว็บไซต์ช่วยเหลือในการจัดการโรคเบาหวาน พร้อมให้ข้อมูลเกี่ยวกับโรคเบาหวาน !">
         <meta name="author" content="pixelcave">
         <meta name="robots" content="noindex, nofollow">
 
@@ -56,8 +56,10 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="js/vendor/modernizr-2.8.3.js"></script>
+        
     </head>
     <body>
+        <img src="img/bg.jpg" alt="Full Background" class="full-bg full-bg-bottom animation-pulseSlow">
         <!-- Page Wrapper -->
         <!-- In the PHP version you can set the following options from inc/config file -->
         <!--
@@ -114,7 +116,7 @@
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="dashboard" class="sidebar-title">
+                        <a href="#" class="sidebar-title">
                             <span class="sidebar-nav-mini-hide">เบา<strong>หวาน</strong> | Bao<strong>whan</strong></span>
                         </a>
                     </div>
@@ -162,7 +164,9 @@
                                 <li>
                                     <a href="news" ><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ข่าวสาร</span></a>
                                 </li>
-
+                                <li>
+                                    <a href="setting"><i class="fa fa-folder-open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">ตั้งค่า</span></a>
+                                </li>     
 
                             </ul>
                             <!-- END Sidebar Navigation -->
@@ -195,7 +199,18 @@
                         <!-- Left Header Navigation -->
                         <ul class="nav navbar-nav-custom">
                             <!-- Main Sidebar Toggle Button -->
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
 
+                            <!-- Header Link -->
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href=""><strong>การแข่งขัน</strong></a>
+                            </li>
                             <!-- END Main Sidebar Toggle Button -->
 
                             <!-- Header Link -->
@@ -247,33 +262,47 @@
                     <!-- Page content -->
                     <div id="page-content">
                         <!-- General Elements Block -->
-                          <div class="row">
-                        <div class="col-sm-8">
-                            <a href="javascript:void(0)" class="widget">
-                                <div class="widget-content themed-background-danger clearfix">
-                                    <img src="img/king.png" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
-                                    <h3 class="widget-heading h3 text-light"><strong>${result}</strong></h3>
-                                    <span class="text-light-op">รักษาระดับน้ำตาลของคุณให้ดี แล้วมาสนุกกัน !</span>
+                        <div class="row">
+
+                            <div class="col-sm-8">
+                                <a href="javascript:void(0)" class="widget">
+                                    <div class="widget-content themed-background-danger clearfix">
+                                        <img src="img/king.png" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
+                                        <h3 class="widget-heading h3 text-light"><strong>${result}</strong></h3>
+                                        <span class="text-light-op">รักษาระดับน้ำตาลของคุณให้ดี แล้วมาสนุกกัน !</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-4">
+                                <a href="https://www.facebook.com/dialog/feed?app_id=1479107309026269&display=popup&caption=เยี่ยมมาก คุณ${user.getFirstname()} รักษาระดับน้ำตาลได้อย่างดีเยี่ยม ร่วมให้กำลังใจโดยการกด Like ที่โพสนี้ได้เลย !&picture=http://baowhan.com:8181/Baowhan/img/king.png&link=http://baowhan.com:8181/Baowhan/share?username=${user.getUsername()} &redirect_uri=http://baowhan.com/login.jsp" class="widget">
+                                    <div class="widget-content themed-background-info clearfix">
+                                        <img src="img/fb.svg" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
+                                        <h3 class="widget-heading h3 text-light">แชร์ลง Facebook</h3>
+                                        <span class="text-light-op">แบ่งปันให้เพื่อนของคุณรู้</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-sm-12">
+                                ${lastmonth}
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="widget-image widget-image-xs">
+                                    <img src="img/placeholders/photos/photo13@2x.jpg" alt="image" class="animation-pulseSlow">
+                                    <div class="widget-image-content">
+                                        <h2 class="widget-heading text-light"><strong>เก็บคะแนนง่ายๆ</strong></h2>
+                                        <h3 class="widget-heading text-light-op h4"><i class="fa fa-star"></i> รับ 500 คะแนนทุกครั้งที่บันทึกผลน้ำตาล<br /><i class="fa fa-star"></i> หากน้ำตาลอยู่ในเกณท์ดี < 150 mg/dL รับเพิ่ม 300 คะแนน<br /><i class="fa fa-star"></i> คะแนนจะล้างใหม่ในทุกๆเดือน</h3>
+                                    </div>
+                                    <i class="fa fa-trophy"></i>
                                 </div>
-                            </a>
+                            </div>
                         </div>
-                        <div class="col-sm-4">
-                            <a href="javascript:void(0)" class="widget">
-                                <div class="widget-content themed-background-info clearfix">
-                                    <img src="img/fb.svg" alt="avatar" class="img-circle img-thumbnail img-thumbnail-avatar pull-right">
-                                    <h3 class="widget-heading h3 text-light">แชร์ลง Facebook</h3>
-                                    <span class="text-light-op">แบ่งปันให้เพื่อนของคุณรู้</span>
-                                </div>
-                            </a>
-                        </div>
-                          </div>
-                        
-                            <!-- General Elements Title -->
-                            
-                            <!-- END General Elements Title -->
-                            <div class="block full">
+
+                        <!-- General Elements Title -->
+
+                        <!-- END General Elements Title -->
+                        <div class="block col-sm-12">
                             <div class="block-title">
-                                <h2>ตารางแสดงอันดับคะแนน</h2>
+                                <h2>ตารางแสดงอันดับคะแนนเดือนนี้</h2>
                             </div>
 
                             <div class="table-responsive">
@@ -282,7 +311,7 @@
                                         <tr>
                                             <th class="text-center" style="width: 50px;">อันดับ</th>
                                             <th>ชื่อผู้ใช้</th>
-                                            <th>ค่าวัด (eAG)</th>
+                                            <th>คะแนน</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -290,35 +319,35 @@
                                     </tbody>
                                 </table>
                             </div>       
-                            </div>
                         </div>
-                        <!-- END General Elements Block -->
-
-
                     </div>
-                    <!-- END Page Content -->
+                    <!-- END General Elements Block -->
+
+
                 </div>
-                <!-- END Main Container -->
+                <!-- END Page Content -->
             </div>
-            <!-- END Page Container -->
+            <!-- END Main Container -->
         </div>
-        <!-- END Page Wrapper -->
+        <!-- END Page Container -->
+    </div>
+    <!-- END Page Wrapper -->
 
-        <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
+    <!-- Include Jquery library from Google's CDN but if something goes wrong get Jquery from local file (Remove 'http:' if you have SSL) -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-2.1.1.min.js"%3E%3C/script%3E'));</script>
 
-        <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
+    <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
 
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/bootstrap-table.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/bootstrap-table.js"></script>
 
-        <!-- Load and execute javascript code used only in this page -->
-        <script src="js/pages/uiTables.js"></script>
-        <script>$(function() {
-                UiTables.init();
-            });</script>
-    </body>
+    <!-- Load and execute javascript code used only in this page -->
+    <script src="js/pages/uiTables.js"></script>
+    <script>$(function() {
+                                    UiTables.init();
+                                });</script>
+</body>
 </html>

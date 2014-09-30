@@ -49,16 +49,15 @@ public class dashboard extends HttpServlet {
             //System.out.println("LOG:"+log.isEmpty());
             AppointmentLog appointment = AppointmentLog.getNextCheckDate(u.getUserID());
             //System.out.println("APP:"+AppointmentLog.getNextCheckDate(u.getUserID()));
-            int position = Ranking.position(u.getUserID());
+                   int position = Ranking.position(u.getUserID());
             //System.out.println("POS:"+position);
             List<Ranking> ranking = Ranking.showRanking();
-            int rposition;
-            String result="",table="";
-        for(int i=0;i<ranking.size();i++){
-            if(ranking.get(i).getUserId()==u.getUserID()){
-                rposition = ranking.get(i).getId();
-                result = result.concat("<h3 class=\"widget-heading h3 text-light\"class=\"widget-heading h3 text-light\"><strong>คุณอยู่อันดับที่ "+ rposition +" </strong><br />ค่าเฉลี่ยน้ำตาลที่ (eAG) "+ranking.get(i).geteAG()+"</h3>");
-                break;
+            
+            String result = "";
+        for (int i = 0; i < ranking.size(); i++) {
+            if (ranking.get(i).getUserId() == u.getUserID()) {
+                position = ranking.get(i).getId();
+                result = result.concat("คุณอยู่อันดับที่ " + position + "<br />ด้วยคะแนน " + ranking.get(i).getPoint());
             }
         }
             if(log.isEmpty()){

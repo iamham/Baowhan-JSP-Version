@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.DiabetesLog;
+import model.Ranking;
 import model.User;
 
 /**
@@ -59,6 +60,13 @@ public class addme extends HttpServlet {
             Logger.getLogger(addme.class.getName()).log(Level.SEVERE, null, ex);
         }if(success){
         success = DiabetesLog.addRecord(u.getUserID(), dbvalue, note, rdate, ts);
+        int point=0;
+        if(dbvalue<150){
+            point=800;
+        }else{
+            point=500;
+        }
+        Ranking.addPoint(u.getUserID(), point);
         }
         if(success){
             getServletContext().getRequestDispatcher("/checkRecord").forward(request, response);

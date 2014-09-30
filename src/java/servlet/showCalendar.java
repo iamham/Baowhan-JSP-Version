@@ -9,6 +9,8 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,10 +37,10 @@ public class showCalendar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         SimpleDateFormat sf = new SimpleDateFormat("yyyy, M, d");
         HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("user");
+        u = User.getUserByID(u.getUserID());
         List<AppointmentLog> req = AppointmentLog.getRequest(u.getUserID());
         request.setAttribute("doctor", User.getUserName(u.getRelatedUserID()));
         System.out.println(u.getRelatedUserID());
@@ -46,7 +48,7 @@ public class showCalendar extends HttpServlet {
         if(!req.isEmpty()){
             String sreq="";
             for(int i=0;i<req.size();i++){
-                sreq = sreq.concat("<div class=\"alert alert-info alert-dismissable animation-slideRight\">\n" +
+                sreq = sreq.concat("<div class=\"alert col-sm-12 alert-warning alert-dismissable animation-slideRight\">\n" +
 "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button><p>คุณมีคำขอนัดใหม่</p><p><strong>วันที่ "+req.get(i).getChecktime().toString()+" พบกับคุณหมอ "+User.getUserName(req.get(i).getDoctorId())+"<br />รายละเอียด "+req.get(i).getDetail()+"<a href=\"calAcc?id="+req.get(i).getLogId()+"\"><br /><button class=\"btn btn-sm btn-effect-ripple btn-success\">เพิ่ม</button></a><a href=\"calDec?id="+req.get(i).getLogId()+"\"> <button class=\"btn btn-sm btn-effect-ripple btn-danger\">ลบ</button></a></div>");
             }
         request.setAttribute("req", sreq);
@@ -55,8 +57,13 @@ public class showCalendar extends HttpServlet {
         if(!all.isEmpty()){
             String json = "[ ";
         int siz = all.size();
+        Calendar c;
         for(int i=0;i<all.size();i++){
-            json = json.concat("{ title: \'"+all.get(i).getDetail()+"\', start: new Date("+sf.format(all.get(i).getChecktime())+") } ");
+            c= Calendar.getInstance();
+            c.setTime(all.get(i).getChecktime());
+            c.add(Calendar.MONTH, -1);
+            Date res = c.getTime();
+            json = json.concat("{ title: \'"+all.get(i).getDetail()+"\', start: new Date("+sf.format(res)+") } ");
             if(i!=(siz-1)){
                 json = json.concat(" , ");
             }
@@ -67,6 +74,8 @@ public class showCalendar extends HttpServlet {
             String json = "[]";
             request.setAttribute("cal", json);
         }
+        request.setAttribute("status", u.getStatus());
+        System.out.println(u.getStatus());
         getServletContext().getRequestDispatcher("/calendar.jsp").forward(request, response);
         /*[
                     {

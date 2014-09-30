@@ -282,7 +282,7 @@ public class DiabetesLog {
             ps = con.prepareStatement(sql);
             ps.setInt(1, userID);
             ps.setDouble(2, value);
-            ps.setString(3, utility.toUTF8(note));
+            ps.setString(3, note);
             ps.setTimestamp(4,  srecordTime);
             ps.setTimestamp(5,  stimestamp);
             ps.executeUpdate();
@@ -308,7 +308,7 @@ public class DiabetesLog {
             PreparedStatement ps ;
             ps = con.prepareStatement(sql);
             ps.setDouble(1, value);
-            ps.setString(2, utility.toUTF8(note));
+            ps.setString(2, note);
             ps.setTimestamp(3,  srecordTime);
             ps.setTimestamp(4,  stimestamp);
             ps.setInt(5, ID);
@@ -451,11 +451,12 @@ public class DiabetesLog {
         return success;
       }
       public static List<DiabetesLog> getBloodRecord(int userID,Date from,Date to) {
+         
         java.sql.Timestamp sfrom = new java.sql.Timestamp(from.getTime());
         java.sql.Timestamp sto = new java.sql.Timestamp(to.getTime());
         Connection con = ConnectionAgent.getConnection();
         String sql = "SELECT checktime, value,logID,Note FROM DiabetesLog WHERE userid =? \n"+
-                     "AND checktime BETWEEN ? AND ? ORDER BY checktime ASC";
+                     "AND checktime >= ? AND checktime <= ? ORDER BY checktime ASC";
         PreparedStatement ps;
         DiabetesLog dl = null;
         List<DiabetesLog> ls = new ArrayList<DiabetesLog>();

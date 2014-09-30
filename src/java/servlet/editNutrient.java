@@ -33,7 +33,6 @@ public class editNutrient extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("user");
         String id =request.getParameter("id");
